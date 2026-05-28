@@ -1,0 +1,45 @@
+# .NET
+obj/
+.idea/
+[Bb]in/
+bin/
+debug/
+[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+TestResults/
+*.user
+*.suo
+*.userosscache
+*.csproj.user
+*.vbproj.user
+*.dbmdl
+*.psess
+*.vsp
+*.vspx
+*.cache
+
+# Rider / IDE
+.idea/
+*.sln.iml
+riderModule.iml
+/_ReSharper.Caches/
+
+# React + Vite
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Frontend env files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
