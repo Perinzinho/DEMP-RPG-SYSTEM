@@ -3,7 +3,7 @@ using DEMP_RPG_API.Domain.Ports;
 
 namespace DEMP_RPG_API.Infrastructure;
 
-public class JwtTokenService
+public class JwtTokenService: IJwtTokenService
 {
     private readonly IJwtTokenService _jwtTokenService;
 
