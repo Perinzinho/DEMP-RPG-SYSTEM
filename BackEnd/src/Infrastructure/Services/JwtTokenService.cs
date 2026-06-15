@@ -27,12 +27,12 @@ public class JwtTokenService : IJwtTokenService
         };
 
         var key = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(_config["Jwt:Secret"]!));
+            Encoding.UTF8.GetBytes(_config["Jwt_Secret"]!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: _config["Jwt:Issuer"],
-            audience: _config["Jwt:Audience"],
+            issuer: _config["Jwt_Issuer"],
+            audience: _config["Jwt_Audience"],
             claims: claims,
             expires: DateTime.UtcNow.AddHours(8),
             signingCredentials: creds
