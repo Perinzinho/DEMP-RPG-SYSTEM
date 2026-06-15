@@ -1,19 +1,43 @@
-﻿using DEMP_RPG_API.Domain.Entities;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using DEMP_RPG_API.Domain.Entities;
 using DEMP_RPG_API.Domain.Ports;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
-namespace DEMP_RPG_API.Infrastructure;
+namespace DEMP_RPG_API.Infrastructure.Services;
 
-public class JwtTokenService: IJwtTokenService
+public class JwtTokenService : IJwtTokenService
 {
-    private readonly IJwtTokenService _jwtTokenService;
+    private readonly IConfiguration _config;
 
-    public LoginUseCase(IJwtTokenService jwtTokenService)
+    public JwtTokenService(IConfiguration config)
     {
-        _jwtTokenService = jwtTokenService;
+        _config = config;
     }
 
-    public string Execute(UserEntity user)
+    public string GenerateToken(UserEntity user)
     {
-        return _jwtTokenService.GenerateToken(user);
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Role, user.Role.ToString())
+        };
+
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_config["Jwt:Secret"]!));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: _config["Jwt:Issuer"],
+            audience: _config["Jwt:Audience"],
+            claims: claims,
+            expires: DateTime.UtcNow.AddHours(8),
+            signingCredentials: creds
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }
