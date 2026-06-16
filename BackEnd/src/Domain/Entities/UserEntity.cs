@@ -19,5 +19,7 @@ public class UserEntity
         Email = email;
         PasswordHash = passwordHash;
         Role = role;
+        CreatedAt = DateTime.UtcNow;
+        UpdatedAt = null;
     }
 }
