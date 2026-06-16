@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
     {}
     
     public DbSet<UserEntity> Users => Set<UserEntity>();
+    public DbSet<CharacterEntity> Characters => Set<CharacterEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +51,12 @@ public class AppDbContext : DbContext
             entity.Property(e => e.UpdatedAt)
                 .HasColumnName("updated_at")
                 .HasColumnType("datetime(6)");
+        });
+        
+        //Character
+        modelBuilder.Entity<UserEntity>(entity =>
+        {
+
         });
     }
 
