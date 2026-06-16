@@ -10,34 +10,27 @@ namespace DEMP_RPG_API.Infrastructure.Services;
 
 public class JwtTokenService : IJwtTokenService
 {
-    private readonly IConfiguration _config;
-
-    public JwtTokenService(IConfiguration config)
-    {
-        _config = config;
-    }
-
     public string GenerateToken(UserEntity user)
     {
         var claims = new[]
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.Role.ToString())
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),//Guarda o Id do usuário
+            new Claim(ClaimTypes.Email, user.Email),//Guarda email
+            new Claim(ClaimTypes.Role, user.Role.ToString())//Guarda role
         };
 
-        var key = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(_config["Jwt_Secret"]!));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var key = new SymmetricSecurityKey(//Chave secreta do token
+            Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_TOKEN_KEY") ?? "Default"));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);//Algoritmo de assinatura
 
-        var token = new JwtSecurityToken(
-            issuer: _config["Jwt_Issuer"],
-            audience: _config["Jwt_Audience"],
-            claims: claims,
-            expires: DateTime.UtcNow.AddHours(8),
-            signingCredentials: creds
+        var token = new JwtSecurityToken(//Monta o token
+            issuer: Environment.GetEnvironmentVariable("JWT_TOKEN_ISSUER"),//Quem emitiu o token
+            audience: Environment.GetEnvironmentVariable("JWT_TOKEN_AUDIENCE"),//quem pode consumir o token
+            claims: claims,//informações do usuário
+            expires: DateTime.UtcNow.AddHours(8),//Tempo que ele expira- 8 horas- ToDo-ver se precisa alterar o tempo
+            signingCredentials: creds //Assinatura que valida o token
         );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        return new JwtSecurityTokenHandler().WriteToken(token);//Transforma numa string
     }
 }
