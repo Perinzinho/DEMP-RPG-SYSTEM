@@ -9,6 +9,8 @@ public class UserEntity
     public string Email { get; private set; }
     public string PasswordHash { get; private set; }
     public RoleEnum Role { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime? UpdatedAt { get; private set; }
     
     public UserEntity(Guid id,string username, string passwordHash, RoleEnum role, string email)
     {
@@ -17,6 +19,5 @@ public class UserEntity
         Email = email;
         PasswordHash = passwordHash;
         Role = role;
-        
     }
 }
