@@ -32,7 +32,7 @@ public class UserRepository: IUserRepository
         return result;
     }
 
-    public async Task<IEnumerable<UserEntity?>> GetAllUsers()
+    public async Task<IEnumerable<UserEntity>> GetAllUsers()
     {
         var result = await _context.Users.ToListAsync();
         return result;
