@@ -3,6 +3,7 @@
 namespace DEMP_RPG_API.Application.DTOs.Response;
 
 public record LoginResponseDTO(
+    Guid UserId,
     RoleEnum Role,
     string Token
     );

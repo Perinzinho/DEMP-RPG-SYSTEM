@@ -19,6 +19,7 @@ public class UserMapper
     public static LoginResponseDTO ToLoginResponse(UserEntity user, string token)
     {
         return new LoginResponseDTO(
+            user.Id,
             user.Role,
             token);
     }
