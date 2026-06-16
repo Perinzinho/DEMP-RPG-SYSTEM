@@ -1,4 +1,6 @@
-﻿using DEMP_RPG_API.Domain.Exceptions.User;
+﻿using DEMP_RPG_API.Application.DTOs.Request;
+using DEMP_RPG_API.Application.DTOs.Response;
+using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
 
 namespace DEMP_RPG_API.Application.UseCases.User;
@@ -16,13 +18,13 @@ public class LoginUseCase
         _jwtTokenService = jwtTokenService;
     }
     
-    public async Task<string> Login(string email, string password)
+    public async Task<LoginResponseDTO> Login(LoginRequestDTO dto)
     {
-        var user =await _userRepository.GetUserByEmail(email);
+        var user =await _userRepository.GetUserByEmail(dto.Email);
         if (user == null)
             throw new UserNotFoundException();
         
-        var verify = _hasher.Verify(password,user.PasswordHash);
+        var verify = _hasher.Verify(dto.Password,user.PasswordHash);
 
         if (verify == false)
             throw new UserInvalidPasswordExcepetion();
@@ -30,7 +32,7 @@ public class LoginUseCase
         var token = _jwtTokenService.GenerateToken(user);
         
         
-        return token;
+        return new LoginResponseDTO(user.Role,token);
 
 
 

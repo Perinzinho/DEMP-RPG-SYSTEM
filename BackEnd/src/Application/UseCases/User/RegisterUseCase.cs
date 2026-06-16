@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Domain.Entities;
+﻿using DEMP_RPG_API.Application.DTOs.Request;
+using DEMP_RPG_API.Domain.Entities;
 using DEMP_RPG_API.Domain.Enums;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
@@ -16,15 +17,15 @@ public class RegisterUseCase
         _hasher = hasher;
     }
 
-    public async Task Register(string username, string email, string password)
+    public async Task Register(RegisterRequestDTO dto)
     {
-        var existingUser = await _userRepository.GetUserByEmail(email);
+        var existingUser = await _userRepository.GetUserByEmail(dto.Email);
         if (existingUser != null)
             throw new EmailAlreadyExistsException();
 
-        var passwordHash = _hasher.Hash(password);
+        var passwordHash = _hasher.Hash(dto.Password);
 
-        var user = new UserEntity(Guid.NewGuid(), username, passwordHash, RoleEnum.User, email);
+        var user = new UserEntity(Guid.NewGuid(), dto.Username, passwordHash, RoleEnum.User, dto.Email);
 
         await _userRepository.Create(user);
     }

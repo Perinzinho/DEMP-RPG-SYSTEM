@@ -2,5 +2,5 @@
 
 public record LoginRequestDTO(
     string Email,
-    string PasswordHash
+    string Password
     );
