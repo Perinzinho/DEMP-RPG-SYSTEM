@@ -20,7 +20,7 @@ public class JwtTokenService : IJwtTokenService
         };
 
         var key = new SymmetricSecurityKey(//Chave secreta do token
-            Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_TOKEN_KEY") ?? "Default"));
+            Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET") ?? "Default"));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);//Algoritmo de assinatura
 
         var token = new JwtSecurityToken(//Monta o token

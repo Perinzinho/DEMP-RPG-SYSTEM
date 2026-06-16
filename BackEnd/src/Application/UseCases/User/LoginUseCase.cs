@@ -23,12 +23,12 @@ public class LoginUseCase
     {
         var user =await _userRepository.GetUserByEmail(dto.Email);
         if (user == null)
-            throw new UserNotFoundException();
+            throw new EmailOrPasswordIncorrectException();
         
         var verify = _hasher.Verify(dto.Password,user.PasswordHash);
 
         if (verify == false)
-            throw new UserInvalidPasswordExcepetion();
+            throw new EmailOrPasswordIncorrectException();
         
         var token = _jwtTokenService.GenerateToken(user);
         
