@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Application.DTOs.Request;
+﻿using DEMP_RPG_API.Adapters.Mappers.User;
+using DEMP_RPG_API.Application.DTOs.Request;
 using DEMP_RPG_API.Application.DTOs.Response;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
@@ -32,7 +33,7 @@ public class LoginUseCase
         var token = _jwtTokenService.GenerateToken(user);
         
         
-        return new LoginResponseDTO(user.Role,token);
+        return UserMapper.ToLoginResponse(user, token);
 
 
 

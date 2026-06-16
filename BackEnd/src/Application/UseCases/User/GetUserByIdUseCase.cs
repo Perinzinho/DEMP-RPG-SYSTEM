@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Application.DTOs.Response;
+﻿using DEMP_RPG_API.Adapters.Mappers.User;
+using DEMP_RPG_API.Application.DTOs.Response;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
 
@@ -20,6 +21,6 @@ public class GetUserByIdUseCase
         if (user == null)
             throw new UserNotFoundException();
 
-        return new GetUsersResponseDTO(user.Id, user.Username, user.Email, user.Role, user.CreatedAt, user.UpdatedAt);
+        return UserMapper.ToResponseDTO(user);
     }
 }

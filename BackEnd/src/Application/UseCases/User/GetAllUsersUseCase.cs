@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Application.DTOs.Response;
+﻿using DEMP_RPG_API.Adapters.Mappers.User;
+using DEMP_RPG_API.Application.DTOs.Response;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
 
@@ -21,8 +22,7 @@ public class GetAllUsersUseCase
             if (!users.Any())
                 throw new UserNotFoundException();
 
-            return users.Select(u =>
-                new GetUsersResponseDTO(u.Id, u.Username, u.Email, u.Role, u.CreatedAt, u.UpdatedAt));
- 
+            return users.Select(UserMapper.ToResponseDTO);
+
     }
 }
