@@ -8,5 +8,5 @@ public record GetCharacterSummaryResponse(
     Guid RoomId,
     string Name,
     OccupationsEnum Occupation,
-    string Age
+    int Age
     );
