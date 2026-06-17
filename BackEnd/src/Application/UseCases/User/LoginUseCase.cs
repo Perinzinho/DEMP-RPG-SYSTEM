@@ -1,6 +1,8 @@
 ﻿using DEMP_RPG_API.Adapters.Mappers.User;
 using DEMP_RPG_API.Application.DTOs.Request;
+using DEMP_RPG_API.Application.DTOs.Request.User;
 using DEMP_RPG_API.Application.DTOs.Response;
+using DEMP_RPG_API.Application.DTOs.Response.User;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
 

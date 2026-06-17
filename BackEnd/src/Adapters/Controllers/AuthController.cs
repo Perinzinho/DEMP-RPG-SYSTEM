@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request;
+using DEMP_RPG_API.Application.DTOs.Request.User;
 using DEMP_RPG_API.Application.UseCases.User;
 using DEMP_RPG_API.Domain.Ports;
 using Microsoft.AspNetCore.Authorization;

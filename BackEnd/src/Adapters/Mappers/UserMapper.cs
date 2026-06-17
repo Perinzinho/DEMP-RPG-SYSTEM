@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Response;
+using DEMP_RPG_API.Application.DTOs.Response.User;
 using DEMP_RPG_API.Domain.Entities;
 
 namespace DEMP_RPG_API.Adapters.Mappers.User;

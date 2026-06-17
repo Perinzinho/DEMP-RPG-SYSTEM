@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request;
+using DEMP_RPG_API.Application.DTOs.Request.User;
 using DEMP_RPG_API.Domain.Entities;
 using DEMP_RPG_API.Domain.Enums;
 using DEMP_RPG_API.Domain.Exceptions.User;
