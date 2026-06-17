@@ -20,7 +20,7 @@ namespace DEMP_RPG_API.Adapters.Controllers{
         }
 
         [AllowAnonymous]
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDTO dto)
         {
             await _registerUseCase.Register(dto);
@@ -28,7 +28,7 @@ namespace DEMP_RPG_API.Adapters.Controllers{
         }
 
         [AllowAnonymous]
-        [HttpPost("/login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDTO dto)
         {
             var result = await _loginUseCase.Login(dto);

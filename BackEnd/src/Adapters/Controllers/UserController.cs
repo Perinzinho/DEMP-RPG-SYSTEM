@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DEMP_RPG_API.Adapters.Controllers;
 [ApiController]
 [Authorize]
-[Route("user")]
+[Route("users")]
 public class UserController:ControllerBase
 {
     private readonly GetAllUsersUseCase _getAllUsersUseCase;
@@ -24,7 +24,7 @@ public class UserController:ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("/{userId}")]
+    [HttpGet("{userId}")]
     public async Task<IActionResult> GetUserById(Guid userId)
     {
         var result = await _getUserByIdUseCase.GetUserById(userId);

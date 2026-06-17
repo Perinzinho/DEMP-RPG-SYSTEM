@@ -8,7 +8,7 @@ public class CharacterEntity
     //ToDo-CharacterProfile
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
-    public Guid RoomId { get; private set; }
+    public Guid RoomId { get; private set; }//ToDo-Validation for Roomid
     public string Name {get; private set;}
     public string Gender {get; private set;}
     public OccupationsEnum Occupation {get; private set;}//Note: See if it's possible to minimize occupation Enum

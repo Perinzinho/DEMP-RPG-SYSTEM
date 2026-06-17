@@ -20,7 +20,7 @@ public class CharacterRepository:ICharacterRepository
         return character;
     }
 
-    public async Task<CharacterEntity> GetCharacterById(Guid id)
+    public async Task<CharacterEntity?> GetCharacterById(Guid id)
     {
         var result = await _context.Characters.FirstOrDefaultAsync(e=>e.Id == id);
         return result;
@@ -32,7 +32,7 @@ public class CharacterRepository:ICharacterRepository
         return result;
     }
 
-    public async Task<IEnumerable<CharacterEntity?>> GetCharactersByUserId(Guid userId)
+    public async Task<IEnumerable<CharacterEntity>> GetCharactersByUserId(Guid userId)
     {
         var result = await _context.Characters.Where(e => e.UserId == userId).ToListAsync();//Retorna todos os usuários
         return result;
