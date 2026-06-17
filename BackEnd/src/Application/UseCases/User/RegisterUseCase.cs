@@ -25,7 +25,7 @@ public class RegisterUseCase
 
         var passwordHash = _hasher.Hash(dto.Password);
 
-        var user = new UserEntity(Guid.NewGuid(), dto.Username, passwordHash, RoleEnum.User, dto.Email);
+        var user = new UserEntity(Guid.NewGuid(), dto.Username, passwordHash, RoleEnum.User, dto.Email);//Padronização- Criar Id no UseCase
 
         await _userRepository.Create(user);
     }

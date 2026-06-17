@@ -54,9 +54,47 @@ public class AppDbContext : DbContext
         });
         
         //Character
-        modelBuilder.Entity<UserEntity>(entity =>
+        modelBuilder.Entity<CharacterEntity>(entity =>
         {
-
+            entity.ToTable("Characters");
+            
+            entity.HasKey(e => e.Id);
+            
+            entity.Property(e => e.Id)
+                .IsRequired()
+                .ValueGeneratedNever();
+            
+            entity.Property(e=>e.UserId)
+                .IsRequired();
+            
+            entity.Property(e=>e.Name)
+                .HasMaxLength(128)
+                .IsRequired();
+            
+            entity.Property(e=>e.Gender)
+                .IsRequired();
+            
+            entity.Property(e=>e.Occupation)
+                .IsRequired();
+            
+            entity.Property(e=>e.Residence)
+                .IsRequired();
+            
+            entity.Property(e => e.Age)
+                .IsRequired();
+            
+            entity.Property(e => e.Annotations);
+            
+            entity.Property(e => e.ItemIds);
+            
+            entity.Property(e => e.CreatedAt)
+                .HasColumnName("created_at")
+                .HasColumnType("datetime(6)")
+                .IsRequired();
+            
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnName("updated_at")
+                .HasColumnType("datetime(6)");
         });
     }
 

@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Domain.Enums;
+using Superpower.Parsers;
 
 namespace DEMP_RPG_API.Domain.Entities;
 
@@ -32,5 +33,17 @@ public class CharacterEntity
         ItemIds = itemIds;
         CreatedAt = DateTime.Now;
         UpdatedAt = null;
+    }
+
+    public void Update(string? name, string? gender, OccupationsEnum? occupation, string? residence, int? age,
+        string? annotations, List<Guid>? itemIds)
+    {
+        if (Name != name) Name= name;
+        if (Gender != gender) Gender = gender;
+        if (Occupation != occupation) Occupation = occupation.Value;
+        if (Residence != residence) Residence = residence;
+        if (Age != age) Age = age.Value;
+        if (Annotations != annotations) Annotations = annotations;
+        if (ItemIds != itemIds) ItemIds = itemIds;
     }
 }
