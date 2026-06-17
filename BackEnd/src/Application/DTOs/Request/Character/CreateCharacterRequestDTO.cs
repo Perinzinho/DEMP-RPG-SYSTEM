@@ -9,7 +9,7 @@ public record CreateCharacterRequestDTO(
     string Gender,
     OccupationsEnum Occupation,
     string Residence,
-    string Age,
+    int Age,
     string Annotations,
     List<Guid> ItemIds
     );
