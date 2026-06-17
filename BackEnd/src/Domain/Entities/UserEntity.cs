@@ -4,6 +4,7 @@ namespace DEMP_RPG_API.Domain.Entities;
 
 public class UserEntity
 {
+    //ToDo-UserProfile
     public Guid Id { get; private set; }
     public string Username { get; private set; }//ToDo-Add validation for UserName, min and max? characters
     public string Email { get; private set; }//ToDo-Add Value Object or validation for Email

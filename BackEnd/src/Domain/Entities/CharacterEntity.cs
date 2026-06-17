@@ -5,6 +5,7 @@ namespace DEMP_RPG_API.Domain.Entities;
 
 public class CharacterEntity
 {
+    //ToDo-CharacterProfile
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
     public Guid RoomId { get; private set; }
@@ -45,5 +46,6 @@ public class CharacterEntity
         if (Age != age) Age = age.Value;
         if (Annotations != annotations) Annotations = annotations;
         if (ItemIds != itemIds) ItemIds = itemIds;
+        UpdatedAt = DateTime.Now;
     }
 }

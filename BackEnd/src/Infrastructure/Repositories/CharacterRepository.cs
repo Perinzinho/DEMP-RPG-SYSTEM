@@ -44,7 +44,7 @@ public class CharacterRepository:ICharacterRepository
         if (oldChar == null)
             throw new CharacterNotFoundException();
 
-        oldChar.Update(character.Name, character.Gender, character.Occupation, character.Residence, character.Age, character.Annotations, character.ItemIds);
+        oldChar.Update(character.Name, character.Gender, character.Occupation, character.Residence, character.Age, character.Annotations, character.ItemIds);//Atualização- Possibilidade de trocar personagem para outra mesa
         await _context.SaveChangesAsync();
         return oldChar;
 
