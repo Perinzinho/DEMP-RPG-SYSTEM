@@ -16,14 +16,14 @@ public class RoomEntity
     public DateTime? UpdatedAt { get; private set; }
     
     
-    public RoomEntity(Guid id,string roomCode, Guid masterId, string name, string description, List<Guid>usersIds,SheetEnum sheetEnum, DateTime createdAt, DateTime? updatedAt)
+    public RoomEntity(Guid id, Guid masterId, string name, string description,SheetEnum sheetEnum)
     {
         Id = id;
-        RoomCode = roomCode;
+        RoomCode = GenerateRoomCode();
         MasterId = masterId;
         Name = name;
         Description = description;
-        UserIds = usersIds;
+        UserIds = new List<Guid>();
         SheetEnum = sheetEnum;
         CreatedAt = DateTime.UtcNow;
         UpdatedAt = null;
