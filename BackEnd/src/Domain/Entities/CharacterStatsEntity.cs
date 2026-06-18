@@ -57,7 +57,7 @@ public class CharacterStatsEntity
         Dying = false;
     }
 
-    private void Update(MaxAttributesEnum? maxAttributes, int? strength, int? dexterity, int? intelligence, int? size,
+    public void Update(MaxAttributesEnum? maxAttributes, int? strength, int? dexterity, int? intelligence, int? size,
         int? power, int? appearance, int? education, int? hitPoints, int? currentHp, int? luck, int? sanity, int? currentSanity,
         int? move, int? build, int? dodge, string? damageBonus, bool? temporaryInsanity, bool? indefiniteSanity,
         bool? majorWound, bool? unconscious, bool? dying)

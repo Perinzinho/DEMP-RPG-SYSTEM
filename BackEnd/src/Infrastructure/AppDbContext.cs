@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<UserEntity> Users => Set<UserEntity>();
     public DbSet<CharacterEntity> Characters => Set<CharacterEntity>();
     public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
+    public DbSet<CharacterStatsEntity> CharacterStats => Set<CharacterStatsEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
