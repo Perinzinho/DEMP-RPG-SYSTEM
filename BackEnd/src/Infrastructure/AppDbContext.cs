@@ -97,6 +97,48 @@ public class AppDbContext : DbContext
                 .HasColumnName("updated_at")
                 .HasColumnType("datetime(6)");
         });
+        
+        
+        //Room
+        modelBuilder.Entity<RoomEntity>(entity =>
+        {
+            entity.ToTable("Rooms");
+            entity.HasKey(e => e.Id);
+            entity.HasKey(e => e.RoomCode);
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .IsRequired();
+
+            entity.Property(e => e.RoomCode)
+                .ValueGeneratedNever()
+                .IsRequired();
+
+            entity.Property(e => e.MasterId)
+                .ValueGeneratedNever()
+                .IsRequired();
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(128)
+                .IsRequired();
+
+            entity.Property(e => e.Description)
+                .HasMaxLength(255);
+
+            entity.Property(e => e.UserIds);
+
+            entity.Property(e => e.SheetEnum)
+                .IsRequired();
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnName("created_at")
+                .HasColumnType("datetime(6)")
+                .IsRequired();
+
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnName("updated_at")
+                .HasColumnType("datetime(6)");
+        });
     }
 
 
