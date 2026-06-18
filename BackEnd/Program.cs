@@ -1,5 +1,6 @@
 using System.Text;
 using DEMP_RPG_API.Application.UseCases.Character;
+using DEMP_RPG_API.Application.UseCases.Room;
 using DEMP_RPG_API.Application.UseCases.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +58,16 @@ builder.Services.AddScoped<UpdateCharacterUseCase>();
 builder.Services.AddScoped<GetAllCharactersUseCase>();
 builder.Services.AddScoped<GetCharacterByIdUseCase>();
 builder.Services.AddScoped<GetCharacterByUserIdUseCase>();
+
+
+//Room
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<CreateRoomUseCase>();
+builder.Services.AddScoped<UpdateRoomUseCase>();
+builder.Services.AddScoped<DeleteRoomUseCase>();
+builder.Services.AddScoped<GetAllRoomsUseCase>();
+builder.Services.AddScoped<GetRoomByIdUseCase>();
+builder.Services.AddScoped<GetRoomByCodeUseCase>();
 // JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
