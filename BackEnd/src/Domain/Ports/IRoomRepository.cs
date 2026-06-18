@@ -8,6 +8,6 @@ public interface IRoomRepository
     Task<RoomEntity?> GetRoomById(Guid id);
     Task<IEnumerable<RoomEntity>> GetAllRooms();//Only Admins
     Task<RoomEntity?> GetRoomByCode(string code);
-    Task<RoomEntity> UpdateRoom(RoomEntity room);
-    Task<RoomEntity> DeleteRoom(Guid id);
+    Task<RoomEntity> UpdateRoom(RoomEntity room);//Patch
+    Task DeleteRoom(Guid id);
 }
