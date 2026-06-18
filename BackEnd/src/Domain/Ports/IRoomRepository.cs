@@ -5,4 +5,9 @@ namespace DEMP_RPG_API.Domain.Ports;
 public interface IRoomRepository
 {
     Task<RoomEntity> CreateRoom(RoomEntity room);
+    Task<RoomEntity?> GetRoomById(Guid id);
+    Task<IEnumerable<RoomEntity>> GetAllRooms();//Only Admins
+    Task<RoomEntity?> GetRoomByCode(string code);
+    Task<RoomEntity> UpdateRoom(RoomEntity room);
+    Task<RoomEntity> DeleteRoom(Guid id);
 }
