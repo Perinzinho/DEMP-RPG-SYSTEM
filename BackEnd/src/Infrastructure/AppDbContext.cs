@@ -99,6 +99,88 @@ public class AppDbContext : DbContext
                 .HasColumnType("datetime(6)");
         });
         
+        //CharacterStats
+        modelBuilder.Entity<CharacterStatsEntity>(entity =>
+        {
+                entity.ToTable("CharacterStats");
+                entity.HasKey(e => e.Id);
+                entity.HasKey(e => e.CharacterId);
+                
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .IsRequired();
+
+                entity.Property(e => e.MaxAttributes)
+                    .IsRequired();
+
+                entity.Property(e => e.Strength)
+                    .IsRequired();
+                
+                entity.Property(e => e.Dexterity)
+                    .IsRequired();
+                
+                entity.Property(e => e.Intelligence)
+                    .IsRequired();
+                
+                entity.Property(e => e.Intelligence)
+                    .IsRequired();
+                
+                entity.Property(e => e.Size)
+                    .IsRequired();
+                
+                entity.Property(e => e.Power)
+                    .IsRequired();
+                
+                entity.Property(e => e.Appearance)
+                    .IsRequired();
+
+                entity.Property(e => e.Education)
+                    .IsRequired();
+
+                entity.Property(e => e.HitPoints)
+                    .IsRequired();
+                
+                entity.Property(e=>e.CurrentHp)
+                    .IsRequired();
+                
+                entity.Property(e=>e.Luck)
+                    .IsRequired();
+                
+                entity.Property(e=>e.Sanity)
+                    .IsRequired();
+                
+                entity.Property(e => e.CurrentSanity)
+                    .IsRequired();
+                
+                entity.Property(e => e.Move)
+                    .IsRequired();
+                
+                entity.Property(e=>e.Build).
+                    IsRequired();
+                
+                entity.Property(e=>e.Dodge)
+                    .IsRequired();
+                
+                entity.Property(e=>e.DamageBonus)
+                    .IsRequired();
+                
+                entity.Property(e=>e.TemporaryInsanity)
+                    .IsRequired();
+                
+                entity.Property(e => e.IndefiniteSanity)
+                    .IsRequired();
+                
+                entity.Property(e => e.MajorWound)
+                    .IsRequired();
+                
+                entity.Property(e => e.Unconscious)
+                    .IsRequired();
+                
+                entity.Property(e=>e.Dying)
+                    .IsRequired();
+
+        });
+        
         
         //Room
         modelBuilder.Entity<RoomEntity>(entity =>

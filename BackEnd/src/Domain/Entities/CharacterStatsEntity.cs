@@ -22,14 +22,14 @@ public class CharacterStatsEntity
     public int Move { get; private set; }
     public int Build { get; private set; }
     public int Dodge { get; private set; }
-    public string DamageBonus { get; private set; }
+    public DamageBonusEnum DamageBonus { get; private set; }
     public bool TemporaryInsanity { get; private set; }
     public bool IndefiniteSanity { get; private set; }
     public bool MajorWound{ get; private set; }
     public bool Unconscious { get; private set; }
     public bool Dying { get; private set; }
 
-    public CharacterStatsEntity(Guid id, Guid characterId, MaxAttributesEnum maxAttributes, int strength, int dexterity, int intelligence, int size, int power, int appearance, int education, int hitPoints, int currentHp, int luck, int sanity, int currentSanity, int move, int build, int dodge, string damageBonus)
+    public CharacterStatsEntity(Guid id, Guid characterId, MaxAttributesEnum maxAttributes, int strength, int dexterity, int intelligence, int size, int power, int appearance, int education, int hitPoints, int currentHp, int luck, int sanity, int currentSanity, int move, int build, int dodge, DamageBonusEnum damageBonus)
     {
         Id = id;
         CharacterId = characterId;
@@ -59,7 +59,7 @@ public class CharacterStatsEntity
 
     public void Update(MaxAttributesEnum? maxAttributes, int? strength, int? dexterity, int? intelligence, int? size,
         int? power, int? appearance, int? education, int? hitPoints, int? currentHp, int? luck, int? sanity, int? currentSanity,
-        int? move, int? build, int? dodge, string? damageBonus, bool? temporaryInsanity, bool? indefiniteSanity,
+        int? move, int? build, int? dodge, DamageBonusEnum? damageBonus, bool? temporaryInsanity, bool? indefiniteSanity,
         bool? majorWound, bool? unconscious, bool? dying)
     {
         if(MaxAttributes!=maxAttributes)MaxAttributes=maxAttributes.Value;
@@ -78,7 +78,7 @@ public class CharacterStatsEntity
         if(Move!=move) Move=move.Value;
         if(Build!=build) Build=build.Value;
         if(Dodge!=dodge) Dodge=dodge.Value;
-        if(DamageBonus!=damageBonus) DamageBonus=damageBonus;
+        if(DamageBonus!=damageBonus) DamageBonus=damageBonus.Value;
         if(TemporaryInsanity!=temporaryInsanity)TemporaryInsanity=temporaryInsanity.Value;
         if(IndefiniteSanity!=indefiniteSanity) IndefiniteSanity=indefiniteSanity.Value;
         if(MajorWound!=majorWound)MajorWound=majorWound.Value;
