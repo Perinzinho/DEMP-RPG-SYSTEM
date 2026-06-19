@@ -59,7 +59,7 @@ public class RoomController:ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{code}")]
+    [HttpGet("room/{code}")]
     public async Task<IActionResult> GetRoomByCode(string code)
     {
         var result = await _getRoomByCodeUseCase.GetRoomByCode(code);
