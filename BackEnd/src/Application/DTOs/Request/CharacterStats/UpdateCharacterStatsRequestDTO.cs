@@ -2,7 +2,7 @@
 
 namespace DEMP_RPG_API.Application.DTOs.Request.CharacterStats;
 
-public record UpdateCharacterRequestDTO(
+public record UpdateCharacterStatsRequestDTO(
     MaxAttributesEnum  MaxAttributes,
     int Strength,
     int Dexterity,
