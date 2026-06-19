@@ -62,28 +62,28 @@ public class CharacterStatsEntity
         int? move, int? build, int? dodge, DamageBonusEnum? damageBonus, bool? temporaryInsanity, bool? indefiniteSanity,
         bool? majorWound, bool? unconscious, bool? dying)
     {
-        if(MaxAttributes!=maxAttributes)MaxAttributes=maxAttributes.Value;
-        if(Strength!=strength)Strength=strength.Value;
-        if(Dexterity!=dexterity)Dexterity=dexterity.Value;
-        if(Intelligence!=intelligence) Intelligence=intelligence.Value;
-        if(Size!=size) Size=size.Value;
-        if(Power!=power) Power=power.Value;
-        if (Appearance != appearance) Appearance = appearance.Value;
-        if(Education!=education) Education=education.Value;
-        if(HitPoints!=hitPoints)HitPoints=hitPoints.Value;
-        if(CurrentHp!=currentHp) CurrentHp=currentHp.Value;
-        if(Luck!=luck) Luck=luck.Value;
-        if(Sanity!=sanity) Sanity=sanity.Value;
-        if(CurrentSanity!=currentSanity) CurrentSanity=currentSanity.Value;
-        if(Move!=move) Move=move.Value;
-        if(Build!=build) Build=build.Value;
-        if(Dodge!=dodge) Dodge=dodge.Value;
-        if(DamageBonus!=damageBonus) DamageBonus=damageBonus.Value;
-        if(TemporaryInsanity!=temporaryInsanity)TemporaryInsanity=temporaryInsanity.Value;
-        if(IndefiniteSanity!=indefiniteSanity) IndefiniteSanity=indefiniteSanity.Value;
-        if(MajorWound!=majorWound)MajorWound=majorWound.Value;
-        if(Unconscious!=unconscious) Unconscious=unconscious.Value;
-        if(Dying!=dying) Dying=dying.Value;
+        if (maxAttributes.HasValue) MaxAttributes = maxAttributes.Value;
+        if (strength.HasValue) Strength = strength.Value;
+        if (dexterity.HasValue) Dexterity = dexterity.Value;
+        if (intelligence.HasValue) Intelligence = intelligence.Value;
+        if (size.HasValue) Size = size.Value;
+        if (power.HasValue) Power = power.Value;
+        if (appearance.HasValue) Appearance = appearance.Value;
+        if (education.HasValue) Education = education.Value;
+        if (hitPoints.HasValue) HitPoints = hitPoints.Value;
+        if (currentHp.HasValue) CurrentHp = currentHp.Value;
+        if (luck.HasValue) Luck = luck.Value;
+        if (sanity.HasValue) Sanity = sanity.Value;
+        if (currentSanity.HasValue) CurrentSanity = currentSanity.Value;
+        if (move.HasValue) Move = move.Value;
+        if (build.HasValue) Build = build.Value;
+        if (dodge.HasValue) Dodge = dodge.Value;
+        if (damageBonus.HasValue) DamageBonus = damageBonus.Value;
+        if (temporaryInsanity.HasValue) TemporaryInsanity = temporaryInsanity.Value;
+        if (indefiniteSanity.HasValue) IndefiniteSanity = indefiniteSanity.Value;
+        if (majorWound.HasValue) MajorWound = majorWound.Value;
+        if (unconscious.HasValue) Unconscious = unconscious.Value;
+        if (dying.HasValue) Dying = dying.Value;
     }
     
 }
