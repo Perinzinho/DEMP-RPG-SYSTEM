@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<CharacterEntity> Characters => Set<CharacterEntity>();
     public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
     public DbSet<CharacterStatsEntity> CharacterStats => Set<CharacterStatsEntity>();
+    public DbSet<CharacterSkillsModernEntity> CharacterSkillsModern => Set<CharacterSkillsModernEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
