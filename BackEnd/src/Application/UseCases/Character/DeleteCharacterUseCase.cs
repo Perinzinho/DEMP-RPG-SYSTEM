@@ -16,7 +16,7 @@ public class DeleteCharacterUseCase
     {
         var character= await  _repository.GetCharacterById(id);
 
-        if (character != null)
+        if (character == null)
             throw new CharacterNotFoundException();
         
         await _repository.DeleteCharacter(id);
