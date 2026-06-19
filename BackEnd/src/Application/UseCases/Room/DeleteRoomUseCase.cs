@@ -16,7 +16,7 @@ public class DeleteRoomUseCase
     {
         var room = await _roomRepository.GetRoomById(id);
 
-        if (room != null)
+        if (room == null)
             throw new RoomNotFoundException();
         
         await _roomRepository.DeleteRoom(id);

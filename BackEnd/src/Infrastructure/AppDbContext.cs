@@ -287,7 +287,6 @@ modelBuilder.Entity<CharacterSkillsModernEntity>(entity =>
         {
             entity.ToTable("Rooms");
             entity.HasKey(e => e.Id);
-            entity.HasKey(e => e.RoomCode);
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
