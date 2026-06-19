@@ -31,8 +31,8 @@ public class CharacterStatsController:ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateCharacterStats([FromBody] CreateCharacterStatsRequestDTO dto)
     {
-        await _createCharacterStatsUseCase.CreateCharacterStats(dto);
-        return Ok();
+        var result =await _createCharacterStatsUseCase.CreateCharacterStats(dto);
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]
