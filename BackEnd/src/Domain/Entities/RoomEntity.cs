@@ -41,6 +41,6 @@ public class RoomEntity
     {
         //ToDo-Make Generate RoomCode more impredictable
         Random random = new Random();
-        return random.Next(100000,100000).ToString();
+        return random.Next(100000, 999999).ToString();
     }
 }

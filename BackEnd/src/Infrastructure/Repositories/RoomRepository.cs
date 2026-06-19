@@ -59,7 +59,7 @@ public class RoomRepository:IRoomRepository
             throw new RoomNotFoundException();
         
         _context.Remove(result);
-        _context.SaveChanges();
+        _context.SaveChangesAsync();
     }
     
     

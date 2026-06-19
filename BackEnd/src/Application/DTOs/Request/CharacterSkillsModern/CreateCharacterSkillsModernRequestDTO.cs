@@ -2,6 +2,7 @@
 
 public record CreateCharacterSkillsModernRequestDTO(
     Guid CharacterId,
+    Guid CharacterStatsId,
     int? Accounting,
     int? Anthropology,
     int? Appraise,

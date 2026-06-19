@@ -9,7 +9,7 @@ public class RoomMapper
     {
         return new GetRoomResponseDTO(
             room.Id,
-            room.Name,
+            room.RoomCode,
             room.MasterId,
             room.Name,
             room.Description,
