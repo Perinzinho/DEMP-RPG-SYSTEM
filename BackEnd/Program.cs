@@ -1,5 +1,6 @@
 using System.Text;
 using DEMP_RPG_API.Application.UseCases.Character;
+using DEMP_RPG_API.Application.UseCases.CharacterSkillsModern;
 using DEMP_RPG_API.Application.UseCases.CharacterStats;
 using DEMP_RPG_API.Application.UseCases.Room;
 using DEMP_RPG_API.Application.UseCases.User;
@@ -68,6 +69,13 @@ builder.Services.AddScoped<UpdateCharacterStatsUseCase>();
 builder.Services.AddScoped<GetCharacterStatsByCharacterIdUseCase>();
 builder.Services.AddScoped<GetCharacterStatsById>();
 
+//CharacterSkills-Modern
+builder.Services.AddScoped<ICharacterSkillModernRepository, CharacterSkillModernRepository>();
+builder.Services.AddScoped<CreateCharacterSkillsModernUseCase>();
+builder.Services.AddScoped<DeleteCharacterSkillsUseCase>();
+builder.Services.AddScoped<UpdateCharacterSkillsUseCase>();
+builder.Services.AddScoped<GetCharacterSkillsByCharacterIdUseCase>();
+builder.Services.AddScoped<GetCharacterSkillsModernByIdUseCase>();
 
 //Room
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();

@@ -19,7 +19,7 @@ public class CharacterEntity
     public DateTime CreatedAt {get; private set;}
     public DateTime? UpdatedAt {get; private set;}
 
-    public CharacterEntity(Guid id, Guid userId, Guid roomId, string name, string gender, OccupationsEnum occupation,
+    public CharacterEntity(Guid id, Guid userId, Guid? roomId, string name, string gender, OccupationsEnum occupation,
         string residence, int age, string annotations, List<Guid> itemIds)
     {
         Id = id;

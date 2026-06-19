@@ -56,6 +56,7 @@ public class CharacterSkillsModernController:ControllerBase
         return Ok(result);
     }
 
+    [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateCharacterSkillsModern(Guid id, [FromBody] UpdateCharacterSkillsModernRequestDTO dto)
     {
         var result = await _updateCharacterSkillsUseCase.UpdateCharacterSkills(id, dto);
