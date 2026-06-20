@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Anaktoria';
+  src: url('../assets/fonts/Anaktoria.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+    background-color: var(--color-background);
+}
