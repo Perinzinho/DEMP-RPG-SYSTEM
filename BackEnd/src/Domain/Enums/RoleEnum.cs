@@ -3,5 +3,6 @@
 public enum RoleEnum
 {
     User=1,
-    Admin=2
+    Admin=2,
+    Specatator=3 //Para cannetinha
 }
