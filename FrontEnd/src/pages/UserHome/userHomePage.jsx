@@ -15,6 +15,8 @@ function UserHomePage() {
     const [showJoinModal, setShowJoinModal] = useState(false);
     const [characters, setCharacters] = useState([]);
     const [loadingCharacters, setLoadingCharacters] = useState(true);
+    const [rooms, setRooms] = useState([]);
+    const [loadingRooms, setLoadingRooms] = useState(true);
     const navigate = useNavigate();
     const { userId } = useAuth();
 
@@ -26,11 +28,6 @@ function UserHomePage() {
             .catch(() => setCharacters([]))
             .finally(() => setLoadingCharacters(false));
     }, [userId]);
-
-    const rooms = [
-        { id: 1, name: "Sussurros em Arkham", masterName: "Henrique", playerCount: 4 },
-        { id: 2, name: "O Farol Negro", masterName: "Henrique", playerCount: 3 },
-    ];
 
     async function handleJoinRoom(roomCode) {
         const room = await joinRoom(roomCode);
@@ -91,22 +88,29 @@ function UserHomePage() {
                             <button className="home-create-button" onClick={() => console.log("Criar investigador")}>
                                 Criar investigador
                             </button>
+                            <p className="home-create-hint">Disponível em breve — entre em uma mesa primeiro</p>
                         </>
                     )}
 
                     {activeTab === "rooms" && (
                         <>
-                            <div className="character-grid">
-                                {rooms.map((room) => (
-                                    <RoomCard
-                                        key={room.id}
-                                        name={room.name}
-                                        masterName={room.masterName}
-                                        playerCount={room.playerCount}
-                                        onClick={() => console.log("Abrir mesa", room.name)}
-                                    />
-                                ))}
-                            </div>
+                            {loadingRooms ? (
+                                <p className="home-empty-state">Carregando mesas...</p>
+                            ) : rooms.length === 0 ? (
+                                <p className="home-empty-state">Você ainda não participa de nenhuma mesa.</p>
+                            ) : (
+                                <div className="character-grid">
+                                    {rooms.map((room) => (
+                                        <RoomCard
+                                            key={room.id}
+                                            name={room.name}
+                                            masterName={room.masterName}
+                                            playerCount={room.playerCount}
+                                            onClick={() => console.log("Abrir mesa", room.name)}
+                                        />
+                                    ))}
+                                </div>
+                            )}
 
                             <button className="home-create-button" onClick={() => console.log("Criar mesa")}>
                                 Criar mesa
