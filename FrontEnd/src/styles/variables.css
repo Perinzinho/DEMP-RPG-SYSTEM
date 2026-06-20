@@ -1,4 +1,4 @@
-css:root {
+:root {
   --color-background: #010101;
 
   --color-text: #FFFFFF;
@@ -11,3 +11,4 @@ css:root {
   --spacing-md: 16px;
   --spacing-lg: 32px;
 }
+
