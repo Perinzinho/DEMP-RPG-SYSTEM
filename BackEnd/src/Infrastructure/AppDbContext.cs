@@ -48,12 +48,12 @@ public class AppDbContext : DbContext
             
             entity.Property(e=>e.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("datetime(6)")
+                .HasColumnType("timestamptz")
                 .IsRequired();
 
             entity.Property(e => e.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("datetime(6)");
+                .HasColumnType("timestamptz");
         });
         
         //Character
@@ -92,12 +92,12 @@ public class AppDbContext : DbContext
             
             entity.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("datetime(6)")
+                .HasColumnType("timestamptz")
                 .IsRequired();
             
             entity.Property(e => e.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("datetime(6)");
+                .HasColumnType("timestamptz");
         });
         
         //CharacterStats
@@ -314,12 +314,12 @@ modelBuilder.Entity<CharacterSkillsModernEntity>(entity =>
 
             entity.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("datetime(6)")
+                .HasColumnType("timestamptz")
                 .IsRequired();
 
             entity.Property(e => e.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("datetime(6)");
+                .HasColumnType("timestamptz");
         });
     }
 

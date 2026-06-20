@@ -14,6 +14,7 @@ using Microsoft.OpenApi;
 using Microsoft.EntityFrameworkCore;
 
 DotNetEnv.Env.Load();
+Console.WriteLine($"DB_CONNECTION: {Environment.GetEnvironmentVariable("DB_CONNECTION")}");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,10 +37,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(
-        Environment.GetEnvironmentVariable("DB_CONNECTION"),
-        ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("DB_CONNECTION"))
+    options.UseNpgsql(
+        Environment.GetEnvironmentVariable("DB_CONNECTION")
     ));
+
 
 // Serviços
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
