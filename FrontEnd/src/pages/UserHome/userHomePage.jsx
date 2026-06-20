@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 function UserHomePage() {
     return (
         <div>
-            <Header userName="Henrique" userEmail="henrique@email.com" />
+            <Header/>
             {/* resto do conteúdo */}
         </div>
     );

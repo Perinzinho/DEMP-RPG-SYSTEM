@@ -18,7 +18,7 @@ function LoginForm() {
 
         try {
             await login(email, password);
-            navigate('/dashboard');
+            navigate('/user/home');
         } catch (err) {
             setError('Email ou senha inválidos');
         } finally {
