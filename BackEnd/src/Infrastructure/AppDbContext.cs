@@ -105,7 +105,7 @@ public class AppDbContext : DbContext
         {
                 entity.ToTable("CharacterStats");
                 entity.HasKey(e => e.Id);
-                entity.HasKey(e => e.CharacterId);
+
                 
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()

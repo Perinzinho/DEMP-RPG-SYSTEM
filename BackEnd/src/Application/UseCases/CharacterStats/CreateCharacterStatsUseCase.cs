@@ -22,7 +22,9 @@ public class CreateCharacterStatsUseCase
             dto.Strength, dto.Dexterity, dto.Intelligence, dto.Size, dto.Power,
             dto.Appearance, dto.Education, dto.HitPoints, dto.CurrentHp, dto.Luck,
             dto.Sanity,dto.CurrentSanity,dto.Move,dto.Build,dto.Dodge,dto.DamageBonus);
-
+        
+        var created = await _characterStatsRepository.CreateCharacterStats(characterStats);
+        
         return CharacterStatsMapper.ToGetResponse(characterStats);
     }
 }

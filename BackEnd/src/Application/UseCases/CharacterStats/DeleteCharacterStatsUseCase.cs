@@ -16,7 +16,7 @@ public class DeleteCharacterStatsUseCase
     {
         var characterStats= await  _repository.GetCharacterStatsById(id);
 
-        if (characterStats != null)
+        if (characterStats == null)
             throw new CharacterStatsNoFoundException();
         
         await _repository.DeleteCharacterStats(id);
