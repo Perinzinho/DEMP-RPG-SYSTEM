@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 function Header() {
     const { user } = useAuth();
-    console.log("USER:", user);
+
 
     return (
         <header className="app-header">

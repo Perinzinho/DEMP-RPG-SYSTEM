@@ -1,12 +1,16 @@
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
-function UserHomePage() {
+function HomePage() {
     return (
-        <div>
-            <Header/>
-            {/* resto do conteúdo */}
+        <div className="page-layout">
+            <Header />
+            <main className="page-main">
+                {/* conteúdo da página */}
+            </main>
+            <Footer />
         </div>
     );
 }
 
-export default UserHomePage;
+export default HomePage;
