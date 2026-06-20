@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { login as loginService } from '../services/authService';
+import { login as loginService, register as registerService } from '../services/authService';
 
 const AuthContext = createContext(null);
 
@@ -13,13 +13,17 @@ export function AuthProvider({ children }) {
     return data;
   }
 
+  async function register(username, email, password) {
+    return await registerService(username, email, password);
+  }
+
   function logout() {
     localStorage.removeItem('token');
     setToken(null);
   }
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, isAuthenticated: !!token }}>
+    <AuthContext.Provider value={{ token, login, register, logout, isAuthenticated: !!token }}>
       {children}
     </AuthContext.Provider>
   );
