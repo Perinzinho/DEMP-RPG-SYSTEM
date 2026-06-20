@@ -32,7 +32,7 @@ public class CharacterEntity
         Age = age;
         Annotations = annotations;
         ItemIds = itemIds;
-        CreatedAt = DateTime.Now;
+        CreatedAt = DateTime.UtcNow;
         UpdatedAt = null;
     }
 
