@@ -85,6 +85,7 @@ builder.Services.AddScoped<DeleteRoomUseCase>();
 builder.Services.AddScoped<GetAllRoomsUseCase>();
 builder.Services.AddScoped<GetRoomByIdUseCase>();
 builder.Services.AddScoped<GetRoomByCodeUseCase>();
+builder.Services.AddScoped<JoinRoomUseCase>();
 // JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Application.DTOs.Request.Room;
+﻿using System.Security.Claims;
+using DEMP_RPG_API.Application.DTOs.Request.Room;
 using DEMP_RPG_API.Application.UseCases.Room;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +16,15 @@ public class RoomController:ControllerBase
     private readonly GetRoomByIdUseCase _getRoomByIdUseCase;
     private readonly GetRoomByCodeUseCase _getRoomByCodeUseCase;
     private readonly UpdateRoomUseCase _updateRoomUseCase;
+    private readonly JoinRoomUseCase _joinRoomUseCase;
     
     public RoomController(CreateRoomUseCase createRoomUseCase,
         DeleteRoomUseCase deleteRoomUseCase,
         GetAllRoomsUseCase getAllRoomsUseCase,
         GetRoomByIdUseCase getRoomByIdUseCase,
         GetRoomByCodeUseCase getRoomByCodeUseCase,
-        UpdateRoomUseCase updateRoomUseCase)
+        UpdateRoomUseCase updateRoomUseCase,
+        JoinRoomUseCase joinRoomUseCase)
         {
         _createRoomUseCase = createRoomUseCase;
         _deleteRoomUseCase = deleteRoomUseCase;
@@ -29,6 +32,7 @@ public class RoomController:ControllerBase
         _getRoomByIdUseCase = getRoomByIdUseCase;
         _getRoomByCodeUseCase = getRoomByCodeUseCase;
         _updateRoomUseCase = updateRoomUseCase;
+        _joinRoomUseCase = joinRoomUseCase;
         }
 
     [HttpPost]
@@ -70,6 +74,14 @@ public class RoomController:ControllerBase
     public async Task<IActionResult> UpdateRoom(Guid id, [FromBody] UpdateRoomRequestDTO dto)
     {
         var result = await _updateRoomUseCase.UpdateRoom(id, dto);
+        return Ok(result);
+    }
+
+    [HttpPost("join")]
+    public async Task<IActionResult> JoinRoom([FromBody] JoinRoomRequestDTO dto)
+    {
+        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var result = await _joinRoomUseCase.JoinRoom(dto.RoomCode, userId);
         return Ok(result);
     }
 }

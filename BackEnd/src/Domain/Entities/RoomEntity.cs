@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Domain.Enums;
+using DEMP_RPG_API.Domain.Exceptions.Room;
 
 namespace DEMP_RPG_API.Domain.Entities;
 
@@ -42,5 +43,13 @@ public class RoomEntity
         //ToDo-Make Generate RoomCode more impredictable
         Random random = new Random();
         return random.Next(100000, 999999).ToString();
+    }
+
+    public void AddUser(Guid userId)
+    {
+        if (UserIds.Contains(userId))
+            throw new UserAlreadyInRoomException();
+        
+        UserIds.Add(userId);
     }
 }
