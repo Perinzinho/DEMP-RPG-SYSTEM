@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
 import RoomCard from "../../components/RoomCard/RoomCard";
+import JoinRoomModal from "../../components/JoinRoomModal/joinRoomModal";
+import { joinRoom } from "../../services/roomService";
 import "./userHomePage.css";
 
 function UserHomePage() {
     const [activeTab, setActiveTab] = useState("characters");
+    const [showJoinModal, setShowJoinModal] = useState(false);
+    const navigate = useNavigate();
 
     const characters = [
         { id: 1, name: "Eleanor Wade", age: 36, occupation: "Atleta", roomName: "DEMP" },
@@ -17,8 +22,13 @@ function UserHomePage() {
     const rooms = [
         { id: 1, name: "Sussurros em Arkham", masterName: "Henrique", playerCount: 4 },
         { id: 2, name: "O Farol Negro", masterName: "Henrique", playerCount: 3 },
-
     ];
+
+    async function handleJoinRoom(roomCode) {
+        const room = await joinRoom(roomCode);
+        setShowJoinModal(false);
+        navigate(`/room/${room.id}`);
+    }
 
     return (
         <div className="page-layout">
@@ -43,7 +53,7 @@ function UserHomePage() {
                         </div>
 
                         {activeTab === "rooms" && (
-                            <button className="home-join-button" onClick={() => console.log("Abrir modal de entrar em mesa")}>
+                            <button className="home-join-button" onClick={() => setShowJoinModal(true)}>
                                 Entrar em mesa
                             </button>
                         )}
@@ -93,6 +103,13 @@ function UserHomePage() {
                 </div>
             </main>
             <Footer />
+
+            {showJoinModal && (
+                <JoinRoomModal
+                    onClose={() => setShowJoinModal(false)}
+                    onJoin={handleJoinRoom}
+                />
+            )}
         </div>
     );
 }
