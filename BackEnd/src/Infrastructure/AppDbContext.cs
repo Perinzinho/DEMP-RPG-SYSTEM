@@ -24,23 +24,24 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<UserEntity>(entity =>
         {
             entity.ToTable("Users");
-            
+
             entity.HasKey(e => e.Id);
-            
-            entity.HasIndex(e => e.Email).IsUnique();
-            
+
             entity.Property(e => e.Id).ValueGeneratedNever();
-            
-            entity.Property(e =>e.Username)
+
+            entity.Property(e => e.Username)
                 .HasColumnName("username")
                 .HasMaxLength(128)
                 .IsRequired();
-            
-            entity.Property(e=>e.Email)
+
+            entity.Property(e => e.Email)
                 .HasMaxLength(128)
                 .IsRequired()
-                .HasConversion(email => email.Value,
+                .HasConversion(
+                    email => email.Value,
                     value => new EmailVO(value));
+
+            entity.HasIndex(e => e.Email).IsUnique();
             
             entity.Property(e=>e.PasswordHash)
                 .HasColumnName("password_hash")
