@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
-import MasterCharacterCard from "../../components/MasterCharacterCard/MasterCharacterCard";
+import MasterCharacterCard from "../../components/MasterCharacterCard/masterCharacterCard";
 import { getCharactersByRoomId } from "../../services/characterService";
 import { getCharacterStatsByCharacterId } from "../../services/characterStatsService";
 import { getRoomById } from "../../services/roomService";
