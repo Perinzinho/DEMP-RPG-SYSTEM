@@ -6,7 +6,7 @@ import CharacterSheetHeader from "../../components/CharacterSheetHeader/characte
 import AttributesPanel from "../../components/AttributesPanel/attribuesPanel";
 import ResourcesPanel from "../../components/ResourcesPanel/resourcesPanel";
 import AboutPanel from "../../components/AboutPanel/aboutPanel";
-import SkillsPanel from "../../components/SkillsPanel/SkillsPanel";
+import SkillsPanel from "../../components/SkillsPanel/skillsPanel";
 import { getCharacterById, updateCharacter } from "../../services/characterService";
 import { getCharacterStatsByCharacterId, updateCharacterStats } from "../../services/characterStatsService";
 import { getCharacterSkillsByCharacterId, updateCharacterSkills } from "../../services/characterSkillsModernService";
