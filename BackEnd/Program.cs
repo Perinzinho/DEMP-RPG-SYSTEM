@@ -115,7 +115,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
                 "http://localhost:5173",
-                "demprpgsystem.vercel.app",
+                "https://demprpgsystem.vercel.app",
                 "demp-rpg-system-git-main-perinzinhos-projects.vercel.app",
                 "demp-rpg-system-mx9ckuw4k-perinzinhos-projects.vercel.app"
             )
