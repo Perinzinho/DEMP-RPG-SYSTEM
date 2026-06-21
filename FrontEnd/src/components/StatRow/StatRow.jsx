@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import { rollD100 } from "../../utils/dice";
-import "./statRow.css";
+import "./StatRow.css";
 
 function StatRow({ label, value, onChange, editable = true }) {
     const [rollResult, setRollResult] = useState(null);
