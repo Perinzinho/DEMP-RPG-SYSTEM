@@ -14,13 +14,13 @@ public class CharacterEntity
     public OccupationsEnum Occupation {get; private set;}//Note: See if it's possible to minimize occupation Enum
     public string Residence {get; private set;}
     public int Age {get; private set;}//ToDo-Validation for Age
-    public string Annotations{get; private set;}
+    public string? Annotations{get; private set;}
     public List<Guid>? ItemIds{get; private set;}
     public DateTime CreatedAt {get; private set;}
     public DateTime? UpdatedAt {get; private set;}
 
     public CharacterEntity(Guid id, Guid userId, Guid? roomId, string name, string gender, OccupationsEnum occupation,
-        string residence, int age, string annotations, List<Guid>? itemIds)
+        string residence, int age, string? annotations, List<Guid>? itemIds)
     {
         Id = id;
         UserId = userId;

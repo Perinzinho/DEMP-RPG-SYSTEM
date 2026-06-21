@@ -21,10 +21,14 @@ function PlayerRoomPage() {
             .then((characters) => {
                 const own = characters.find((c) => c.userId === userId);
                 setCharacter(own ?? null);
+
+                if (own) {
+                    navigate(`/character/${own.id}`, { replace: true });
+                }
             })
             .catch(() => setCharacter(null))
             .finally(() => setLoading(false));
-    }, [roomId, userId]);
+    }, [roomId, userId, navigate]);
 
     return (
         <div className="page-layout">
@@ -32,9 +36,9 @@ function PlayerRoomPage() {
             <main className="page-main">
                 <div className="player-room-content">
 
-                    {loading ? (
+                    {loading || character ? (
                         <p className="player-room-loading">Carregando...</p>
-                    ) : !character ? (
+                    ) : (
                         <div className="player-room-empty">
                             <p className="player-room-empty-text">
                                 Parece que você ainda não tem nenhum investigador nessa mesa...
@@ -46,11 +50,6 @@ function PlayerRoomPage() {
                                 Criar Investigador
                             </button>
                         </div>
-                    ) : (
-                        <p className="player-room-loading">
-                            {/* Aqui entra a ficha do personagem quando ele existir */}
-                            Personagem: {character.name}
-                        </p>
                     )}
 
                 </div>

@@ -1,0 +1,38 @@
+.info-step {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.info-field label {
+    display: block;
+    font-size: 13px;
+    color: #6E97A4;
+    margin-bottom: 4px;
+}
+
+.info-field input,
+.info-select {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #2F5663;
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 8px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.info-select {
+    background: #084251;
+    border: none;
+}
+
+.info-field input:focus,
+.info-select:focus {
+    outline: none;
+}

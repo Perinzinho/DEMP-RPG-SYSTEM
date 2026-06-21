@@ -10,3 +10,10 @@ export function updateCharacterSkills(id, dto) {
     body: JSON.stringify(dto),
   });
 }
+
+export function createCharacterSkillsModern(dto) {
+  return apiFetch('/characterSkillsModern', {
+    method: 'POST',
+    body: JSON.stringify(dto),
+  });
+}

@@ -17,6 +17,6 @@ export async function apiFetch(endpoint, options = {}) {
     throw new Error(errorData?.message || 'Erro na requisição');
   }
 
-  if (response.status === 204) return null;
-  return response.json();
+const text = await response.text();
+return text ? JSON.parse(text) : null;
 }

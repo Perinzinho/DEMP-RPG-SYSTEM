@@ -38,8 +38,8 @@ public class CharacterController:ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateCharacter([FromBody] CreateCharacterRequestDTO dto)
     {
-        await _createCharacterUseCase.CreateCharacter(dto);
-        return Ok();
+        var result = await _createCharacterUseCase.CreateCharacter(dto);
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]

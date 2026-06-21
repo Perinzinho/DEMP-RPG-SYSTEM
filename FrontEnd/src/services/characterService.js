@@ -18,3 +18,10 @@ export function updateCharacter(id, dto) {
     body: JSON.stringify(dto),
   });
 }
+
+export function createCharacter(dto) {
+  return apiFetch('/characters', {
+    method: 'POST',
+    body: JSON.stringify(dto),
+  });
+}

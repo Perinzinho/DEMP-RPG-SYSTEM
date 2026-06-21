@@ -6,6 +6,7 @@ import CreateRoomPage from './pages/CreateRoomPage/createRoom.jsx'
 import MasterRoomPage from './pages/MasterRoomPage/masterRoomPage.jsx'
 import CharacterSheetPage from './pages/CharacterSheetPage/characterSheetPage.jsx'
 import PlayerRoomPage from './pages/PlayerRoomPage/playerRoomPage.jsx'
+import CreateCharacterPage from './pages/CreateCharacterPage/createCharacterPage.jsx'
 import './App.css'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path="/master/room/:roomId" element={<MasterRoomPage />} />
       <Route path="/character/:characterId" element={<CharacterSheetPage />} />
       <Route path="/room/:roomId" element={<PlayerRoomPage />} />
+      <Route path="/room/:roomId/create-character" element={<CreateCharacterPage />} />
     </Routes>
   )
 }
