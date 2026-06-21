@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import LoginPage from './pages/login/loginPage.jsx'
 import RegisterPage from './pages/Register/RegisterPage.jsx'
 import UserHomePage from './pages/UserHome/userHomePage.jsx'
+import CreateRoomPage from './pages/CreateRoomPage/createRoom.jsx'
 import './App.css'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/user/home" element={<UserHomePage />} />
+      <Route path="/user/create/room" element={<CreateRoomPage />} />
     </Routes>
   )
 }

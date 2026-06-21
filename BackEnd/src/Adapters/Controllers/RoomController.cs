@@ -38,8 +38,8 @@ public class RoomController:ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateRoom([FromBody] CreateRoomRequestDTO dto)
     {
-        await _createRoomUseCase.CreateRoom(dto);
-        return Ok();
+       var result = await _createRoomUseCase.CreateRoom(dto);
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]

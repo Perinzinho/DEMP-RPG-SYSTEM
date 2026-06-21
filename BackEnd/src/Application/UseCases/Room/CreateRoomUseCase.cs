@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request.Room;
+using DEMP_RPG_API.Application.DTOs.Response.Room;
 using DEMP_RPG_API.Domain.Entities;
 using DEMP_RPG_API.Domain.Ports;
 
@@ -13,10 +14,11 @@ public class CreateRoomUseCase
         _roomRepository = roomRepository;
     }
 
-    public async Task CreateRoom(CreateRoomRequestDTO dto)
+    public async Task<CreateRoomResponseDTO> CreateRoom(CreateRoomRequestDTO dto)
     {
         var room = new RoomEntity(Guid.NewGuid(),dto.MasterId,dto.Name,dto.Description,dto.SheetEnum);
         
         await _roomRepository.CreateRoom(room);
+        return new CreateRoomResponseDTO(room.Id);
     }
 }

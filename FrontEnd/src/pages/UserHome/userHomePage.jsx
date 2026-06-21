@@ -112,7 +112,7 @@ function UserHomePage() {
                                 </div>
                             )}
 
-                            <button className="home-create-button" onClick={() => console.log("Criar mesa")}>
+                            <button className="home-create-button" onClick={() => navigate("/user/create/room")}>
                                 Criar mesa
                             </button>
                         </>

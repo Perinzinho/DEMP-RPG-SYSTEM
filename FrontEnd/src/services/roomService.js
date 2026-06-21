@@ -14,3 +14,11 @@ export function getAllRooms() {
 export function getRoomById(id) {
   return apiFetch(`/rooms/${id}`, { method: 'GET' });
 }
+
+export function createRoom(masterId, name, description) {
+  const sheetEnum = 1; // Até implementar alteração de ficha entre moderno e 1920, as fichas sempre serão do tipo moderno (1)
+  return apiFetch('/rooms', {
+    method: 'POST',
+    body: JSON.stringify({ masterId, name, description, sheetEnum }),
+  });
+}

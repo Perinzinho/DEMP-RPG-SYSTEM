@@ -1,0 +1,114 @@
+.create-room-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.create-room-main {
+    flex: 1;
+}
+
+.create-room-content {
+    width: 100%;
+    max-width: 60vw;
+    margin: 0 auto;
+    padding: 4vh 0;
+    box-sizing: border-box;
+}
+
+.create-room-title {
+    font-family: 'Anaktoria', serif;
+    font-size: clamp(28px, 3vw, 48px);
+    color: #f0f0f0;
+    text-align: center;
+    margin: 5vh 0 4vh;
+}
+
+.create-room-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.create-room-form .room-form-group {
+    margin-bottom: 43px;
+}
+
+.create-room-form label {
+    display: block;
+    font-family: 'Anaktoria', serif;
+    font-size: clamp(14px, 1.2vw, 22px);
+    color: #f0f0f0;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.create-room-form input,
+.create-room-form textarea {
+    width: 100%;
+    background-color: #084251;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #f0f0f0;
+    font-family: 'Anaktoria', serif;
+    font-style: italic;
+    font-size: clamp(14px, 1.1vw, 18px);
+    box-sizing: border-box;
+}
+
+.create-room-form input {
+    height: clamp(42px, 5.5vh, 60px);
+}
+
+.create-room-form textarea {
+    height: clamp(140px, 18vh, 220px);
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.create-room-form input:focus,
+.create-room-form textarea:focus {
+    outline: none;
+}
+
+.create-room-form .error {
+    color: #e57373;
+    font-size: 14px;
+    margin: 0 0 16px;
+    text-align: center;
+}
+
+.create-room-form button[type="submit"] {
+    align-self: center;
+    margin-top: 16px;
+    background-color: #084251;
+    border: 1px solid #2F5663;
+    color: #f0f0f0;
+    border-radius: 6px;
+    padding: 0.9vh 2.2vw;
+    font-family: 'Anaktoria', serif;
+    font-style: italic;
+    font-size: clamp(14px, 1.1vw, 20px);
+    cursor: pointer;
+}
+
+.create-room-form button[type="submit"]:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.create-room-form button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .create-room-content {
+        max-width: 92vw;
+    }
+
+    .create-room-form {
+        max-width: 100%;
+    }
+}

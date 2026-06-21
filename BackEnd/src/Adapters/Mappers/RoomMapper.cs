@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Application.DTOs.Response.Room;
+﻿using DEMP_RPG_API.Application.DTOs.Request.Room;
+using DEMP_RPG_API.Application.DTOs.Response.Room;
 using DEMP_RPG_API.Domain.Entities;
 
 namespace DEMP_RPG_API.Adapters.Mappers;
@@ -19,4 +20,6 @@ public class RoomMapper
             room.UpdatedAt
         );
     }
+
+
 }
