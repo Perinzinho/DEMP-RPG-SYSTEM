@@ -1,5 +1,6 @@
 ﻿using DEMP_RPG_API.Domain.Entities;
 using DEMP_RPG_API.Domain.Ports;
+using DEMP_RPG_API.Domain.ValueObjects.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEMP_RPG_API.Infrastructure.Repositories;
@@ -20,7 +21,7 @@ public class UserRepository: IUserRepository
         return user;
     }
 
-    public async Task<UserEntity?> GetUserByEmail(string email)
+    public async Task<UserEntity?> GetUserByEmail(EmailVO email)
     {
         var result = await _context.Users.FirstOrDefaultAsync(e=>e.Email == email);
         return result;

@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DEMP_RPG_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260621151727_InitialCreate")]
+    [Migration("20260621165519_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

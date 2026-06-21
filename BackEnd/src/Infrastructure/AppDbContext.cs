@@ -1,5 +1,5 @@
-﻿using System.Xml;
-using DEMP_RPG_API.Domain.Entities;
+﻿using DEMP_RPG_API.Domain.Entities;
+using DEMP_RPG_API.Domain.ValueObjects.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEMP_RPG_API.Infrastructure;
@@ -37,7 +37,9 @@ public class AppDbContext : DbContext
             
             entity.Property(e=>e.Email)
                 .HasMaxLength(128)
-                .IsRequired();
+                .IsRequired()
+                .HasConversion(email => email.Value,
+                    value => new EmailVO(value));
             
             entity.Property(e=>e.PasswordHash)
                 .HasColumnName("password_hash")
