@@ -1,0 +1,21 @@
+.sheet-skills-section {
+    margin-bottom: 32px;
+}
+
+.sheet-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 32px;
+}
+
+@media (max-width: 1024px) {
+    .sheet-skills-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .sheet-skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
