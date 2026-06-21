@@ -12,5 +12,5 @@ public record GetCharacterDetailResponseDTO(
     string Residence,
     int Age,
     string Annotations,
-    List<Guid> ItemIds
+    List<Guid>? ItemIds
 );

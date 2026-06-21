@@ -25,7 +25,7 @@ namespace DEMP_RPG_API.Migrations
                     Residence = table.Column<string>(type: "text", nullable: false),
                     Age = table.Column<int>(type: "integer", nullable: false),
                     Annotations = table.Column<string>(type: "text", nullable: false),
-                    ItemIds = table.Column<List<Guid>>(type: "uuid[]", nullable: false),
+                    ItemIds = table.Column<List<Guid>>(type: "uuid[]", nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true)
                 },

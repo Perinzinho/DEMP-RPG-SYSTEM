@@ -92,7 +92,8 @@ public class AppDbContext : DbContext
             
             entity.Property(e => e.Annotations);
             
-            entity.Property(e => e.ItemIds);
+            entity.Property(e => e.ItemIds)
+                .IsRequired(false);
             
             entity.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")

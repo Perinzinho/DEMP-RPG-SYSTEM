@@ -44,7 +44,6 @@ namespace DEMP_RPG_API.Migrations
                         .HasColumnType("text");
 
                     b.PrimitiveCollection<List<Guid>>("ItemIds")
-                        .IsRequired()
                         .HasColumnType("uuid[]");
 
                     b.Property<string>("Name")
