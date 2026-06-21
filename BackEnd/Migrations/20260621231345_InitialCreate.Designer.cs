@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DEMP_RPG_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260621181630_InitialCreate")]
+    [Migration("20260621231345_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -35,7 +35,6 @@ namespace DEMP_RPG_API.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Annotations")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")

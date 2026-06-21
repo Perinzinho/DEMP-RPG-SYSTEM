@@ -32,7 +32,6 @@ namespace DEMP_RPG_API.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Annotations")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
