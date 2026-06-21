@@ -12,3 +12,9 @@ export function getCharactersByRoomId(roomId) {
   return apiFetch(`/characters/room/${roomId}`, { method: 'GET' });
 }
 
+export function updateCharacter(id, dto) {
+  return apiFetch(`/characters/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(dto),
+  });
+}
