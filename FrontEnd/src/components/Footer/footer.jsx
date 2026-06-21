@@ -5,7 +5,7 @@ function Footer() {
         <footer className="app-footer">
             <div className="footer-line"></div>
             <div className="footer-content">
-                <p>DEMP RPG SYSTEM V26.6.2</p>
+                <p>DEMP RPG SYSTEM V26.6.3</p>
                 <p>Desenvolvido por Leonardo Perin - 2026</p>
                 <p>
                     Encontrou algum problema? Ou tem uma ideia de sugestão{' '}

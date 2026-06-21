@@ -3,6 +3,7 @@ import LoginPage from './pages/login/loginPage.jsx'
 import RegisterPage from './pages/Register/RegisterPage.jsx'
 import UserHomePage from './pages/UserHome/userHomePage.jsx'
 import CreateRoomPage from './pages/CreateRoomPage/createRoom.jsx'
+import MasterRoomPage from './pages/MasterRoomPage/masterRoomPage.jsx'
 import './App.css'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/user/home" element={<UserHomePage />} />
       <Route path="/user/create/room" element={<CreateRoomPage />} />
+      <Route path="/master/room/:roomId" element={<MasterRoomPage />} />
     </Routes>
   )
 }

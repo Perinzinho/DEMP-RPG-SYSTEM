@@ -1,3 +1,4 @@
+import { FaEye } from "react-icons/fa";
 import "./characterCard.css";
 
 function CharacterCard({ name, age, occupation, roomName, avatarUrl, onClick }) {
@@ -19,10 +20,7 @@ function CharacterCard({ name, age, occupation, roomName, avatarUrl, onClick }) 
             </div>
 
             <div className="character-card-action">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="character-card-eye">
-                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
-                    <circle cx="12" cy="12" r="3" />
-                </svg>
+                <FaEye className="character-card-eye" />
             </div>
         </div>
     );
