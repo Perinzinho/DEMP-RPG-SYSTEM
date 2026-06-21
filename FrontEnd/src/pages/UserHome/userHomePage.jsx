@@ -89,7 +89,7 @@ function UserHomePage() {
                                             age={character.age}
                                             occupation={character.occupation}
                                             roomName={character.roomName}
-                                            onClick={() => console.log("Abrir ficha de", character.name)}
+                                            onClick={() => navigate(`/character/${character.id}`)}
                                         />
                                     ))}
                                 </div>

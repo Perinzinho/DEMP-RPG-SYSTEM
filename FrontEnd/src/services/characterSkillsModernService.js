@@ -1,11 +1,11 @@
 import { apiFetch } from './api';
 
 export function getCharacterSkillsByCharacterId(characterId) {
-  return apiFetch(`/character-skills-modern/character/${characterId}`, { method: 'GET' });
+  return apiFetch(`/characterSkillsModern/character/${characterId}`, { method: 'GET' });
 }
 
 export function updateCharacterSkills(id, dto) {
-  return apiFetch(`/character-skills-modern/${id}`, {
+  return apiFetch(`/characterSkillsModern/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(dto),
   });
