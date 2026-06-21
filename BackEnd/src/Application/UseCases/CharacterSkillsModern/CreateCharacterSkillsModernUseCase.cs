@@ -26,7 +26,7 @@ public class CreateCharacterSkillsModernUseCase
         if (stats == null)
             throw new CharacterStatsNoFoundException();
 
-        var skills = CharacterSkillsModernMapper.ToEntity(dto, stats.Id, stats.Dexterity, stats.Education);
+        var skills = CharacterSkillsModernMapper.ToEntity(dto, stats.Id, stats.Dexterity.Value, stats.Education.Value);
 
         var created = await _skillRepository.CreateCharacterSkillModern(skills);
         return CharacterSkillsModernMapper.ToResponseDTO(created);
