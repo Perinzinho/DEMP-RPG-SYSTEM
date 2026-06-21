@@ -62,6 +62,30 @@
     margin: 0 0 3vh;
 }
 
+.home-subtabs {
+    display: flex;
+    gap: 1.5vw;
+    margin-bottom: 2.5vh;
+}
+
+.home-subtab {
+    background: transparent;
+    border: 1px solid #2F5663;
+    border-radius: 6px;
+    font-family: 'Anaktoria', serif;
+    font-style: italic;
+    font-size: clamp(11px, 0.85vw, 15px);
+    color: #6E97A4;
+    padding: 0.5vh 1vw;
+    cursor: pointer;
+}
+
+.home-subtab.active {
+    color: #f0f0f0;
+    border-color: #1a6fb5;
+    background: rgba(26, 111, 181, 0.12);
+}
+
 .character-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 392px));
@@ -92,7 +116,7 @@
     text-align: center;
     font-family: 'Anaktoria', serif;
     font-style: italic;
-    font-size: clamp(18px, 1vw, 13px);
+    font-size: clamp(10px, 0.75vw, 13px);
     color: #6E97A4;
     margin: 8px 0 0;
 }

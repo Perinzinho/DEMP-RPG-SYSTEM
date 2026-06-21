@@ -22,3 +22,7 @@ export function createRoom(masterId, name, description) {
     body: JSON.stringify({ masterId, name, description, sheetEnum }),
   });
 }
+
+export function getRoomsByUserId() {
+  return apiFetch('/rooms/user', { method: 'GET' });
+}

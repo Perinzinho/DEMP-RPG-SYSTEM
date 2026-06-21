@@ -5,13 +5,14 @@ import Footer from "../../components/Footer/footer";
 import CharacterCard from "../../components/CharacterCard/characterCard";
 import RoomCard from "../../components/RoomCard/roomCard";
 import JoinRoomModal from "../../components/JoinRoomModal/joinRoomModal";
-import { joinRoom } from "../../services/roomService";
+import { joinRoom, getRoomsByUserId } from "../../services/roomService";
 import { getCharactersByUserId } from "../../services/characterService";
 import { useAuth } from "../../contexts/AuthContext";
 import "./userHomePage.css";
 
 function UserHomePage() {
     const [activeTab, setActiveTab] = useState("characters");
+    const [roomSubTab, setRoomSubTab] = useState("mastering");
     const [showJoinModal, setShowJoinModal] = useState(false);
     const [characters, setCharacters] = useState([]);
     const [loadingCharacters, setLoadingCharacters] = useState(true);
@@ -27,6 +28,11 @@ function UserHomePage() {
             .then(setCharacters)
             .catch(() => setCharacters([]))
             .finally(() => setLoadingCharacters(false));
+
+        getRoomsByUserId()
+            .then(setRooms)
+            .catch(() => setRooms([]))
+            .finally(() => setLoadingRooms(false));
     }, [userId]);
 
     async function handleJoinRoom(roomCode) {
@@ -34,6 +40,10 @@ function UserHomePage() {
         setShowJoinModal(false);
         navigate(`/room/${room.id}`);
     }
+
+    const masteringRooms = rooms.filter((room) => room.masterId === userId);
+    const playingRooms = rooms.filter((room) => room.masterId !== userId);
+    const visibleRooms = roomSubTab === "mastering" ? masteringRooms : playingRooms;
 
     return (
         <div className="page-layout">
@@ -94,19 +104,38 @@ function UserHomePage() {
 
                     {activeTab === "rooms" && (
                         <>
+                            <div className="home-subtabs">
+                                <button
+                                    className={`home-subtab ${roomSubTab === "mastering" ? "active" : ""}`}
+                                    onClick={() => setRoomSubTab("mastering")}
+                                >
+                                    Mestrando
+                                </button>
+                                <button
+                                    className={`home-subtab ${roomSubTab === "playing" ? "active" : ""}`}
+                                    onClick={() => setRoomSubTab("playing")}
+                                >
+                                    Participando
+                                </button>
+                            </div>
+
                             {loadingRooms ? (
                                 <p className="home-empty-state">Carregando mesas...</p>
-                            ) : rooms.length === 0 ? (
-                                <p className="home-empty-state">Você ainda não participa de nenhuma mesa.</p>
+                            ) : visibleRooms.length === 0 ? (
+                                <p className="home-empty-state">
+                                    {roomSubTab === "mastering"
+                                        ? "Você ainda não mestra nenhuma mesa."
+                                        : "Você ainda não participa de nenhuma mesa como jogador."}
+                                </p>
                             ) : (
                                 <div className="character-grid">
-                                    {rooms.map((room) => (
+                                    {visibleRooms.map((room) => (
                                         <RoomCard
                                             key={room.id}
                                             name={room.name}
                                             masterName={room.masterName}
                                             playerCount={room.playerCount}
-                                            onClick={() => console.log("Abrir mesa", room.name)}
+                                            onClick={() => navigate(`/master/room/${room.id}`)}
                                         />
                                     ))}
                                 </div>
