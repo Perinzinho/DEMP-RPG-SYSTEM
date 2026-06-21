@@ -11,7 +11,7 @@ public class CharacterMapper
             character.UserId,
             character.RoomId,
             character.Name,
-            character.Occupation.ToString(),
+            character.Occupation,
             character.Age);
     }
 
@@ -22,11 +22,11 @@ public class CharacterMapper
             character.RoomId,
             character.Name,
             character.Gender,
-            character.Occupation.ToString(),
+            character.Occupation,
             character.Residence,
             character.Age,
             character.Annotations,
             character.ItemIds
-            );
+        );
     }
 }

@@ -1,7 +1,10 @@
 import { FaEye } from "react-icons/fa";
+import { OCCUPATIONS } from "../../utils/occupations";
 import "./characterCard.css";
 
 function CharacterCard({ name, age, occupation, roomName, avatarUrl, onClick }) {
+    const occupationLabel = OCCUPATIONS.find((o) => o.value === occupation)?.label ?? occupation;
+
     return (
         <div className="character-card" onClick={onClick}>
             <div className="character-card-avatar">
@@ -15,7 +18,7 @@ function CharacterCard({ name, age, occupation, roomName, avatarUrl, onClick }) 
             <div className="character-card-info">
                 <p className="character-card-name">{name}</p>
                 <p className="character-card-detail">{age} anos</p>
-                <p className="character-card-detail">{occupation}</p>
+                <p className="character-card-detail">{occupationLabel}</p>
                 <p className="character-card-detail">Mesa: {roomName}</p>
             </div>
 

@@ -1,6 +1,9 @@
 import "./characterSheetHeader.css";
+import { OCCUPATIONS } from "../../utils/occupations";
 
 function CharacterSheetHeader({ name, onNameChange, occupation, age }) {
+    const occupationLabel = OCCUPATIONS.find((o) => o.value === occupation)?.label ?? occupation;
+
     return (
         <div className="sheet-header">
             <div className="sheet-header-avatar">?</div>
@@ -11,7 +14,7 @@ function CharacterSheetHeader({ name, onNameChange, occupation, age }) {
                     onChange={(e) => onNameChange(e.target.value)}
                     className="sheet-header-name"
                 />
-                <p className="sheet-header-meta">{occupation} &middot; {age} anos</p>
+                <p className="sheet-header-meta">{occupationLabel} &middot; {age} anos</p>
             </div>
         </div>
     );
