@@ -4,6 +4,6 @@ namespace DEMP_RPG_API.Domain.Ports;
 
 public interface IPasswordHasher
 {
-    string Hash(PasswordVO password);
-    bool Verify(PasswordVO password, PasswordVO hashedPassword);
+    string Hash(string password);
+    bool Verify(string password, string hashedPassword);
 }

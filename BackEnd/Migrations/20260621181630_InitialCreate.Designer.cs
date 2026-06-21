@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DEMP_RPG_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260621173959_InitialCreate")]
+    [Migration("20260621181630_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -406,7 +406,6 @@ namespace DEMP_RPG_API.Migrations
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 

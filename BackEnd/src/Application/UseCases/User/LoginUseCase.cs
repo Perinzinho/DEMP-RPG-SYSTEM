@@ -5,6 +5,7 @@ using DEMP_RPG_API.Application.DTOs.Response;
 using DEMP_RPG_API.Application.DTOs.Response.User;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
+using DEMP_RPG_API.Domain.ValueObjects.User;
 
 namespace DEMP_RPG_API.Application.UseCases.User;
 
@@ -23,11 +24,12 @@ public class LoginUseCase
     
     public async Task<LoginResponseDTO> Login(LoginRequestDTO dto)
     {
-        var user =await _userRepository.GetUserByEmail(dto.Email);
+        var email = new EmailVO(dto.Email);
+        var user =await _userRepository.GetUserByEmail(email.Value);
         if (user == null)
             throw new EmailOrPasswordIncorrectException();
-        
-        var verify = _hasher.Verify(dto.Password,user.PasswordHash);
+
+        var verify = _hasher.Verify(dto.Password, user.PasswordHash.Value);
 
         if (verify == false)
             throw new EmailOrPasswordIncorrectException();

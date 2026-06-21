@@ -21,9 +21,10 @@ public class UserRepository: IUserRepository
         return user;
     }
 
-    public async Task<UserEntity?> GetUserByEmail(EmailVO email)
+    public async Task<UserEntity?> GetUserByEmail(string email)
     {
-        var result = await _context.Users.FirstOrDefaultAsync(e=>e.Email == email);
+        var emailVO = new EmailVO(email);
+        var result = await _context.Users.FirstOrDefaultAsync(e => e.Email == emailVO);
         return result;
     }
 

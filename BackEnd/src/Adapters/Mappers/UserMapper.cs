@@ -10,7 +10,7 @@ public class UserMapper
     {
         return new GetUsersResponseDTO(
             user.Id,
-            user.Email,
+            user.Email.Value,
             user.Username,
             user.Role,
             user.CreatedAt,

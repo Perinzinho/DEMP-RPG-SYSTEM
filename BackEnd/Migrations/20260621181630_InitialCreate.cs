@@ -162,7 +162,7 @@ namespace DEMP_RPG_API.Migrations
                     RoomCode = table.Column<string>(type: "text", nullable: false),
                     MasterId = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     UserIds = table.Column<List<Guid>>(type: "uuid[]", nullable: false),
                     SheetEnum = table.Column<int>(type: "integer", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),

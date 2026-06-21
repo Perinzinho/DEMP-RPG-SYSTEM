@@ -5,7 +5,7 @@ namespace DEMP_RPG_API.Application.DTOs.Response.User;
 
 public record GetUsersResponseDTO(
     Guid UserId,
-    EmailVO Email,
+    string Email,
     string UserName,
     RoleEnum Role,
     DateTime CreatedAt,

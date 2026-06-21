@@ -135,7 +135,10 @@ function UserHomePage() {
                                             name={room.name}
                                             masterName={room.masterName}
                                             playerCount={room.playerCount}
-                                            onClick={() => navigate(`/master/room/${room.id}`)}
+                                            onClick={() => {
+                                                const isMaster = room.masterId === userId;
+                                                navigate(isMaster ? `/master/room/${room.id}` : `/room/${room.id}`);
+                                            }}
                                         />
                                     ))}
                                 </div>

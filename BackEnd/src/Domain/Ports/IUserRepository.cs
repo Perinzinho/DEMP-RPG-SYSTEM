@@ -8,5 +8,5 @@ public interface IUserRepository
     Task<UserEntity> Create(UserEntity user);
     Task<IEnumerable<UserEntity>> GetAllUsers();
     Task<UserEntity?> GetUserById(Guid id);
-    Task<UserEntity?> GetUserByEmail(EmailVO email);
+    Task<UserEntity?> GetUserByEmail(string email);
 }

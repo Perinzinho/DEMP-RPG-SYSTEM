@@ -7,16 +7,16 @@ public class BcryptPasswordHasher:IPasswordHasher
 {
 
         //Encripta a senha
-        public string Hash(PasswordVO password)
+        public string Hash(string password)
         {
-            return BCrypt.Net.BCrypt.HashPassword(password.Value);
+            return BCrypt.Net.BCrypt.HashPassword(password);
         }
         
         
         //Compara a senha com a senha criptografada
-        public bool Verify(PasswordVO password, PasswordVO hashedPassword)
+        public bool Verify(string password, string hashedPassword)
         {
-            return BCrypt.Net.BCrypt.Verify(password.Value, hashedPassword.Value);
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
     
 }
