@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
-import StepIndicator from "../../components/StepIndicator/StepIndicator";
+import StepIndicator from "../../components/StepIndicator/stepIndicator";
 import CharacterInfoStep from "../../components/CharacterInfoStep/CharacterInfoStep";
 import CharacterAttributesStep from "../../components/CharacterAttributeStep/CharacterAttributeStep";
 import CharacterSkillsStep from "../../components/CharacterSkillStep/CharacterSkillStep";
