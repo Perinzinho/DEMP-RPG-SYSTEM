@@ -8,6 +8,7 @@ public interface ICharacterRepository
     Task<CharacterEntity?> GetCharacterById(Guid id);//Pegar por id
     Task<IEnumerable<CharacterEntity>> GetCharactersByUserId(Guid userId);//Pegar por id do usuário
     Task<IEnumerable<CharacterEntity>> GetAllCharacters();//Pegar todos os personagens
+    Task<IEnumerable<CharacterEntity>> GetAllCharactersByRoomId(Guid roomId);
     Task<CharacterEntity> UpdateCharacter(CharacterEntity character);//Patch
     Task DeleteCharacter(Guid id);//Deletar
     

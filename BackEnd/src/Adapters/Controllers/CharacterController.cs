@@ -1,5 +1,6 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request.Character;
 using DEMP_RPG_API.Application.UseCases.Character;
+using DEMP_RPG_API.Domain.Ports;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,13 +16,15 @@ public class CharacterController:ControllerBase
     private readonly  GetCharacterByIdUseCase _getCharacterByIdUseCase;
     private readonly GetCharacterByUserIdUseCase _getCharacterByUserIdUseCase;
     private readonly UpdateCharacterUseCase _updateCharacterUseCase;
+    private readonly GetCharacterByRoomIdUseCase _getCharacterByRoomIdUseCase;
 
     public CharacterController(CreateCharacterUseCase createCharacterUseCase,
         DeleteCharacterUseCase deleteCharacterUseCase,
         GetAllCharactersUseCase getAllCharactersUseCase,
         GetCharacterByIdUseCase getCharacterByIdUseCase,
         GetCharacterByUserIdUseCase getCharacterByUserIdUseCase,
-        UpdateCharacterUseCase updateCharacterUseCase)
+        UpdateCharacterUseCase updateCharacterUseCase,
+        GetCharacterByRoomIdUseCase getCharacterByRoomIdUseCase)
     {
         _createCharacterUseCase = createCharacterUseCase;
         _deleteCharacterUseCase = deleteCharacterUseCase;
@@ -29,6 +32,7 @@ public class CharacterController:ControllerBase
         _getCharacterByIdUseCase = getCharacterByIdUseCase;
         _getCharacterByUserIdUseCase = getCharacterByUserIdUseCase;
         _updateCharacterUseCase = updateCharacterUseCase;
+        _getCharacterByRoomIdUseCase = getCharacterByRoomIdUseCase;
     }
 
     [HttpPost]
@@ -70,6 +74,14 @@ public class CharacterController:ControllerBase
     public async Task<IActionResult> UpdateCharacter(Guid id, [FromBody] UpdateCharacterRequestDTO dto)
     {
         var result =await _updateCharacterUseCase.UpdateCharacter(id, dto);
+        return Ok(result);
+    }
+
+    [HttpGet("room/{roomId}")]
+    public async Task<IActionResult> GetCharacterByRoomId(Guid roomId)
+    {
+        var result = await _getCharacterByRoomIdUseCase.GetCharacterByRoomId(roomId);
+        
         return Ok(result);
     }
     

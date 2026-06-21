@@ -11,3 +11,4 @@ export function getCharacterById(id) {
 export function getCharactersByRoomId(roomId) {
   return apiFetch(`/characters/room/${roomId}`, { method: 'GET' });
 }
+

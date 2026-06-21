@@ -61,6 +61,7 @@ builder.Services.AddScoped<UpdateCharacterUseCase>();
 builder.Services.AddScoped<GetAllCharactersUseCase>();
 builder.Services.AddScoped<GetCharacterByIdUseCase>();
 builder.Services.AddScoped<GetCharacterByUserIdUseCase>();
+builder.Services.AddScoped<GetCharacterByRoomIdUseCase>();
 
 //CharacterStats
 builder.Services.AddScoped<ICharacterStatsRepository, CharacterStatsRepository>();

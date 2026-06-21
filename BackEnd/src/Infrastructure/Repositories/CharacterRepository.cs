@@ -38,6 +38,12 @@ public class CharacterRepository:ICharacterRepository
         return result;
     }
 
+    public async Task<IEnumerable<CharacterEntity>> GetAllCharactersByRoomId(Guid roomId)
+    {
+        var result = await _context.Characters.Where(e => e.RoomId == roomId).ToListAsync();
+        return result;
+    }
+
     public async Task<CharacterEntity> UpdateCharacter(CharacterEntity character)//Patch
     {
         var oldChar = await _context.Characters.FindAsync(character.Id);

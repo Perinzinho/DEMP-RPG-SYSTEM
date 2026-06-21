@@ -4,6 +4,7 @@ import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
 import MasterCharacterCard from "../../components/MasterCharacterCard/MasterCharacterCard";
 import { getCharactersByRoomId } from "../../services/characterService";
+import { getCharacterStatsByCharacterId } from "../../services/characterStatsService";
 import { getRoomById } from "../../services/roomService";
 import "./masterRoomPage.css";
 
@@ -22,10 +23,36 @@ function MasterRoomPage() {
             .catch(() => setRoom(null))
             .finally(() => setLoadingRoom(false));
 
-        getCharactersByRoomId(roomId)
-            .then(setCharacters)
-            .catch(() => setCharacters([]))
-            .finally(() => setLoadingCharacters(false));
+        async function loadCharactersWithStats() {
+            try {
+                const baseCharacters = await getCharactersByRoomId(roomId);
+
+                const charactersWithStats = await Promise.all(
+                    baseCharacters.map(async (character) => {
+                        try {
+                            const stats = await getCharacterStatsByCharacterId(character.id);
+                            return {
+                                ...character,
+                                currentHp: stats.currentHp,
+                                maxHp: stats.hitPoints,
+                                currentSanity: stats.currentSanity,
+                                maxSanity: stats.sanity,
+                            };
+                        } catch {
+                            return { ...character, currentHp: 0, maxHp: 0, currentSanity: 0, maxSanity: 0 };
+                        }
+                    })
+                );
+
+                setCharacters(charactersWithStats);
+            } catch {
+                setCharacters([]);
+            } finally {
+                setLoadingCharacters(false);
+            }
+        }
+
+        loadCharactersWithStats();
     }, [roomId]);
 
     return (
