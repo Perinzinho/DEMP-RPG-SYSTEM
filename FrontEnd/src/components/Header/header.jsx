@@ -1,15 +1,16 @@
 import "./header.css";
 import logo from "../../assets/images/DempLogo.png";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
     const { user } = useAuth();
-
+    const navigate = useNavigate();
 
     return (
         <header className="app-header">
             <div className="header-content">
-                <div className="header-brand">
+                <div className="header-brand" onClick={() => navigate("/user/home")} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="DEMP" className="header-logo" />
                     <div className="header-titles">
                         <h1 className="header-title">DEMP</h1>

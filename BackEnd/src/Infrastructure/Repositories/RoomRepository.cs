@@ -61,6 +61,13 @@ public class RoomRepository:IRoomRepository
         _context.Remove(result);
         _context.SaveChangesAsync();
     }
-    
-    
+
+    public async Task<IEnumerable<RoomEntity>> GetRoomsByUserId(Guid userId)
+    {
+        var result = await _context.Rooms
+            .Where(room => room.UserIds.Contains(userId) || room.MasterId == userId)
+            .ToListAsync();
+ 
+        return result;
+    }
 }

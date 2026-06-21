@@ -9,5 +9,6 @@ public interface IRoomRepository
     Task<IEnumerable<RoomEntity>> GetAllRooms();//Only Admins
     Task<RoomEntity?> GetRoomByCode(string code);
     Task<RoomEntity> UpdateRoom(RoomEntity room);//Patch
+    Task<IEnumerable<RoomEntity>> GetRoomsByUserId(Guid userId);
     Task DeleteRoom(Guid id);
 }

@@ -17,6 +17,7 @@ public class RoomController:ControllerBase
     private readonly GetRoomByCodeUseCase _getRoomByCodeUseCase;
     private readonly UpdateRoomUseCase _updateRoomUseCase;
     private readonly JoinRoomUseCase _joinRoomUseCase;
+    private readonly GetRoomsByUserIdUseCase _getRoomsByUserIdUseCase;
     
     public RoomController(CreateRoomUseCase createRoomUseCase,
         DeleteRoomUseCase deleteRoomUseCase,
@@ -24,7 +25,8 @@ public class RoomController:ControllerBase
         GetRoomByIdUseCase getRoomByIdUseCase,
         GetRoomByCodeUseCase getRoomByCodeUseCase,
         UpdateRoomUseCase updateRoomUseCase,
-        JoinRoomUseCase joinRoomUseCase)
+        JoinRoomUseCase joinRoomUseCase,
+        GetRoomsByUserIdUseCase getRoomsByUserIdUseCase)
         {
         _createRoomUseCase = createRoomUseCase;
         _deleteRoomUseCase = deleteRoomUseCase;
@@ -33,6 +35,7 @@ public class RoomController:ControllerBase
         _getRoomByCodeUseCase = getRoomByCodeUseCase;
         _updateRoomUseCase = updateRoomUseCase;
         _joinRoomUseCase = joinRoomUseCase;
+        _getRoomsByUserIdUseCase = getRoomsByUserIdUseCase;
         }
 
     [HttpPost]
@@ -82,6 +85,14 @@ public class RoomController:ControllerBase
     {
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var result = await _joinRoomUseCase.JoinRoom(dto.RoomCode, userId);
+        return Ok(result);
+    }
+
+    [HttpGet("user")]
+    public async Task<IActionResult> GetRoomByUserId()
+    {
+        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var result = await _getRoomsByUserIdUseCase.GetRoomsByUserId(userId);
         return Ok(result);
     }
 }
