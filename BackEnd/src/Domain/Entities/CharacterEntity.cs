@@ -39,12 +39,12 @@ public class CharacterEntity
     public void Update(string? name, string? gender, OccupationsEnum? occupation, string? residence, int? age,
         string? annotations, List<Guid>? itemIds)
     {
-        if (Name != name) Name= name;
-        if (Gender != gender) Gender = gender;
-        if (Occupation != occupation) Occupation = occupation.Value;
-        if (Residence != residence) Residence = residence;
-        if (Age != age) Age = age.Value;
-        if (Annotations != annotations) Annotations = annotations;
+        if (!string.IsNullOrEmpty(name)) Name= name;
+        if (!string.IsNullOrEmpty(gender)) Gender = gender;
+        if (occupation.HasValue) Occupation = occupation.Value;
+        if (!string.IsNullOrEmpty(residence)) Residence = residence;
+        if (age.HasValue) Age = age.Value;
+        if (!string.IsNullOrEmpty(annotations)) Annotations = annotations;
         if (ItemIds != itemIds) ItemIds = itemIds;
         UpdatedAt = DateTime.UtcNow;
     }
