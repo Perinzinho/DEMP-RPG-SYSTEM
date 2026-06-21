@@ -8,7 +8,7 @@ public record GetCharacterDetailResponseDTO(
     Guid UserId,
     string Name,
     string Gender,
-    OccupationsEnum Occupation,
+    string Occupation,
     string Residence,
     int Age,
     string Annotations,

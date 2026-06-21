@@ -11,7 +11,7 @@ public class CharacterMapper
             character.UserId,
             character.RoomId,
             character.Name,
-            character.Occupation,
+            character.Occupation.ToString(),
             character.Age);
     }
 
@@ -22,7 +22,7 @@ public class CharacterMapper
             character.UserId,
             character.Name,
             character.Gender,
-            character.Occupation,
+            character.Occupation.ToString(),
             character.Residence,
             character.Age,
             character.Annotations,
