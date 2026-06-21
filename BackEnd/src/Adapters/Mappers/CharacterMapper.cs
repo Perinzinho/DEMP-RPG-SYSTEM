@@ -18,8 +18,8 @@ public class CharacterMapper
     public static GetCharacterDetailResponseDTO ToDetailResponse(CharacterEntity character)
     {
         return new GetCharacterDetailResponseDTO(character.Id,
-            character.RoomId,
             character.UserId,
+            character.RoomId,
             character.Name,
             character.Gender,
             character.Occupation.ToString(),

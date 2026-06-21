@@ -4,8 +4,8 @@ namespace DEMP_RPG_API.Application.DTOs.Response.Character;
 
 public record GetCharacterDetailResponseDTO(    
     Guid Id,
-    Guid? RoomId,
     Guid UserId,
+    Guid? RoomId,
     string Name,
     string Gender,
     string Occupation,

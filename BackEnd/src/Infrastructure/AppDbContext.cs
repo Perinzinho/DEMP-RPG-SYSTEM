@@ -1,4 +1,5 @@
-﻿using DEMP_RPG_API.Domain.Entities;
+﻿using System.Xml;
+using DEMP_RPG_API.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEMP_RPG_API.Infrastructure;
@@ -69,6 +70,9 @@ public class AppDbContext : DbContext
             
             entity.Property(e=>e.UserId)
                 .IsRequired();
+
+            entity.Property(e => e.RoomId)
+                .IsRequired(false);
             
             entity.Property(e=>e.Name)
                 .HasMaxLength(128)
