@@ -1,10 +1,11 @@
 ﻿using DEMP_RPG_API.Domain.Enums;
+using DEMP_RPG_API.Domain.ValueObjects.User;
 
 namespace DEMP_RPG_API.Application.DTOs.Response.User;
 
 public record GetUsersResponseDTO(
     Guid UserId,
-    string Email,
+    EmailVO Email,
     string UserName,
     RoleEnum Role,
     DateTime CreatedAt,

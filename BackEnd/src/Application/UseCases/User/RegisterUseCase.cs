@@ -4,6 +4,7 @@ using DEMP_RPG_API.Domain.Entities;
 using DEMP_RPG_API.Domain.Enums;
 using DEMP_RPG_API.Domain.Exceptions.User;
 using DEMP_RPG_API.Domain.Ports;
+using DEMP_RPG_API.Domain.ValueObjects.User;
 
 namespace DEMP_RPG_API.Application.UseCases.User;
 
@@ -24,7 +25,7 @@ public class RegisterUseCase
         if (existingUser != null)
             throw new EmailAlreadyExistsException();
 
-        var passwordHash = _hasher.Hash(dto.Password);
+        var passwordHash = new PasswordVO(_hasher.Hash(dto.Password));
 
         var user = new UserEntity(Guid.NewGuid(), dto.Username, passwordHash, RoleEnum.User, dto.Email);//Padronização- Criar Id no UseCase
 

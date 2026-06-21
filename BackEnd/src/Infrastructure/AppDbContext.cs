@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Domain.Entities;
+using DEMP_RPG_API.Domain.ValueObjects.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEMP_RPG_API.Infrastructure;
@@ -36,12 +37,16 @@ public class AppDbContext : DbContext
             
             entity.Property(e=>e.Email)
                 .HasMaxLength(128)
-                .IsRequired();
+                .IsRequired()
+                .HasConversion(email => email.Value,
+                    value => new EmailVO(value));
             
             entity.Property(e=>e.PasswordHash)
                 .HasColumnName("password_hash")
                 .HasMaxLength(255)
-                .IsRequired();
+                .IsRequired()
+                .HasConversion(password => password.Value,
+                    value => new PasswordVO(value));
             
             entity.Property(e=>e.Role)
                 .IsRequired();
@@ -69,6 +74,9 @@ public class AppDbContext : DbContext
             
             entity.Property(e=>e.UserId)
                 .IsRequired();
+
+            entity.Property(e => e.RoomId)
+                .IsRequired(false);
             
             entity.Property(e=>e.Name)
                 .HasMaxLength(128)
@@ -88,7 +96,8 @@ public class AppDbContext : DbContext
             
             entity.Property(e => e.Annotations);
             
-            entity.Property(e => e.ItemIds);
+            entity.Property(e => e.ItemIds)
+                .IsRequired(false);
             
             entity.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")

@@ -15,7 +15,7 @@ public class RoomMapper
             room.Name,
             room.Description,
             room.UserIds,
-            room.SheetEnum,
+            room.SheetEnum.ToString(),
             room.CreatedAt,
             room.UpdatedAt
         );

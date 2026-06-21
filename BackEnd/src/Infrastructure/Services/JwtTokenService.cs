@@ -15,7 +15,7 @@ public class JwtTokenService : IJwtTokenService
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),//Guarda o Id do usuário
-            new Claim(ClaimTypes.Email, user.Email),//Guarda email
+            new Claim(ClaimTypes.Email, user.Email.Value),//Guarda email
             new Claim(ClaimTypes.Role, user.Role.ToString())//Guarda role
         };
 

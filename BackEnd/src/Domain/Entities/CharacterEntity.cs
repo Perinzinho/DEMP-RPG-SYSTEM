@@ -15,12 +15,12 @@ public class CharacterEntity
     public string Residence {get; private set;}
     public int Age {get; private set;}//ToDo-Validation for Age
     public string Annotations{get; private set;}
-    public List<Guid> ItemIds{get; private set;}
+    public List<Guid>? ItemIds{get; private set;}
     public DateTime CreatedAt {get; private set;}
     public DateTime? UpdatedAt {get; private set;}
 
     public CharacterEntity(Guid id, Guid userId, Guid? roomId, string name, string gender, OccupationsEnum occupation,
-        string residence, int age, string annotations, List<Guid> itemIds)
+        string residence, int age, string annotations, List<Guid>? itemIds)
     {
         Id = id;
         UserId = userId;
@@ -39,13 +39,13 @@ public class CharacterEntity
     public void Update(string? name, string? gender, OccupationsEnum? occupation, string? residence, int? age,
         string? annotations, List<Guid>? itemIds)
     {
-        if (Name != name) Name= name;
-        if (Gender != gender) Gender = gender;
-        if (Occupation != occupation) Occupation = occupation.Value;
-        if (Residence != residence) Residence = residence;
-        if (Age != age) Age = age.Value;
-        if (Annotations != annotations) Annotations = annotations;
+        if (!string.IsNullOrEmpty(name)) Name= name;
+        if (!string.IsNullOrEmpty(gender)) Gender = gender;
+        if (occupation.HasValue) Occupation = occupation.Value;
+        if (!string.IsNullOrEmpty(residence)) Residence = residence;
+        if (age.HasValue) Age = age.Value;
+        if (!string.IsNullOrEmpty(annotations)) Annotations = annotations;
         if (ItemIds != itemIds) ItemIds = itemIds;
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTime.UtcNow;
     }
 }

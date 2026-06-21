@@ -61,6 +61,16 @@ public class CharacterRepository:ICharacterRepository
         var character = await _context.Characters.FindAsync(id);
         if (character == null)
             throw new CharacterNotFoundException();
+        
+        var characterStats =await _context.CharacterStats.FirstOrDefaultAsync(e => e.CharacterId == character.Id);
+        if (characterStats != null)
+            _context.CharacterStats.Remove(characterStats);
+        
+        
+        var characterSkills= await _context.CharacterSkillsModern.FirstOrDefaultAsync(e=>e.CharacterId == id);
+        if (characterSkills != null)
+            _context.CharacterSkillsModern.Remove(characterSkills);
+        
         _context.Characters.Remove(character);
         await _context.SaveChangesAsync();
     }

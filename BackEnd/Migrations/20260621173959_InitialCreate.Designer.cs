@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DEMP_RPG_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260620125016_InitialCreate")]
+    [Migration("20260621173959_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -47,7 +47,6 @@ namespace DEMP_RPG_API.Migrations
                         .HasColumnType("text");
 
                     b.PrimitiveCollection<List<Guid>>("ItemIds")
-                        .IsRequired()
                         .HasColumnType("uuid[]");
 
                     b.Property<string>("Name")

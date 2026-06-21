@@ -11,18 +11,18 @@ public class CharacterMapper
             character.UserId,
             character.RoomId,
             character.Name,
-            character.Occupation,
+            character.Occupation.ToString(),
             character.Age);
     }
 
     public static GetCharacterDetailResponseDTO ToDetailResponse(CharacterEntity character)
     {
         return new GetCharacterDetailResponseDTO(character.Id,
-            character.RoomId,
             character.UserId,
+            character.RoomId,
             character.Name,
             character.Gender,
-            character.Occupation,
+            character.Occupation.ToString(),
             character.Residence,
             character.Age,
             character.Annotations,
