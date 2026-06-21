@@ -8,13 +8,13 @@ public class UserEntity
     //ToDo-UserProfile
     public Guid Id { get; private set; }
     public string Username { get; private set; }//ToDo-Add validation for UserName, min and max? characters
-    public EmailVO Email { get; private set; }//ToDo-Add Value Object or validation for Email
-    public string PasswordHash { get; private set; }//ToDo-Add Validation for Password, min and max characters
+    public EmailVO Email { get; private set; }
+    public PasswordVO PasswordHash { get; private set; }//ToDo-Add Validation for Password, min and max characters
     public RoleEnum Role { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
     
-    public UserEntity(Guid id,string username, string passwordHash, RoleEnum role, EmailVO email)
+    public UserEntity(Guid id,string username, PasswordVO passwordHash, RoleEnum role, EmailVO email)
     {
         Id = id;
         Username = username;

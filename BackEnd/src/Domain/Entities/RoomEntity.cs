@@ -10,7 +10,7 @@ public class RoomEntity
     public string RoomCode { get; private set; }
     public Guid MasterId { get; private set; }
     public string Name { get; private set; }
-    public string Description { get; private set; }
+    public string Description { get; private set; }//ToDo-Make Optional
     public List<Guid> UserIds { get; private set; }
     public SheetEnum SheetEnum { get; private set; }
     public DateTime CreatedAt { get; private set; }

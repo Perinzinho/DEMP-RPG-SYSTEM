@@ -44,7 +44,9 @@ public class AppDbContext : DbContext
             entity.Property(e=>e.PasswordHash)
                 .HasColumnName("password_hash")
                 .HasMaxLength(255)
-                .IsRequired();
+                .IsRequired()
+                .HasConversion(password => password.Value,
+                    value => new PasswordVO(value));
             
             entity.Property(e=>e.Role)
                 .IsRequired();
