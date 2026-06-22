@@ -56,25 +56,25 @@ function CharacterSheetPage() {
         setSkills((prev) => ({ ...prev, [field]: value }));
     }
 
-    async function handleSave() {
-        try {
-            await Promise.all([
-                updateCharacter(character.id, {
-                    name: character.name,
-                    gender: character.gender,
-                    occupation: character.occupation,
-                    residence: character.residence,
-                    age: character.age,
-                    annotations: character.annotations,
-                }),
-                updateCharacterStats(stats.id, stats),
-                updateCharacterSkills(skills.id, skills),
-            ]);
-            setError("");
-        } catch (err) {
-            setError("Erro ao salvar a ficha.");
-        }
+async function handleSave() {
+    try {
+        await Promise.all([
+            updateCharacter(character.id, {
+                name: character.name,
+                gender: character.gender,
+                occupation: Number(character.occupation),
+                residence: character.residence,
+                age: character.age,
+                annotations: character.annotations,
+            }),
+            updateCharacterStats(stats.id, stats),
+            updateCharacterSkills(skills.id, skills),
+        ]);
+        setError("");
+    } catch (err) {
+        setError("Erro ao salvar a ficha.");
     }
+}
 
     if (loading) {
         return (
