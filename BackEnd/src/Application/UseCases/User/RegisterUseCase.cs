@@ -22,10 +22,10 @@ public class RegisterUseCase
     public async Task Register(RegisterRequestDTO dto)
     {
         var existingUser = await _userRepository.GetUserByEmail(dto.Email);
-        var email = new EmailVO(dto.Email);
         if (existingUser != null)
             throw new EmailAlreadyExistsException();
-
+        
+        var email = new EmailVO(dto.Email);
         var passwordHash = new PasswordVO(_hasher.Hash(dto.Password));
 
         var user = new UserEntity(Guid.NewGuid(), dto.Username, passwordHash, RoleEnum.User, email);//Padronização- Criar Id no UseCase
