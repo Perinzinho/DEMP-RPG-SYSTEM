@@ -39,7 +39,16 @@ builder.Services.AddSwaggerGen(options =>
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
-        Environment.GetEnvironmentVariable("DB_CONNECTION")
+        Environment.GetEnvironmentVariable("DB_CONNECTION"),
+        npgsqlOptions =>
+        {
+            npgsqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 3,
+                maxRetryDelay: TimeSpan.FromSeconds(5),
+                errorCodesToAdd: null
+            );
+            npgsqlOptions.CommandTimeout(60);
+        }
     ));
 
 // Serviços
@@ -125,11 +134,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+// Swagger apenas em desenvolvimento
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-// CORS deve ser o primeiro middleware para garantir que
-// os headers estejam presentes mesmo em respostas de erro
 app.UseCors("AllowFrontend");
 
 app.UseExceptionHandler(errorApp =>
