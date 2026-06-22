@@ -1,4 +1,5 @@
 ﻿using DEMP_RPG_API.Domain.Entities;
+using DEMP_RPG_API.Domain.ValueObjects.Character;
 using DEMP_RPG_API.Domain.ValueObjects.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,23 +24,24 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<UserEntity>(entity =>
         {
             entity.ToTable("Users");
-            
+
             entity.HasKey(e => e.Id);
-            
-            entity.HasIndex(e => e.Email).IsUnique();
-            
+
             entity.Property(e => e.Id).ValueGeneratedNever();
-            
-            entity.Property(e =>e.Username)
+
+            entity.Property(e => e.Username)
                 .HasColumnName("username")
                 .HasMaxLength(128)
                 .IsRequired();
-            
-            entity.Property(e=>e.Email)
+
+            entity.Property(e => e.Email)
                 .HasMaxLength(128)
                 .IsRequired()
-                .HasConversion(email => email.Value,
+                .HasConversion(
+                    email => email.Value,
                     value => new EmailVO(value));
+
+            entity.HasIndex(e => e.Email).IsUnique();
             
             entity.Property(e=>e.PasswordHash)
                 .HasColumnName("password_hash")
@@ -124,28 +126,44 @@ public class AppDbContext : DbContext
                     .IsRequired();
 
                 entity.Property(e => e.Strength)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value) );
                 
                 entity.Property(e => e.Dexterity)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value) );
                 
                 entity.Property(e => e.Intelligence)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
                 
                 entity.Property(e => e.Intelligence)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
                 
                 entity.Property(e => e.Size)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
                 
                 entity.Property(e => e.Power)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
                 
                 entity.Property(e => e.Appearance)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
 
                 entity.Property(e => e.Education)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
 
                 entity.Property(e => e.HitPoints)
                     .IsRequired();
@@ -169,7 +187,9 @@ public class AppDbContext : DbContext
                     IsRequired();
                 
                 entity.Property(e=>e.Dodge)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(s =>s.Value,
+                        value => new AttributeSkillVO(value));
                 
                 entity.Property(e=>e.DamageBonus)
                     .IsRequired();
@@ -206,88 +226,224 @@ modelBuilder.Entity<CharacterSkillsModernEntity>(entity =>
     entity.Property(e => e.CharacterStatsId)
         .IsRequired();
 
-    entity.Property(e => e.Accounting).IsRequired();
-    entity.Property(e => e.Anthropology).IsRequired();
-    entity.Property(e => e.Appraise).IsRequired();
-    entity.Property(e => e.Archaelogy).IsRequired();
+entity.Property(e => e.Accounting)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 
-    entity.Property(e => e.ArtAndCraftSpecialization)
-        .HasMaxLength(128);
+entity.Property(e => e.Anthropology)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 
-    entity.Property(e => e.ArtCraft).IsRequired();
-    entity.Property(e => e.Charm).IsRequired();
-    entity.Property(e => e.Climb).IsRequired();
-    entity.Property(e => e.ComputerUse).IsRequired();
-    entity.Property(e => e.CreditRating).IsRequired();
-    entity.Property(e => e.CthulhuMythos).IsRequired();
-    entity.Property(e => e.Disguise).IsRequired();
-    entity.Property(e => e.Dodge).IsRequired();
-    entity.Property(e => e.DriveAuto).IsRequired();
-    entity.Property(e => e.EletricRepair).IsRequired();
-    entity.Property(e => e.Eletronics).IsRequired();
-    entity.Property(e => e.FastTalk).IsRequired();
-    entity.Property(e => e.FightingAxe).IsRequired();
-    entity.Property(e => e.FightingBrawl).IsRequired();
-    entity.Property(e => e.FightingChainsaw).IsRequired();
-    entity.Property(e => e.FightingFlail).IsRequired();
-    entity.Property(e => e.FightingGarrote).IsRequired();
-    entity.Property(e => e.FightingSpear).IsRequired();
-    entity.Property(e => e.FightingSword).IsRequired();
-    entity.Property(e => e.FightingWhip).IsRequired();
-    entity.Property(e => e.FightingBow).IsRequired();
-    entity.Property(e => e.HandGun).IsRequired();
-    entity.Property(e => e.HeavyWeapons).IsRequired();
-    entity.Property(e => e.Flamethrower).IsRequired();
-    entity.Property(e => e.MachineGun).IsRequired();
-    entity.Property(e => e.RifleShotgun).IsRequired();
-    entity.Property(e => e.SubmachineGun).IsRequired();
-    entity.Property(e => e.FirstAid).IsRequired();
-    entity.Property(e => e.History).IsRequired();
-    entity.Property(e => e.Intimidate).IsRequired();
-    entity.Property(e => e.Jump).IsRequired();
-    entity.Property(e => e.LanguageOtherValue).IsRequired();
+entity.Property(e => e.Appraise)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 
-    entity.Property(e => e.LanguageOtherSpecialization)
-        .HasMaxLength(128);
+entity.Property(e => e.Archaelogy)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 
-    entity.Property(e => e.LanguageOwn).IsRequired();
-    entity.Property(e => e.Law).IsRequired();
-    entity.Property(e => e.LibraryUse).IsRequired();
-    entity.Property(e => e.Listen).IsRequired();
-    entity.Property(e => e.LockSmith).IsRequired();
-    entity.Property(e => e.MechanicalRepair).IsRequired();
-    entity.Property(e => e.Medicine).IsRequired();
-    entity.Property(e => e.NaturalWorld).IsRequired();
-    entity.Property(e => e.Navigate).IsRequired();
-    entity.Property(e => e.Occult).IsRequired();
-    entity.Property(e => e.OperateHeavyMachinery).IsRequired();
-    entity.Property(e => e.Persuade).IsRequired();
-    entity.Property(e => e.PilotAirCraft).IsRequired();
-    entity.Property(e => e.Psychoanalysis).IsRequired();
-    entity.Property(e => e.Psychology).IsRequired();
-    entity.Property(e => e.Ride).IsRequired();
-    entity.Property(e => e.Astronomy).IsRequired();
-    entity.Property(e => e.Biology).IsRequired();
-    entity.Property(e => e.Botany).IsRequired();
-    entity.Property(e => e.Chemistry).IsRequired();
-    entity.Property(e => e.Cryptography).IsRequired();
-    entity.Property(e => e.Engineering).IsRequired();
-    entity.Property(e => e.Forensics).IsRequired();
-    entity.Property(e => e.Geology).IsRequired();
-    entity.Property(e => e.Mathematics).IsRequired();
-    entity.Property(e => e.Meteorology).IsRequired();
-    entity.Property(e => e.Pharmacy).IsRequired();
-    entity.Property(e => e.SleightOfHand).IsRequired();
-    entity.Property(e => e.SpotHidden).IsRequired();
-    entity.Property(e => e.Stealth).IsRequired();
-    entity.Property(e => e.Survival).IsRequired();
+entity.Property(e => e.ArtAndCraftSpecialization)
+    .HasMaxLength(128);
 
-    entity.Property(e => e.SurvivalSpecialization)
-        .HasMaxLength(128);
+entity.Property(e => e.ArtCraft)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 
-    entity.Property(e => e.Swim).IsRequired();
-    entity.Property(e => e.Throw).IsRequired();
-    entity.Property(e => e.Track).IsRequired();
+entity.Property(e => e.Charm)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Climb)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.ComputerUse)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.CreditRating)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.CthulhuMythos)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Disguise)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Dodge)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.DriveAuto)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.EletricRepair)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Eletronics)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FastTalk)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingAxe)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingBrawl)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingChainsaw)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingFlail)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingGarrote)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingSpear)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingSword)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingWhip)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FightingBow)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.HandGun)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.HeavyWeapons)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Flamethrower)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.MachineGun)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.RifleShotgun)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.SubmachineGun)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.FirstAid)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.History)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Intimidate)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Jump)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.LanguageOtherValue)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.LanguageOtherSpecialization)
+    .HasMaxLength(128);
+
+entity.Property(e => e.LanguageOwn)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Law)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.LibraryUse)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Listen)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.LockSmith)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.MechanicalRepair)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Medicine)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.NaturalWorld)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Navigate)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Occult)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.OperateHeavyMachinery)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Persuade)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.PilotAirCraft)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Psychoanalysis)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Psychology)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Ride)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Astronomy)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Biology)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Botany)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Chemistry)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Cryptography)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Engineering)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Forensics)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Geology)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Mathematics)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Meteorology)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Pharmacy)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.SleightOfHand)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.SpotHidden)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Stealth)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Survival)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.SurvivalSpecialization)
+    .HasMaxLength(128);
+
+entity.Property(e => e.Swim)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Throw)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Track)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 });
         
         

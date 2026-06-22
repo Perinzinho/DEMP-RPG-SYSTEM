@@ -1,105 +1,107 @@
-﻿namespace DEMP_RPG_API.Domain.Entities;
+﻿using DEMP_RPG_API.Domain.ValueObjects.Character;
+
+namespace DEMP_RPG_API.Domain.Entities;
 
 public class CharacterSkillsModernEntity
 {
     public Guid Id { get; private set; }
     public Guid CharacterId { get; private set; }
     public Guid CharacterStatsId { get; private set; }
-    public int Accounting { get; private set; }
-    public int Anthropology { get; private set; }
-    public int Appraise { get; private set; }
-    public int Archaelogy { get; private set; }
+    public AttributeSkillVO Accounting { get; private set; }
+    public AttributeSkillVO Anthropology { get; private set; }
+    public AttributeSkillVO Appraise { get; private set; }
+    public AttributeSkillVO Archaelogy { get; private set; }
     public string ArtAndCraftSpecialization { get; private set; }
-    public int ArtCraft { get; private set; }
-    public int Charm { get; private set; }
-    public int Climb { get; private set; }
-    public int ComputerUse {get; private set;}
-    public int CreditRating { get; private set; }
-    public int CthulhuMythos { get; private set; }
-    public int Disguise { get; private set; }
-    public int Dodge { get; private set; }//Half DEX
-    public int DriveAuto { get; private set; }
-    public int EletricRepair { get; private set; }
-    public int Eletronics { get; private set; }
-    public int FastTalk { get; private set; }
-    public int FightingAxe { get; private set; }
-    public int FightingBrawl { get; private set; }
-    public int FightingChainsaw { get; private set; }
-    public int FightingFlail { get; private set; }
-    public int FightingGarrote { get; private set; }
-    public int FightingSpear { get; private set; }
-    public int FightingSword { get; private set; }
-    public int FightingWhip { get; private set; }
-    public int FightingBow { get; private set; }
-    public int HandGun { get; private set; }
-    public int HeavyWeapons { get; private set; }
-    public int Flamethrower { get; private set; }
-    public int MachineGun { get; private set; }
-    public int RifleShotgun { get; private set; }
-    public int SubmachineGun  { get; private set; }
-    public int FirstAid {get; private set;}
-    public int History { get; private set; }
-    public int Intimidate { get; private set; }
-    public int Jump { get; private set; }
-    public int LanguageOtherValue{get; private set;}
+    public AttributeSkillVO ArtCraft { get; private set; }
+    public AttributeSkillVO Charm { get; private set; }
+    public AttributeSkillVO Climb { get; private set; }
+    public AttributeSkillVO ComputerUse {get; private set;}
+    public AttributeSkillVO CreditRating { get; private set; }
+    public AttributeSkillVO CthulhuMythos { get; private set; }
+    public AttributeSkillVO Disguise { get; private set; }
+    public AttributeSkillVO Dodge { get; private set; }//Half DEX
+    public AttributeSkillVO DriveAuto { get; private set; }
+    public AttributeSkillVO EletricRepair { get; private set; }
+    public AttributeSkillVO Eletronics { get; private set; }
+    public AttributeSkillVO FastTalk { get; private set; }
+    public AttributeSkillVO FightingAxe { get; private set; }
+    public AttributeSkillVO FightingBrawl { get; private set; }
+    public AttributeSkillVO FightingChainsaw { get; private set; }
+    public AttributeSkillVO FightingFlail { get; private set; }
+    public AttributeSkillVO FightingGarrote { get; private set; }
+    public AttributeSkillVO FightingSpear { get; private set; }
+    public AttributeSkillVO FightingSword { get; private set; }
+    public AttributeSkillVO FightingWhip { get; private set; }
+    public AttributeSkillVO FightingBow { get; private set; }
+    public AttributeSkillVO HandGun { get; private set; }
+    public AttributeSkillVO HeavyWeapons { get; private set; }
+    public AttributeSkillVO Flamethrower { get; private set; }
+    public AttributeSkillVO MachineGun { get; private set; }
+    public AttributeSkillVO RifleShotgun { get; private set; }
+    public AttributeSkillVO SubmachineGun  { get; private set; }
+    public AttributeSkillVO FirstAid {get; private set;}
+    public AttributeSkillVO History { get; private set; }
+    public AttributeSkillVO Intimidate { get; private set; }
+    public AttributeSkillVO Jump { get; private set; }
+    public AttributeSkillVO LanguageOtherValue{get; private set;}
     public string LanguageOtherSpecialization {get; private set;}
-    public int LanguageOwn { get; private set; } //==EDU
-    public int Law { get; private set; }
-    public int LibraryUse { get; private set; }
-    public int Listen { get; private set; }
-    public int LockSmith { get; private set; }
-    public int MechanicalRepair { get; private set; }
-    public int Medicine { get; private set; }
-    public int NaturalWorld { get; private set; }
-    public int Navigate { get; private set; }
-    public int Occult {get; private set;}
-    public int OperateHeavyMachinery { get; private set; }
-    public int Persuade { get; private set; }
-    public int PilotAirCraft { get; private set; }
-    public int Psychoanalysis { get; private set; }
-    public int Psychology { get; private set; }
-    public int Ride { get; private set; }
-    public int Astronomy { get; private set; }
-    public int Biology { get; private set; }
-    public int Botany { get; private set; }
-    public int Chemistry { get; private set; }
-    public int Cryptography { get; private set; }
-    public int Engineering { get; private set; }
-    public int Forensics { get; private set; }
-    public int Geology { get; private set; }
-    public int Mathematics { get; private set; }
-    public int Meteorology { get; private set; }
-    public int Pharmacy { get; private set; }
-    public int SleightOfHand { get; private set; }
-    public int SpotHidden { get; private set; }
-    public int Stealth { get; private set; }
-    public int Survival { get; private set; }
+    public AttributeSkillVO LanguageOwn { get; private set; } //==EDU
+    public AttributeSkillVO Law { get; private set; }
+    public AttributeSkillVO LibraryUse { get; private set; }
+    public AttributeSkillVO Listen { get; private set; }
+    public AttributeSkillVO LockSmith { get; private set; }
+    public AttributeSkillVO MechanicalRepair { get; private set; }
+    public AttributeSkillVO Medicine { get; private set; }
+    public AttributeSkillVO NaturalWorld { get; private set; }
+    public AttributeSkillVO Navigate { get; private set; }
+    public AttributeSkillVO Occult {get; private set;}
+    public AttributeSkillVO OperateHeavyMachinery { get; private set; }
+    public AttributeSkillVO Persuade { get; private set; }
+    public AttributeSkillVO PilotAirCraft { get; private set; }
+    public AttributeSkillVO Psychoanalysis { get; private set; }
+    public AttributeSkillVO Psychology { get; private set; }
+    public AttributeSkillVO Ride { get; private set; }
+    public AttributeSkillVO Astronomy { get; private set; }
+    public AttributeSkillVO Biology { get; private set; }
+    public AttributeSkillVO Botany { get; private set; }
+    public AttributeSkillVO Chemistry { get; private set; }
+    public AttributeSkillVO Cryptography { get; private set; }
+    public AttributeSkillVO Engineering { get; private set; }
+    public AttributeSkillVO Forensics { get; private set; }
+    public AttributeSkillVO Geology { get; private set; }
+    public AttributeSkillVO Mathematics { get; private set; }
+    public AttributeSkillVO Meteorology { get; private set; }
+    public AttributeSkillVO Pharmacy { get; private set; }
+    public AttributeSkillVO SleightOfHand { get; private set; }
+    public AttributeSkillVO SpotHidden { get; private set; }
+    public AttributeSkillVO Stealth { get; private set; }
+    public AttributeSkillVO Survival { get; private set; }
     public string SurvivalSpecialization {get; private set;}
-    public int Swim { get; private set; }
-    public int Throw { get; private set; }
-    public int Track { get; private set; }
+    public AttributeSkillVO Swim { get; private set; }
+    public AttributeSkillVO Throw { get; private set; }
+    public AttributeSkillVO Track { get; private set; }
 
         public CharacterSkillsModernEntity(
         Guid id, Guid characterId, Guid characterStatsId,
-        int accounting, int anthropology, int appraise, int archaelogy,
-        string artAndCraftSpecialization, int artCraft, int charm, int climb,
-        int computerUse, int creditRating, int cthulhuMythos, int disguise,
-        int dodge, int driveAuto, int eletricRepair, int eletronics,
-        int fastTalk, int fightingAxe, int fightingBrawl, int fightingChainsaw,
-        int fightingFlail, int fightingGarrote, int fightingSpear, int fightingSword,
-        int fightingWhip, int fightingBow, int handGun, int heavyWeapons,
-        int flamethrower, int machineGun, int rifleShotgun, int submachineGun,
-        int firstAid, int history, int intimidate, int jump,
-        int languageOtherValue, string languageOtherSpecialization, int languageOwn,
-        int law, int libraryUse, int listen, int lockSmith,
-        int mechanicalRepair, int medicine, int naturalWorld, int navigate,
-        int occult, int operateHeavyMachinery, int persuade, int pilotAirCraft,
-        int psychoanalysis, int psychology, int ride, int astronomy,
-        int biology, int botany, int chemistry, int cryptography,
-        int engineering, int forensics, int geology, int mathematics,
-        int meteorology, int pharmacy, int sleightOfHand, int spotHidden,
-        int stealth, int survival, string survivalSpecialization, int swim,
-        int @throw, int track)
+        AttributeSkillVO accounting, AttributeSkillVO anthropology, AttributeSkillVO appraise, AttributeSkillVO archaelogy,
+        string artAndCraftSpecialization, AttributeSkillVO artCraft, AttributeSkillVO charm, AttributeSkillVO climb,
+        AttributeSkillVO computerUse, AttributeSkillVO creditRating, AttributeSkillVO cthulhuMythos, AttributeSkillVO disguise,
+        AttributeSkillVO dodge, AttributeSkillVO driveAuto, AttributeSkillVO eletricRepair, AttributeSkillVO eletronics,
+        AttributeSkillVO fastTalk, AttributeSkillVO fightingAxe, AttributeSkillVO fightingBrawl, AttributeSkillVO fightingChainsaw,
+        AttributeSkillVO fightingFlail, AttributeSkillVO fightingGarrote, AttributeSkillVO fightingSpear, AttributeSkillVO fightingSword,
+        AttributeSkillVO fightingWhip, AttributeSkillVO fightingBow, AttributeSkillVO handGun, AttributeSkillVO heavyWeapons,
+        AttributeSkillVO flamethrower, AttributeSkillVO machineGun, AttributeSkillVO rifleShotgun, AttributeSkillVO submachineGun,
+        AttributeSkillVO firstAid, AttributeSkillVO history, AttributeSkillVO intimidate, AttributeSkillVO jump,
+        AttributeSkillVO languageOtherValue, string languageOtherSpecialization, AttributeSkillVO languageOwn,
+        AttributeSkillVO law, AttributeSkillVO libraryUse, AttributeSkillVO listen, AttributeSkillVO lockSmith,
+        AttributeSkillVO mechanicalRepair, AttributeSkillVO medicine, AttributeSkillVO naturalWorld, AttributeSkillVO navigate,
+        AttributeSkillVO occult, AttributeSkillVO operateHeavyMachinery, AttributeSkillVO persuade, AttributeSkillVO pilotAirCraft,
+        AttributeSkillVO psychoanalysis, AttributeSkillVO psychology, AttributeSkillVO ride, AttributeSkillVO astronomy,
+        AttributeSkillVO biology, AttributeSkillVO botany, AttributeSkillVO chemistry, AttributeSkillVO cryptography,
+        AttributeSkillVO engineering, AttributeSkillVO forensics, AttributeSkillVO geology, AttributeSkillVO mathematics,
+        AttributeSkillVO meteorology, AttributeSkillVO pharmacy, AttributeSkillVO sleightOfHand, AttributeSkillVO spotHidden,
+        AttributeSkillVO stealth, AttributeSkillVO survival, string survivalSpecialization, AttributeSkillVO swim,
+        AttributeSkillVO @throw, AttributeSkillVO track)
     {
         Id = id;
         CharacterId = characterId;
@@ -181,148 +183,148 @@ public class CharacterSkillsModernEntity
 
     // Factory Method — usado pela aplicação para CRIAR um personagem novo
     public static CharacterSkillsModernEntity Create(
-        Guid characterId, Guid characterStatsId, int dexterity, int education,
-        int? accounting = null, int? anthropology = null, int? appraise = null, int? archaelogy = null,
-        string artAndCraftSpecialization = "", int? artCraft = null, int? charm = null, int? climb = null,
-        int? computerUse = null, int? creditRating = null, int? cthulhuMythos = null, int? disguise = null,
-        int? dodge = null, int? driveAuto = null, int? eletricRepair = null, int? eletronics = null,
-        int? fastTalk = null, int? fightingAxe = null, int? fightingBrawl = null, int? fightingChainsaw = null,
-        int? fightingFlail = null, int? fightingGarrote = null, int? fightingSpear = null, int? fightingSword = null,
-        int? fightingWhip = null, int? fightingBow = null, int? handGun = null, int? heavyWeapons = null,
-        int? flamethrower = null, int? machineGun = null, int? rifleShotgun = null, int? submachineGun = null,
-        int? firstAid = null, int? history = null, int? intimidate = null, int? jump = null,
-        int? languageOtherValue = null, string languageOtherSpecialization = "", int? languageOwn = null,
-        int? law = null, int? libraryUse = null, int? listen = null, int? lockSmith = null,
-        int? mechanicalRepair = null, int? medicine = null, int? naturalWorld = null, int? navigate = null,
-        int? occult = null, int? operateHeavyMachinery = null, int? persuade = null, int? pilotAirCraft = null,
-        int? psychoanalysis = null, int? psychology = null, int? ride = null, int? astronomy = null,
-        int? biology = null, int? botany = null, int? chemistry = null, int? cryptography = null,
-        int? engineering = null, int? forensics = null, int? geology = null, int? mathematics = null,
-        int? meteorology = null, int? pharmacy = null, int? sleightOfHand = null, int? spotHidden = null,
-        int? stealth = null, int? survival = null, string survivalSpecialization = "", int? swim = null,
-        int? throwSkill = null, int? track = null)
+        Guid characterId, Guid characterStatsId, AttributeSkillVO dexterity, AttributeSkillVO education,
+        AttributeSkillVO? accounting = null, AttributeSkillVO? anthropology = null, AttributeSkillVO? appraise = null, AttributeSkillVO? archaelogy = null,
+        string artAndCraftSpecialization = "", AttributeSkillVO? artCraft = null, AttributeSkillVO? charm = null, AttributeSkillVO? climb = null,
+        AttributeSkillVO? computerUse = null, AttributeSkillVO? creditRating = null, AttributeSkillVO? cthulhuMythos = null, AttributeSkillVO? disguise = null,
+        AttributeSkillVO? dodge = null, AttributeSkillVO? driveAuto = null, AttributeSkillVO? eletricRepair = null, AttributeSkillVO? eletronics = null,
+        AttributeSkillVO? fastTalk = null, AttributeSkillVO? fightingAxe = null, AttributeSkillVO? fightingBrawl = null, AttributeSkillVO? fightingChainsaw = null,
+        AttributeSkillVO? fightingFlail = null, AttributeSkillVO? fightingGarrote = null, AttributeSkillVO? fightingSpear = null, AttributeSkillVO? fightingSword = null,
+        AttributeSkillVO? fightingWhip = null, AttributeSkillVO? fightingBow = null, AttributeSkillVO? handGun = null, AttributeSkillVO? heavyWeapons = null,
+        AttributeSkillVO? flamethrower = null, AttributeSkillVO? machineGun = null, AttributeSkillVO? rifleShotgun = null, AttributeSkillVO? submachineGun = null,
+        AttributeSkillVO? firstAid = null, AttributeSkillVO? history = null, AttributeSkillVO? intimidate = null, AttributeSkillVO? jump = null,
+        AttributeSkillVO? languageOtherValue = null, string languageOtherSpecialization = "", AttributeSkillVO? languageOwn = null,
+        AttributeSkillVO? law = null, AttributeSkillVO? libraryUse = null, AttributeSkillVO? listen = null, AttributeSkillVO? lockSmith = null,
+        AttributeSkillVO? mechanicalRepair = null, AttributeSkillVO? medicine = null, AttributeSkillVO? naturalWorld = null, AttributeSkillVO? navigate = null,
+        AttributeSkillVO? occult = null, AttributeSkillVO? operateHeavyMachinery = null, AttributeSkillVO? persuade = null, AttributeSkillVO? pilotAirCraft = null,
+        AttributeSkillVO? psychoanalysis = null, AttributeSkillVO? psychology = null, AttributeSkillVO? ride = null, AttributeSkillVO? astronomy = null,
+        AttributeSkillVO? biology = null, AttributeSkillVO? botany = null, AttributeSkillVO? chemistry = null, AttributeSkillVO? cryptography = null,
+        AttributeSkillVO? engineering = null, AttributeSkillVO? forensics = null, AttributeSkillVO? geology = null, AttributeSkillVO? mathematics = null,
+        AttributeSkillVO? meteorology = null, AttributeSkillVO? pharmacy = null, AttributeSkillVO? sleightOfHand = null, AttributeSkillVO? spotHidden = null,
+        AttributeSkillVO? stealth = null, AttributeSkillVO? survival = null, string survivalSpecialization = "", AttributeSkillVO? swim = null,
+        AttributeSkillVO? throwSkill = null, AttributeSkillVO? track = null)
     {
         return new CharacterSkillsModernEntity(
             Guid.NewGuid(), characterId, characterStatsId,
-            accounting ?? 5, anthropology ?? 1, appraise ?? 5, archaelogy ?? 1,
-            artAndCraftSpecialization, artCraft ?? 5, charm ?? 15, climb ?? 20,
-            computerUse ?? 5, creditRating ?? 0, cthulhuMythos ?? 0, disguise ?? 5,
-            dodge ?? (dexterity / 2), driveAuto ?? 20, eletricRepair ?? 10, eletronics ?? 1,
-            fastTalk ?? 5, fightingAxe ?? 15, fightingBrawl ?? 25, fightingChainsaw ?? 10,
-            fightingFlail ?? 10, fightingGarrote ?? 15, fightingSpear ?? 20, fightingSword ?? 20,
-            fightingWhip ?? 5, fightingBow ?? 15, handGun ?? 20, heavyWeapons ?? 10,
-            flamethrower ?? 10, machineGun ?? 10, rifleShotgun ?? 25, submachineGun ?? 15,
-            firstAid ?? 30, history ?? 5, intimidate ?? 15, jump ?? 20,
-            languageOtherValue ?? 1, languageOtherSpecialization, languageOwn ?? education,
-            law ?? 5, libraryUse ?? 20, listen ?? 20, lockSmith ?? 1,
-            mechanicalRepair ?? 10, medicine ?? 1, naturalWorld ?? 10, navigate ?? 10,
-            occult ?? 5, operateHeavyMachinery ?? 1, persuade ?? 10, pilotAirCraft ?? 1,
-            psychoanalysis ?? 1, psychology ?? 10, ride ?? 5, astronomy ?? 1,
-            biology ?? 1, botany ?? 1, chemistry ?? 1, cryptography ?? 1,
-            engineering ?? 1, forensics ?? 1, geology ?? 1, mathematics ?? 10,
-            meteorology ?? 1, pharmacy ?? 1, sleightOfHand ?? 10, spotHidden ?? 25,
-            stealth ?? 20, survival ?? 10, survivalSpecialization, swim ?? 20,
-            throwSkill ?? 20, track ?? 10
+            accounting ?? new AttributeSkillVO(5), anthropology ?? new AttributeSkillVO(1), appraise ?? new AttributeSkillVO(5), archaelogy ?? new AttributeSkillVO(1),
+            artAndCraftSpecialization, artCraft ?? new AttributeSkillVO(5), charm ?? new AttributeSkillVO(15), climb ?? new AttributeSkillVO(20),
+            computerUse ?? new AttributeSkillVO(5), creditRating ?? new AttributeSkillVO(0), cthulhuMythos ?? new AttributeSkillVO(0), disguise ?? new AttributeSkillVO(5),
+            dodge ?? new AttributeSkillVO(25), driveAuto ?? new AttributeSkillVO(20), eletricRepair ?? new AttributeSkillVO(10), eletronics ?? new AttributeSkillVO(1),
+            fastTalk ?? new AttributeSkillVO(5), fightingAxe ?? new AttributeSkillVO(15), fightingBrawl ?? new AttributeSkillVO(25), fightingChainsaw ?? new AttributeSkillVO(10),
+            fightingFlail ?? new AttributeSkillVO(10), fightingGarrote ?? new AttributeSkillVO(15), fightingSpear ?? new AttributeSkillVO(20), fightingSword ?? new AttributeSkillVO(20),
+            fightingWhip ?? new AttributeSkillVO(5), fightingBow ?? new AttributeSkillVO(15), handGun ?? new AttributeSkillVO(20), heavyWeapons ?? new AttributeSkillVO(10),
+            flamethrower ?? new AttributeSkillVO(10), machineGun ?? new AttributeSkillVO(10), rifleShotgun ?? new AttributeSkillVO(25), submachineGun ?? new AttributeSkillVO(15),
+            firstAid ?? new AttributeSkillVO(30), history ?? new AttributeSkillVO(5), intimidate ?? new AttributeSkillVO(15), jump ?? new AttributeSkillVO(20),
+            languageOtherValue ?? new AttributeSkillVO(1), languageOtherSpecialization, languageOwn ?? education,
+            law ?? new AttributeSkillVO(5), libraryUse ?? new AttributeSkillVO(20), listen ?? new AttributeSkillVO(20), lockSmith ?? new AttributeSkillVO(1),
+            mechanicalRepair ?? new AttributeSkillVO(10), medicine ?? new AttributeSkillVO(1), naturalWorld ?? new AttributeSkillVO(10), navigate ?? new AttributeSkillVO(10),
+            occult ?? new AttributeSkillVO(5), operateHeavyMachinery ?? new AttributeSkillVO(1), persuade ?? new AttributeSkillVO(10), pilotAirCraft ?? new AttributeSkillVO(1),
+            psychoanalysis ?? new AttributeSkillVO(1), psychology ?? new AttributeSkillVO(10), ride ?? new AttributeSkillVO(5), astronomy ?? new AttributeSkillVO(1),
+            biology ?? new AttributeSkillVO(1), botany ?? new AttributeSkillVO(1), chemistry ?? new AttributeSkillVO(1), cryptography ?? new AttributeSkillVO(1),
+            engineering ?? new AttributeSkillVO(1), forensics ?? new AttributeSkillVO(1), geology ?? new AttributeSkillVO(1), mathematics ?? new AttributeSkillVO(10),
+            meteorology ?? new AttributeSkillVO(1), pharmacy ?? new AttributeSkillVO(1), sleightOfHand ?? new AttributeSkillVO(10), spotHidden ?? new AttributeSkillVO(25),
+            stealth ?? new AttributeSkillVO(20), survival ?? new AttributeSkillVO(10), survivalSpecialization, swim ?? new AttributeSkillVO(20),
+            throwSkill ?? new AttributeSkillVO(20), track ?? new AttributeSkillVO(10)
         );
     }
 
 
 public void Update(
-    int? accounting = null, int? anthropology = null, int? appraise = null, int? archaelogy = null,
-    string? artAndCraftSpecialization = null, int? artCraft = null, int? charm = null, int? climb = null,
-    int? computerUse = null, int? creditRating = null, int? cthulhuMythos = null, int? disguise = null,
-    int? dodge = null, int? driveAuto = null, int? eletricRepair = null, int? eletronics = null,
-    int? fastTalk = null, int? fightingAxe = null, int? fightingBrawl = null, int? fightingChainsaw = null,
-    int? fightingFlail = null, int? fightingGarrote = null, int? fightingSpear = null,
-    int? fightingSword = null,
-    int? fightingWhip = null, int? fightingBow = null, int? handGun = null, int? heavyWeapons = null,
-    int? flamethrower = null, int? machineGun = null, int? rifleShotgun = null, int? submachineGun = null,
-    int? firstAid = null, int? history = null, int? intimidate = null, int? jump = null,
-    int? languageOtherValue = null, string? languageOtherSpecialization = null, int? languageOwn = null,
-    int? law = null, int? libraryUse = null, int? listen = null, int? lockSmith = null,
-    int? mechanicalRepair = null, int? medicine = null, int? naturalWorld = null, int? navigate = null,
-    int? occult = null, int? operateHeavyMachinery = null, int? persuade = null, int? pilotAirCraft = null,
-    int? psychoanalysis = null, int? psychology = null, int? ride = null, int? astronomy = null,
-    int? biology = null, int? botany = null, int? chemistry = null, int? cryptography = null,
-    int? engineering = null, int? forensics = null, int? geology = null, int? mathematics = null,
-    int? meteorology = null, int? pharmacy = null, int? sleightOfHand = null, int? spotHidden = null,
-    int? stealth = null, int? survival = null, string? survivalSpecialization = null, int? swim = null,
-    int? @throw = null, int? track = null)
+    AttributeSkillVO? accounting = null, AttributeSkillVO? anthropology = null, AttributeSkillVO? appraise = null, AttributeSkillVO? archaelogy = null,
+    string? artAndCraftSpecialization = null, AttributeSkillVO? artCraft = null, AttributeSkillVO? charm = null, AttributeSkillVO? climb = null,
+    AttributeSkillVO? computerUse = null, AttributeSkillVO? creditRating = null, AttributeSkillVO? cthulhuMythos = null, AttributeSkillVO? disguise = null,
+    AttributeSkillVO? dodge = null, AttributeSkillVO? driveAuto = null, AttributeSkillVO? eletricRepair = null, AttributeSkillVO? eletronics = null,
+    AttributeSkillVO? fastTalk = null, AttributeSkillVO? fightingAxe = null, AttributeSkillVO? fightingBrawl = null, AttributeSkillVO? fightingChainsaw = null,
+    AttributeSkillVO? fightingFlail = null, AttributeSkillVO? fightingGarrote = null, AttributeSkillVO? fightingSpear = null,
+    AttributeSkillVO? fightingSword = null,
+    AttributeSkillVO? fightingWhip = null, AttributeSkillVO? fightingBow = null, AttributeSkillVO? handGun = null, AttributeSkillVO? heavyWeapons = null,
+    AttributeSkillVO? flamethrower = null, AttributeSkillVO? machineGun = null, AttributeSkillVO? rifleShotgun = null, AttributeSkillVO? submachineGun = null,
+    AttributeSkillVO? firstAid = null, AttributeSkillVO? history = null, AttributeSkillVO? intimidate = null, AttributeSkillVO? jump = null,
+    AttributeSkillVO? languageOtherValue = null, string? languageOtherSpecialization = null, AttributeSkillVO? languageOwn = null,
+    AttributeSkillVO? law = null, AttributeSkillVO? libraryUse = null, AttributeSkillVO? listen = null, AttributeSkillVO? lockSmith = null,
+    AttributeSkillVO? mechanicalRepair = null, AttributeSkillVO? medicine = null, AttributeSkillVO? naturalWorld = null, AttributeSkillVO? navigate = null,
+    AttributeSkillVO? occult = null, AttributeSkillVO? operateHeavyMachinery = null, AttributeSkillVO? persuade = null, AttributeSkillVO? pilotAirCraft = null,
+    AttributeSkillVO? psychoanalysis = null, AttributeSkillVO? psychology = null, AttributeSkillVO? ride = null, AttributeSkillVO? astronomy = null,
+    AttributeSkillVO? biology = null, AttributeSkillVO? botany = null, AttributeSkillVO? chemistry = null, AttributeSkillVO? cryptography = null,
+    AttributeSkillVO? engineering = null, AttributeSkillVO? forensics = null, AttributeSkillVO? geology = null, AttributeSkillVO? mathematics = null,
+    AttributeSkillVO? meteorology = null, AttributeSkillVO? pharmacy = null, AttributeSkillVO? sleightOfHand = null, AttributeSkillVO? spotHidden = null,
+    AttributeSkillVO? stealth = null, AttributeSkillVO? survival = null, string? survivalSpecialization = null, AttributeSkillVO? swim = null,
+    AttributeSkillVO? @throw = null, AttributeSkillVO? track = null)
     {
 
-    if (accounting.HasValue) Accounting = accounting.Value;
-    if (anthropology.HasValue) Anthropology = anthropology.Value;
-    if (appraise.HasValue) Appraise = appraise.Value;
-    if (archaelogy.HasValue) Archaelogy = archaelogy.Value;
+    if (accounting !=null) Accounting = accounting;
+    if (anthropology !=null) Anthropology = anthropology;
+    if (appraise !=null) Appraise = appraise;
+    if (archaelogy !=null) Archaelogy = archaelogy;
     if (!string.IsNullOrEmpty(artAndCraftSpecialization)) ArtAndCraftSpecialization = artAndCraftSpecialization;
-    if (artCraft.HasValue) ArtCraft = artCraft.Value;
-    if (charm.HasValue) Charm = charm.Value;
-    if (climb.HasValue) Climb = climb.Value;
-    if (computerUse.HasValue) ComputerUse = computerUse.Value;
-    if (creditRating.HasValue) CreditRating = creditRating.Value;
-    if (cthulhuMythos.HasValue) CthulhuMythos = cthulhuMythos.Value;
-    if (disguise.HasValue) Disguise = disguise.Value;
-    if (dodge.HasValue) Dodge = dodge.Value;
-    if (driveAuto.HasValue) DriveAuto = driveAuto.Value;
-    if (eletricRepair.HasValue) EletricRepair = eletricRepair.Value;
-    if (eletronics.HasValue) Eletronics = eletronics.Value;
-    if (fastTalk.HasValue) FastTalk = fastTalk.Value;
-    if (fightingAxe.HasValue) FightingAxe = fightingAxe.Value;
-    if (fightingBrawl.HasValue) FightingBrawl = fightingBrawl.Value;
-    if (fightingChainsaw.HasValue) FightingChainsaw = fightingChainsaw.Value;
-    if (fightingFlail.HasValue) FightingFlail = fightingFlail.Value;
-    if (fightingGarrote.HasValue) FightingGarrote = fightingGarrote.Value;
-    if (fightingSpear.HasValue) FightingSpear = fightingSpear.Value;
-    if (fightingSword.HasValue) FightingSword = fightingSword.Value;
-    if (fightingWhip.HasValue) FightingWhip = fightingWhip.Value;
-    if (fightingBow.HasValue) FightingBow = fightingBow.Value;
-    if (handGun.HasValue) HandGun = handGun.Value;
-    if (heavyWeapons.HasValue) HeavyWeapons = heavyWeapons.Value;
-    if (flamethrower.HasValue) Flamethrower = flamethrower.Value;
-    if (machineGun.HasValue) MachineGun = machineGun.Value;
-    if (rifleShotgun.HasValue) RifleShotgun = rifleShotgun.Value;
-    if (submachineGun.HasValue) SubmachineGun = submachineGun.Value;
-    if (firstAid.HasValue) FirstAid = firstAid.Value;
-    if (history.HasValue) History = history.Value;
-    if (intimidate.HasValue) Intimidate = intimidate.Value;
-    if (jump.HasValue) Jump = jump.Value;
-    if (languageOtherValue.HasValue) LanguageOtherValue = languageOtherValue.Value;
+    if (artCraft !=null) ArtCraft = artCraft;
+    if (charm !=null) Charm = charm;
+    if (climb !=null) Climb = climb;
+    if (computerUse !=null) ComputerUse = computerUse;
+    if (creditRating !=null) CreditRating = creditRating;
+    if (cthulhuMythos !=null) CthulhuMythos = cthulhuMythos;
+    if (disguise !=null) Disguise = disguise;
+    if (dodge !=null) Dodge = dodge;
+    if (driveAuto !=null) DriveAuto = driveAuto;
+    if (eletricRepair !=null) EletricRepair = eletricRepair;
+    if (eletronics !=null) Eletronics = eletronics;
+    if (fastTalk !=null) FastTalk = fastTalk;
+    if (fightingAxe !=null) FightingAxe = fightingAxe;
+    if (fightingBrawl !=null) FightingBrawl = fightingBrawl;
+    if (fightingChainsaw !=null) FightingChainsaw = fightingChainsaw;
+    if (fightingFlail !=null) FightingFlail = fightingFlail;
+    if (fightingGarrote !=null) FightingGarrote = fightingGarrote;
+    if (fightingSpear !=null) FightingSpear = fightingSpear;
+    if (fightingSword !=null) FightingSword = fightingSword;
+    if (fightingWhip !=null) FightingWhip = fightingWhip;
+    if (fightingBow !=null) FightingBow = fightingBow;
+    if (handGun !=null) HandGun = handGun;
+    if (heavyWeapons !=null) HeavyWeapons = heavyWeapons;
+    if (flamethrower !=null) Flamethrower = flamethrower;
+    if (machineGun !=null) MachineGun = machineGun;
+    if (rifleShotgun !=null) RifleShotgun = rifleShotgun;
+    if (submachineGun !=null) SubmachineGun = submachineGun;
+    if (firstAid !=null) FirstAid = firstAid;
+    if (history !=null) History = history;
+    if (intimidate !=null) Intimidate = intimidate;
+    if (jump !=null) Jump = jump;
+    if (languageOtherValue !=null) LanguageOtherValue = languageOtherValue;
     if (!string.IsNullOrEmpty(languageOtherSpecialization))
         LanguageOtherSpecialization = languageOtherSpecialization;
-    if (languageOwn.HasValue) LanguageOwn = languageOwn.Value;
-    if (law.HasValue) Law = law.Value;
-    if (libraryUse.HasValue) LibraryUse = libraryUse.Value;
-    if (listen.HasValue) Listen = listen.Value;
-    if (lockSmith.HasValue) LockSmith = lockSmith.Value;
-    if (mechanicalRepair.HasValue) MechanicalRepair = mechanicalRepair.Value;
-    if (medicine.HasValue) Medicine = medicine.Value;
-    if (naturalWorld.HasValue) NaturalWorld = naturalWorld.Value;
-    if (navigate.HasValue) Navigate = navigate.Value;
-    if (occult.HasValue) Occult = occult.Value;
-    if (operateHeavyMachinery.HasValue) OperateHeavyMachinery = operateHeavyMachinery.Value;
-    if (persuade.HasValue) Persuade = persuade.Value;
-    if (pilotAirCraft.HasValue) PilotAirCraft = pilotAirCraft.Value;
-    if (psychoanalysis.HasValue) Psychoanalysis = psychoanalysis.Value;
-    if (psychology.HasValue) Psychology = psychology.Value;
-    if (ride.HasValue) Ride = ride.Value;
-    if (astronomy.HasValue) Astronomy = astronomy.Value;
-    if (biology.HasValue) Biology = biology.Value;
-    if (botany.HasValue) Botany = botany.Value;
-    if (chemistry.HasValue) Chemistry = chemistry.Value;
-    if (cryptography.HasValue) Cryptography = cryptography.Value;
-    if (engineering.HasValue) Engineering = engineering.Value;
-    if (forensics.HasValue) Forensics = forensics.Value;
-    if (geology.HasValue) Geology = geology.Value;
-    if (mathematics.HasValue) Mathematics = mathematics.Value;
-    if (meteorology.HasValue) Meteorology = meteorology.Value;
-    if (pharmacy.HasValue) Pharmacy = pharmacy.Value;
-    if (sleightOfHand.HasValue) SleightOfHand = sleightOfHand.Value;
-    if (spotHidden.HasValue) SpotHidden = spotHidden.Value;
-    if (stealth.HasValue) Stealth = stealth.Value;
-    if (survival.HasValue) Survival = survival.Value;
+    if (languageOwn !=null) LanguageOwn = languageOwn;
+    if (law !=null) Law = law;
+    if (libraryUse !=null) LibraryUse = libraryUse;
+    if (listen !=null) Listen = listen;
+    if (lockSmith !=null) LockSmith = lockSmith;
+    if (mechanicalRepair !=null) MechanicalRepair = mechanicalRepair;
+    if (medicine !=null) Medicine = medicine;
+    if (naturalWorld !=null) NaturalWorld = naturalWorld;
+    if (navigate !=null) Navigate = navigate;
+    if (occult !=null) Occult = occult;
+    if (operateHeavyMachinery !=null) OperateHeavyMachinery = operateHeavyMachinery;
+    if (persuade !=null) Persuade = persuade;
+    if (pilotAirCraft !=null) PilotAirCraft = pilotAirCraft;
+    if (psychoanalysis !=null) Psychoanalysis = psychoanalysis;
+    if (psychology !=null) Psychology = psychology;
+    if (ride !=null) Ride = ride;
+    if (astronomy !=null) Astronomy = astronomy;
+    if (biology !=null) Biology = biology;
+    if (botany !=null) Botany = botany;
+    if (chemistry !=null) Chemistry = chemistry;
+    if (cryptography !=null) Cryptography = cryptography;
+    if (engineering !=null) Engineering = engineering;
+    if (forensics !=null) Forensics = forensics;
+    if (geology !=null) Geology = geology;
+    if (mathematics !=null) Mathematics = mathematics;
+    if (meteorology !=null) Meteorology = meteorology;
+    if (pharmacy !=null) Pharmacy = pharmacy;
+    if (sleightOfHand !=null) SleightOfHand = sleightOfHand;
+    if (spotHidden !=null) SpotHidden = spotHidden;
+    if (stealth !=null) Stealth = stealth;
+    if (survival !=null) Survival = survival;
     if (!string.IsNullOrEmpty(survivalSpecialization)) SurvivalSpecialization = survivalSpecialization;
-    if (swim.HasValue) Swim = swim.Value;
-    if (@throw.HasValue) Throw = @throw.Value;
-    if (track.HasValue) Track = track.Value;
+    if (swim !=null) Swim = swim;
+    if (@throw !=null) Throw = @throw;
+    if (track !=null) Track = track;
     }
 }
