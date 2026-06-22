@@ -32,7 +32,7 @@ const SKILL_FIELDS = [
     {key: "fightBrawl", label: "Luta (Corpo a Corpo)"},
     {key: "medicine", label: "Medicina"},
     {key: "cthulhuMythos", label: "Mitos de Cthulhu"},
-    {key: "naturalWorld", label: "Natureza"},
+    {key: "naturalWorld", label: "Mundo Natural"},
     {key: "swim", label: "Natação"},
     {key: "creditRating", label: "Nível de Crédito"},
     {key: "occult", label: "Ocultismo"},
