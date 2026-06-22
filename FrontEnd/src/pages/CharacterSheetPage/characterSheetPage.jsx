@@ -57,29 +57,33 @@ function CharacterSheetPage() {
         setSkills((prev) => ({ ...prev, [field]: value }));
     }
 
-    async function handleSave() {
-        try {
-            const occupationValue = typeof character.occupation === "number"
-                ? character.occupation
-                : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
+async function handleSave() {
+    try {
+        const occupationValue = typeof character.occupation === "number"
+            ? character.occupation
+            : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
 
-            await Promise.all([
-                updateCharacter(character.id, {
-                    name: character.name,
-                    gender: character.gender,
-                    occupation: occupationValue,
-                    residence: character.residence,
-                    age: character.age,
-                    annotations: character.annotations,
-                }),
-                updateCharacterStats(stats.id, stats),
-                updateCharacterSkills(skills.id, skills),
-            ]);
-            setError("");
-        } catch (err) {
-            setError("Erro ao salvar a ficha.");
-        }
+        console.log("occupation raw:", character.occupation);
+        console.log("occupation type:", typeof character.occupation);
+        console.log("occupation value enviado:", occupationValue);
+
+        await Promise.all([
+            updateCharacter(character.id, {
+                name: character.name,
+                gender: character.gender,
+                occupation: occupationValue,
+                residence: character.residence,
+                age: character.age,
+                annotations: character.annotations,
+            }),
+            updateCharacterStats(stats.id, stats),
+            updateCharacterSkills(skills.id, skills),
+        ]);
+        setError("");
+    } catch (err) {
+        setError("Erro ao salvar a ficha.");
     }
+}
 
     const occupationLabel = OCCUPATIONS.find(o => o.value === character?.occupation)?.label ?? "";
 
