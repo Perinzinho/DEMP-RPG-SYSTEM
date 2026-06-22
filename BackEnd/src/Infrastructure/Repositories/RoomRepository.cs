@@ -41,12 +41,14 @@ public class RoomRepository:IRoomRepository
 
     public async Task<RoomEntity> UpdateRoom(RoomEntity room)
     {
-        var oldRoom = await _context.Rooms.FindAsync(room.Id);
+        var oldRoom = await _context.Rooms
+            .FindAsync(room.Id);
 
         if (oldRoom == null)
             throw new RoomNotFoundException();
 
-        oldRoom.Update(room.Name, room.Description, room.SheetEnum);
+        oldRoom.Update(room.Name, room.Description, room.SheetEnum, room.UserIds);
+
         await _context.SaveChangesAsync();
         return oldRoom;
     }

@@ -5,5 +5,6 @@ namespace DEMP_RPG_API.Application.DTOs.Request.Room;
 public record UpdateRoomRequestDTO(
     string Name,
     string Description,
-    SheetEnum SheetEnum
+    SheetEnum SheetEnum,
+    List<Guid> UserIds
     );
