@@ -10,6 +10,7 @@ import SkillsPanel from "../../components/SkillsPanel/skillsPanel";
 import { getCharacterById, updateCharacter } from "../../services/characterService";
 import { getCharacterStatsByCharacterId, updateCharacterStats } from "../../services/characterStatsService";
 import { getCharacterSkillsByCharacterId, updateCharacterSkills } from "../../services/characterSkillsModernService";
+import { OCCUPATIONS } from "../../constants/occupations";
 import "./characterSheetPage.css";
 
 function CharacterSheetPage() {
@@ -58,11 +59,15 @@ function CharacterSheetPage() {
 
     async function handleSave() {
         try {
+            const occupationValue = typeof character.occupation === "number"
+                ? character.occupation
+                : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
+
             await Promise.all([
                 updateCharacter(character.id, {
                     name: character.name,
                     gender: character.gender,
-                    occupation: character.occupation,
+                    occupation: occupationValue,
                     residence: character.residence,
                     age: character.age,
                     annotations: character.annotations,
@@ -75,6 +80,8 @@ function CharacterSheetPage() {
             setError("Erro ao salvar a ficha.");
         }
     }
+
+    const occupationLabel = OCCUPATIONS.find(o => o.value === character?.occupation)?.label ?? "";
 
     if (loading) {
         return (
@@ -109,7 +116,7 @@ function CharacterSheetPage() {
                     <CharacterSheetHeader
                         name={character.name}
                         onNameChange={(v) => handleCharacterField("name", v)}
-                        occupation={character.occupation}
+                        occupation={occupationLabel}
                         age={character.age}
                     />
 
