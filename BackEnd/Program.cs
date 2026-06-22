@@ -35,12 +35,12 @@ builder.Services.AddSwaggerGen(options =>
         [new OpenApiSecuritySchemeReference("Bearer", document)] = new List<string>()
     });
 });
+
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
         Environment.GetEnvironmentVariable("DB_CONNECTION")
     ));
-
 
 // Serviços
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
@@ -89,6 +89,7 @@ builder.Services.AddScoped<GetRoomByIdUseCase>();
 builder.Services.AddScoped<GetRoomByCodeUseCase>();
 builder.Services.AddScoped<JoinRoomUseCase>();
 builder.Services.AddScoped<GetRoomsByUserIdUseCase>();
+
 // JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -115,8 +116,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
                 "http://localhost:5173",
-                "https://demprpgsystem.vercel.app",
-                "https://https://demp-rpg-system-perinzinhos-projects.vercel.app"
+                "https://demprpgsystem.vercel.app"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -125,13 +125,24 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-
 app.UseSwagger();
 app.UseSwaggerUI();
 
+// CORS deve ser o primeiro middleware para garantir que
+// os headers estejam presentes mesmo em respostas de erro
+app.UseCors("AllowFrontend");
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync("{\"error\": \"Internal Server Error\"}");
+    });
+});
 
 app.UseHttpsRedirection();
-app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
