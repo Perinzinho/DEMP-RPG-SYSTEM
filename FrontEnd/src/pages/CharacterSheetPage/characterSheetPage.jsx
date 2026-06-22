@@ -62,7 +62,7 @@ async function handleSave() {
             updateCharacter(character.id, {
                 name: character.name,
                 gender: character.gender,
-                occupation: Number(character.occupation.value ?? character.occupation),
+                occupation: Number(character.occupation),
                 residence: character.residence,
                 age: character.age,
                 annotations: character.annotations,
