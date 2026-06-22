@@ -42,12 +42,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         Environment.GetEnvironmentVariable("DB_CONNECTION"),
         npgsqlOptions =>
         {
-            npgsqlOptions.EnableRetryOnFailure(
-                maxRetryCount: 3,
-                maxRetryDelay: TimeSpan.FromSeconds(5),
-                errorCodesToAdd: null
-            );
-            npgsqlOptions.CommandTimeout(60);
+            npgsqlOptions.CommandTimeout(30);
         }
     ));
 
