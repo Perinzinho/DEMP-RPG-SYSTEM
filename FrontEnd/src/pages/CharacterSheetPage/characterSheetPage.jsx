@@ -10,7 +10,7 @@ import SkillsPanel from "../../components/SkillsPanel/skillsPanel";
 import { getCharacterById, updateCharacter } from "../../services/characterService";
 import { getCharacterStatsByCharacterId, updateCharacterStats } from "../../services/characterStatsService";
 import { getCharacterSkillsByCharacterId, updateCharacterSkills } from "../../services/characterSkillsModernService";
-import { OCCUPATIONS } from "../../constants/occupations";
+import { OCCUPATIONS } from "../../utils/occupations";
 import "./characterSheetPage.css";
 
 function CharacterSheetPage() {
