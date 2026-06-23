@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,useReducer, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -10,14 +10,20 @@ import { getCharactersByUserId } from "../../services/characterService";
 import { useAuth } from "../../contexts/AuthContext";
 import "./userHomePage.css";
 
+// O useReducer foi usado aqui como uma otimização de legibilidade no lugar do useState.
+// A função redutora `(prev, next) => next` ignora o estado anterior e apenas assume o novo valor.
+// Isso otimiza o código assíncrono do useEffect abaixo, permitindo passar o atualizador
+// diretamente nos callbacks das Promises (ex: `.then(setCharacters)`), limpando a sintaxe
+// e eliminando a necessidade de criar funções anônimas como `.then(data => setCharacters(data))`.
+
 function UserHomePage() {
     const [activeTab, setActiveTab] = useState("characters");
     const [roomSubTab, setRoomSubTab] = useState("mastering");
     const [showJoinModal, setShowJoinModal] = useState(false);
-    const [characters, setCharacters] = useState([]);
-    const [loadingCharacters, setLoadingCharacters] = useState(true);
-    const [rooms, setRooms] = useState([]);
-    const [loadingRooms, setLoadingRooms] = useState(true);
+    const [characters, setCharacters] = useReducer((prev, next) => next, []);//Faz com que 
+    const [loadingCharacters, setLoadingCharacters] = useReducer((prev, next) => next, true);
+    const [rooms, setRooms] = useReducer((prev, next) => next, []);
+    const [loadingRooms, setLoadingRooms] = useReducer((prev, next) => next, true);
     const navigate = useNavigate();
     const { userId } = useAuth();
 

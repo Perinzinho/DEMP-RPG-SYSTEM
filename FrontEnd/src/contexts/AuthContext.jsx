@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, use, useState, useEffect } from 'react';
 import { login as loginService, register as registerService } from '../services/authService';
 import { getUserById } from '../services/userSerice';
+
 
 const AuthContext = createContext(null);
 
@@ -48,5 +49,5 @@ async function login(email, password) {
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  return use(AuthContext);
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -11,8 +11,8 @@ function PlayerRoomPage() {
     const { userId } = useAuth();
     const navigate = useNavigate();
 
-    const [character, setCharacter] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [character, setCharacter] = useReducer((prev, next) => next, null);
+    const [loading, setLoading] = useReducer((prev, next) => next, true);
 
     useEffect(() => {
         if (!roomId || !userId) return;
