@@ -20,7 +20,7 @@ function StatRow({ label, value, onChange, editable = true }) {
             <span className="stat-row-label">{label}</span>
             <span className="stat-row-value">
                 {editable ? (
-                    <input
+                    <input aria-label={label}
                         type="number"
                         value={value}
                         onChange={(e) => onChange?.(Number(e.target.value))}

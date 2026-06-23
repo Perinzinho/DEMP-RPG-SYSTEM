@@ -8,14 +8,14 @@ function ResourcesPanel({ stats, onChange }) {
             <div className="sheet-resource-row">
                 <span>Vida</span>
                 <span>
-                    <input
+                    <input aria-label="Vida atual"
                         type="number"
                         value={stats.currentHp}
                         onChange={(e) => onChange("currentHp", Number(e.target.value))}
                         className="sheet-resource-input"
                     />
                     /
-                    <input
+                    <input aria-label="Pontos de Vida"
                         type="number"
                         value={stats.hitPoints}
                         onChange={(e) => onChange("hitPoints", Number(e.target.value))}
@@ -27,14 +27,14 @@ function ResourcesPanel({ stats, onChange }) {
             <div className="sheet-resource-row">
                 <span>Sanidade</span>
                 <span>
-                    <input
+                    <input aria-label="Sanidade atual"
                         type="number"
                         value={stats.currentSanity}
                         onChange={(e) => onChange("currentSanity", Number(e.target.value))}
                         className="sheet-resource-input"
                     />
                     /
-                    <input
+                    <input aria-label="Pontos de Sanidade"
                         type="number"
                         value={stats.sanity}
                         onChange={(e) => onChange("sanity", Number(e.target.value))}
@@ -45,7 +45,7 @@ function ResourcesPanel({ stats, onChange }) {
 
             <div className="sheet-resource-row">
                 <span>Sorte</span>
-                <input
+                <input aria-label="Sorte"
                     type="number"
                     value={stats.luck}
                     onChange={(e) => onChange("luck", Number(e.target.value))}
@@ -55,7 +55,7 @@ function ResourcesPanel({ stats, onChange }) {
 
             <div className="sheet-resource-row">
                 <span>Movimento</span>
-                <input
+                <input aria-label="Movimento"
                     type="number"
                     value={stats.move}
                     onChange={(e) => onChange("move", Number(e.target.value))}
