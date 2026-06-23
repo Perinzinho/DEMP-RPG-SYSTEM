@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, use, useEffect } from 'react';
+import { createContext, useContext, useState,useMemo, use, useEffect } from 'react';
 import { login as loginService, register as registerService } from '../services/authService';
 import { getUserById } from '../services/userSerice';
 
@@ -9,10 +9,10 @@ async function register(username, email, password) {
 }
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [userId, setUserId] = useState(localStorage.getItem('userId'));
-  const [role, setRole] = useState(localStorage.getItem('role'));
-  const [user, setUser] = useState(null);
+const [token, setToken] = useState(() => localStorage.getItem('token'));//useState com inicialização lazy — função roda só uma vez na montagem
+const [userId, setUserId] = useState(() => localStorage.getItem('userId'));//useState com inicialização lazy — função roda só uma vez na montagem
+const [role, setRole] = useState(() => localStorage.getItem('role'));//useState com inicialização lazy — função roda só uma vez na montagem
+const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (userId && token) {
@@ -42,7 +42,7 @@ async function login(email, password) {
 
   return (
     <AuthContext.Provider value={{ token, userId, role, user, login, register, logout, isAuthenticated: !!token }}>
-      {children}
+        {children} 
     </AuthContext.Provider>
   );
 }
