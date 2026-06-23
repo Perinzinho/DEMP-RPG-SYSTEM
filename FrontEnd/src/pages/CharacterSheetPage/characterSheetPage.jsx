@@ -136,7 +136,7 @@ async function handleSave() {
                     {error && <p className="sheet-error">{error}</p>}
 
                     <div className="sheet-save-row">
-                        <button className="sheet-save-button" onClick={handleSave}>
+                        <button className="sheet-save-button" onClick={handleSave} type="submit">
                             Salvar Ficha
                         </button>
                     </div>

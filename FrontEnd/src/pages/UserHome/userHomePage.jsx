@@ -61,13 +61,13 @@ function UserHomePage() {
                         <div className="home-tabs">
                             <button
                                 className={`home-tab ${activeTab === "characters" ? "active" : ""}`}
-                                onClick={() => setActiveTab("characters")}
+                                onClick={() => setActiveTab("characters")} type="button"
                             >
                                 Investigadores
                             </button>
                             <button
                                 className={`home-tab ${activeTab === "rooms" ? "active" : ""}`}
-                                onClick={() => setActiveTab("rooms")}
+                                onClick={() => setActiveTab("rooms")} type="button"
                             >
                                 Mesas
                             </button>
@@ -95,13 +95,13 @@ function UserHomePage() {
                                             age={character.age}
                                             occupation={character.occupation}
                                             roomName={character.roomName}
-                                            onClick={() => navigate(`/character/${character.id}`)}
+                                            onClick={() => navigate(`/character/${character.id}`)} type="button"
                                         />
                                     ))}
                                 </div>
                             )}
 
-                            <button className="home-create-button" onClick={() => console.log("Criar investigador")}>
+                            <button className="home-create-button" onClick={() => console.log("Criar investigador")} type="button">
                                 Criar investigador
                             </button>
                             <p className="home-create-hint">Disponível em breve — entre em uma mesa primeiro</p>
@@ -113,7 +113,7 @@ function UserHomePage() {
                             <div className="home-subtabs">
                                 <button
                                     className={`home-subtab ${roomSubTab === "mastering" ? "active" : ""}`}
-                                    onClick={() => setRoomSubTab("mastering")}
+                                    onClick={() => setRoomSubTab("mastering")} type="button"
                                 >
                                     Mestrando
                                 </button>
@@ -144,7 +144,7 @@ function UserHomePage() {
                                             onClick={() => {
                                                 const isMaster = room.masterId === userId;
                                                 navigate(isMaster ? `/master/room/${room.id}` : `/room/${room.id}`);
-                                            }}
+                                            }} type="button"
                                         />
                                     ))}
                                 </div>

@@ -45,7 +45,7 @@ function PlayerRoomPage() {
                             </p>
                             <button
                                 className="player-room-create-button"
-                                onClick={() => navigate(`/room/${roomId}/create-character`)}
+                                onClick={() => navigate(`/room/${roomId}/create-character`)} type="button"
                             >
                                 Criar Investigador
                             </button>

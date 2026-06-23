@@ -23,7 +23,9 @@ function JoinRoomModal({ onClose, onJoin }) {
     return (
         <div className="join-modal-overlay" onClick={onClose}>
             <div className="join-modal-card" onClick={(e) => e.stopPropagation()}>
-                <button className="join-modal-close" onClick={onClose} aria-label="Fechar">×</button>
+                <button className="join-modal-close" onClick={onClose} aria-label="Fechar" type="button">
+                    ×
+                </button>
 
                 <h2 className="join-modal-title">Entrar em mesa</h2>
 

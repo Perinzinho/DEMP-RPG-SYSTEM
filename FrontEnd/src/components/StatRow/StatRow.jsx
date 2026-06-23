@@ -34,7 +34,7 @@ function StatRow({ label, value, onChange, editable = true }) {
             <button
                 className="stat-row-dice"
                 onClick={handleRoll}
-                aria-label={`Rolar d100 para ${label}`}
+                aria-label={`Rolar d100 para ${label} type="button"`}
                 title={rollResult ? `${rollResult.value} - ${rollResult.label}` : "Rolar d100"}
             >
                 <GiPerspectiveDiceSixFacesRandom />
