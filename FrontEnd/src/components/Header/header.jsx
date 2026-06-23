@@ -10,7 +10,7 @@ function Header() {
     return (
         <header className="app-header">
             <div className="header-content">
-                <div className="header-brand" onClick={() => navigate("/user/home")} style={{ cursor: "pointer" }}>
+                <div className="header-brand" onClick={() => navigate("/user/home")} style={{ cursor: "pointer" }}onKeyPress={() => navigate("/user/home")}>
                     <img src={logo} alt="DEMP" className="header-logo" />
                     <div className="header-titles">
                         <h1 className="header-title">DEMP</h1>

@@ -2,7 +2,7 @@ import "./roomCard.css";
 
 function RoomCard({ name, masterName, playerCount, onClick }) {
     return (
-        <div className="room-card" onClick={onClick}>
+        <div className="room-card" onClick={onClick} onKeyPress={onClick}>
             <div className="room-card-avatar">
                 <span className="room-card-avatar-placeholder">?</span>
             </div>

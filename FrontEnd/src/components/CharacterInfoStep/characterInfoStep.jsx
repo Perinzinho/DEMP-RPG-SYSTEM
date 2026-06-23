@@ -5,8 +5,8 @@ function CharacterInfoStep({ data, onChange }) {
     return (
         <div className="info-step">
             <div className="info-field">
-                <label>Nome</label>
-                <input
+                <label htmlFor="nome">Nome</label>
+                <input aria-label="Nome"
                     type="text"
                     value={data.name}
                     onChange={(e) => onChange("name", e.target.value)}
@@ -14,8 +14,8 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Gênero</label>
-                <input
+                <label htmlFor="gênero">Gênero</label>
+                <input arial-label="Gênero"
                     type="text"
                     value={data.gender}
                     onChange={(e) => onChange("gender", e.target.value)}
@@ -23,7 +23,7 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Ocupação</label>
+                <label htmlFor="ocupacão" aria-label="Ocupação">Ocupação</label>
                 <select
                     value={data.occupation}
                     onChange={(e) => onChange("occupation", Number(e.target.value))}
@@ -36,8 +36,8 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Residência</label>
-                <input
+                <label htmlFor="residência">Residência</label>
+                <input arial-label="Residência"
                     type="text"
                     value={data.residence}
                     onChange={(e) => onChange("residence", e.target.value)}
@@ -45,8 +45,8 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Idade</label>
-                <input
+                <label htmlFor="idade">Idade</label>
+                <input aria-label="Idade"
                     type="number"
                     value={data.age}
                     onChange={(e) => onChange("age", Number(e.target.value))}

@@ -6,7 +6,7 @@ function CharacterCard({ name, age, occupation, roomName, avatarUrl, onClick }) 
     const occupationLabel = OCCUPATIONS.find((o) => o.value === occupation)?.label ?? occupation;
 
     return (
-        <div className="character-card" onClick={onClick}>
+        <div className="character-card" onClick={onClick} onKeyPress={onClick}>
             <div className="character-card-avatar">
                 {avatarUrl ? (
                     <img src={avatarUrl} alt={name} className="character-card-avatar-img" />

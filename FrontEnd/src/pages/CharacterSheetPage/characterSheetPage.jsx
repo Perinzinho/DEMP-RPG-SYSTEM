@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,useReducer, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -16,11 +16,11 @@ import "./characterSheetPage.css";
 function CharacterSheetPage() {
     const { characterId } = useParams();
 
-    const [character, setCharacter] = useState(null);
-    const [stats, setStats] = useState(null);
-    const [skills, setSkills] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [character, setCharacter] = useReducer((_, value) => value, null);
+    const [stats, setStats] = useReducer((_, value) => value, null);
+    const [skills, setSkills] = useReducer((_, value) => value, null);
+    const [loading, setLoading] = useReducer((_, value) => value, true);
+    const [error, setError] = useReducer((_, value) => value, "");
 
     useEffect(() => {
         if (!characterId) return;
@@ -63,9 +63,7 @@ async function handleSave() {
             ? character.occupation
             : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
 
-        console.log("occupation raw:", character.occupation);
-        console.log("occupation type:", typeof character.occupation);
-        console.log("occupation value enviado:", occupationValue);
+
 
         await Promise.all([
             updateCharacter(character.id, {
@@ -138,7 +136,7 @@ async function handleSave() {
                     {error && <p className="sheet-error">{error}</p>}
 
                     <div className="sheet-save-row">
-                        <button className="sheet-save-button" onClick={handleSave}>
+                        <button className="sheet-save-button" onClick={handleSave} type="submit">
                             Salvar Ficha
                         </button>
                     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -39,12 +39,12 @@ function CreateCharacterPage() {
     const { userId } = useAuth();
     const navigate = useNavigate();
 
-    const [currentStep, setCurrentStep] = useState(1);
-    const [info, setInfo] = useState(INITIAL_INFO);
-    const [stats, setStats] = useState(INITIAL_STATS);
-    const [skills, setSkills] = useState({});
-    const [error, setError] = useState("");
-    const [saving, setSaving] = useState(false);
+    const [currentStep, setCurrentStep] = useReducer((_, value) => value, 1);
+    const [info, setInfo] = useReducer((_, value) => value, INITIAL_INFO);
+    const [stats, setStats] = useReducer((_, value) => value, INITIAL_STATS);
+    const [skills, setSkills] = useReducer((_, value) => value, {});
+    const [error, setError] = useReducer((_, value) => value, "");
+    const [saving, setSaving] = useReducer((_, value) => value, false);
 
     function handleInfoChange(field, value) {
         setInfo((prev) => ({ ...prev, [field]: value }));
@@ -157,11 +157,11 @@ function CreateCharacterPage() {
                             className="create-character-back-button"
                             onClick={handleBack}
                             style={{ visibility: currentStep === 1 ? "hidden" : "visible" }}
-                            disabled={saving}
+                            disabled={saving} type="button"
                         >
                             Voltar
                         </button>
-                        <button className="create-character-next-button" onClick={handleNext} disabled={saving}>
+                        <button className="create-character-next-button" onClick={handleNext} disabled={saving} type="button">
                             {saving ? "Criando..." : currentStep === 3 ? "Criar Personagem" : "Próximo"}
                         </button>
                     </div>

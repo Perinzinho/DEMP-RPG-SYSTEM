@@ -4,7 +4,7 @@ import "./masterCharacterCard.css";
 
 function MasterCharacterCard({ characterName, playerName, currentHp, maxHp, currentSanity, maxSanity, avatarUrl, onClick }) {
     return (
-        <div className="master-character-card" onClick={onClick}>
+        <div className="master-character-card" onClick={onClick} onKeyPress={onClick}>
             <div className="master-character-avatar">
                 {avatarUrl ? (
                     <img src={avatarUrl} alt={characterName} className="master-character-avatar-img" />

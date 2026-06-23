@@ -91,7 +91,7 @@ function CharacterSkillsStep({ skills, onChange }) {
                 {SKILL_FIELDS.map((field) => (
                     <div key={field.key} className="skills-step-row">
                         <span>{field.label}</span>
-                        <input
+                        <input aria-label={field.label}
                             type="number"
                             value={skills[field.key] ?? 0}
                             onChange={(e) => onChange(field.key, Number(e.target.value))}
