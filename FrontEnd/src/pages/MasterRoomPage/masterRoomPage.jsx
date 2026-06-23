@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -10,18 +10,18 @@ import "./masterRoomPage.css";
 
 function MasterRoomPage() {
     const { roomId } = useParams();
-    const [room, setRoom] = useState(null);
+    const room = useRef(null);//A alteração serve para otimizar a performance do React, evitando que a página sofra re-renderizações (redesenhos) desnecessárias.
     const [characters, setCharacters] = useState([]);
-    const [loadingRoom, setLoadingRoom] = useState(true);
+    const loadingRoom = useRef(true);
     const [loadingCharacters, setLoadingCharacters] = useState(true);
 
     useEffect(() => {
         if (!roomId) return;
 
         getRoomById(roomId)
-            .then(setRoom)
-            .catch(() => setRoom(null))
-            .finally(() => setLoadingRoom(false));
+            .then(data => { room.current = data; })
+            .catch(() => { room.current = null; })
+            .finally(() => { loadingRoom.current = false; });
 
         async function loadCharactersWithStats() {
             try {

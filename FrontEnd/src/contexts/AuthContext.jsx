@@ -4,6 +4,10 @@ import { getUserById } from '../services/userSerice';
 
 const AuthContext = createContext(null);
 
+async function register(username, email, password) {
+  return await registerService(username, email, password);
+}
+
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [userId, setUserId] = useState(localStorage.getItem('userId'));
@@ -26,11 +30,6 @@ async function login(email, password) {
     setRole(data.role);
     return data;
 }
-
-  async function register(username, email, password) {
-    return await registerService(username, email, password);
-  }
-
   function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');

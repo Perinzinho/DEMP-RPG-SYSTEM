@@ -63,9 +63,7 @@ async function handleSave() {
             ? character.occupation
             : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
 
-        console.log("occupation raw:", character.occupation);
-        console.log("occupation type:", typeof character.occupation);
-        console.log("occupation value enviado:", occupationValue);
+
 
         await Promise.all([
             updateCharacter(character.id, {
