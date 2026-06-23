@@ -39,12 +39,12 @@ function CreateCharacterPage() {
     const { userId } = useAuth();
     const navigate = useNavigate();
 
-    const [currentStep, setCurrentStep] = useReducer((_, value) => value, 1);
-    const [info, setInfo] = useReducer((_, value) => value, INITIAL_INFO);
-    const [stats, setStats] = useReducer((_, value) => value, INITIAL_STATS);
-    const [skills, setSkills] = useReducer((_, value) => value, {});
-    const [error, setError] = useReducer((_, value) => value, "");
-    const [saving, setSaving] = useReducer((_, value) => value, false);
+    const [currentStep, setCurrentStep] = useState(1);
+    const [info, setInfo] = useState(INITIAL_INFO);
+    const [stats, setStats] = useState(INITIAL_STATS);
+    const [skills, setSkills] = useState({});
+    const [error, setError] = useState("");
+    const [saving, setSaving] = useState(false);
 
     function handleInfoChange(field, value) {
         setInfo((prev) => ({ ...prev, [field]: value }));
