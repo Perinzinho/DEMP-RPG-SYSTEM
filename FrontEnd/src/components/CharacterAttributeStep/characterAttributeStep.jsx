@@ -33,7 +33,7 @@ function CharacterAttributesStep({ stats, onChange }) {
 
             <div className="resource-grid">
                 <div className="resource-field">
-                    <label>Vida</label>
+                    <label htmlFor="Vida">Vida</label>
                     <input
                         type="number"
                         value={stats.hitPoints}
@@ -41,7 +41,7 @@ function CharacterAttributesStep({ stats, onChange }) {
                     />
                 </div>
                 <div className="resource-field">
-                    <label>Sanidade</label>
+                    <label htmlFor="Sanidade">Sanidade</label>
                     <input
                         type="number"
                         value={stats.sanity}
@@ -49,7 +49,7 @@ function CharacterAttributesStep({ stats, onChange }) {
                     />
                 </div>
                 <div className="resource-field">
-                    <label>Magia</label>
+                    <label htmlFor="Magia">Magia</label>
                     <input
                         type="number"
                         value={stats.magicPoints}

@@ -5,7 +5,7 @@ function CharacterInfoStep({ data, onChange }) {
     return (
         <div className="info-step">
             <div className="info-field">
-                <label>Nome</label>
+                <label htmlFor="nome">Nome</label>
                 <input
                     type="text"
                     value={data.name}
@@ -14,7 +14,7 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Gênero</label>
+                <label htmlFor="gênero">Gênero</label>
                 <input
                     type="text"
                     value={data.gender}
@@ -23,7 +23,7 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Ocupação</label>
+                <label htmlFor="ocupacão">Ocupação</label>
                 <select
                     value={data.occupation}
                     onChange={(e) => onChange("occupation", Number(e.target.value))}
@@ -36,7 +36,7 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Residência</label>
+                <label htmlFor="residência">Residência</label>
                 <input
                     type="text"
                     value={data.residence}
@@ -45,7 +45,7 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label>Idade</label>
+                <label htmlFor="idade">Idade</label>
                 <input
                     type="number"
                     value={data.age}
