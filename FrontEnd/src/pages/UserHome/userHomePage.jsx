@@ -17,9 +17,9 @@ import "./userHomePage.css";
 // e eliminando a necessidade de criar funções anônimas como `.then(data => setCharacters(data))`.
 
 function UserHomePage() {
-    const [activeTab, setActiveTab] = useState("characters");
-    const [roomSubTab, setRoomSubTab] = useState("mastering");
-    const [showJoinModal, setShowJoinModal] = useState(false);
+    const [activeTab, setActiveTab] = useReducer((_, value) => value, "characters");
+    const [roomSubTab, setRoomSubTab] = useReducer((_, value) => value, "mastering");
+    const [showJoinModal, setShowJoinModal] = useReducer((_, value) => value, false);
     const [characters, setCharacters] = useReducer((prev, next) => next, []);//Faz com que 
     const [loadingCharacters, setLoadingCharacters] = useReducer((prev, next) => next, true);
     const [rooms, setRooms] = useReducer((prev, next) => next, []);

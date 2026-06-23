@@ -20,7 +20,7 @@ function CharacterAttributesStep({ stats, onChange }) {
                 {ATTRIBUTE_FIELDS.map((field) => (
                     <div key={field.key} className="attr-row">
                         <span>{field.label}</span>
-                        <input
+                        <input aria-label={field.label}
                             type="number"
                             value={stats[field.key]}
                             onChange={(e) => onChange(field.key, Number(e.target.value))}
@@ -33,7 +33,7 @@ function CharacterAttributesStep({ stats, onChange }) {
 
             <div className="resource-grid">
                 <div className="resource-field">
-                    <label htmlFor="Vida">Vida</label>
+                    <label aria-label="Vida" htmlFor="Vida">Vida</label>
                     <input
                         type="number"
                         value={stats.hitPoints}
@@ -41,7 +41,7 @@ function CharacterAttributesStep({ stats, onChange }) {
                     />
                 </div>
                 <div className="resource-field">
-                    <label htmlFor="Sanidade">Sanidade</label>
+                    <label aria-label="Sanidade" htmlFor="Sanidade">Sanidade</label>
                     <input
                         type="number"
                         value={stats.sanity}
@@ -49,7 +49,7 @@ function CharacterAttributesStep({ stats, onChange }) {
                     />
                 </div>
                 <div className="resource-field">
-                    <label htmlFor="Magia">Magia</label>
+                    <label aria-label="Magia" htmlFor="Magia">Magia</label>
                     <input
                         type="number"
                         value={stats.magicPoints}

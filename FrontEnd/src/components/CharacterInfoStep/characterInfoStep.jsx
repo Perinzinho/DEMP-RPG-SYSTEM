@@ -6,7 +6,7 @@ function CharacterInfoStep({ data, onChange }) {
         <div className="info-step">
             <div className="info-field">
                 <label htmlFor="nome">Nome</label>
-                <input
+                <input aria-label="Nome"
                     type="text"
                     value={data.name}
                     onChange={(e) => onChange("name", e.target.value)}
@@ -15,7 +15,7 @@ function CharacterInfoStep({ data, onChange }) {
 
             <div className="info-field">
                 <label htmlFor="gênero">Gênero</label>
-                <input
+                <input arial-label="Gênero"
                     type="text"
                     value={data.gender}
                     onChange={(e) => onChange("gender", e.target.value)}
@@ -23,7 +23,7 @@ function CharacterInfoStep({ data, onChange }) {
             </div>
 
             <div className="info-field">
-                <label htmlFor="ocupacão">Ocupação</label>
+                <label htmlFor="ocupacão" aria-label="Ocupação">Ocupação</label>
                 <select
                     value={data.occupation}
                     onChange={(e) => onChange("occupation", Number(e.target.value))}
@@ -37,7 +37,7 @@ function CharacterInfoStep({ data, onChange }) {
 
             <div className="info-field">
                 <label htmlFor="residência">Residência</label>
-                <input
+                <input arial-label="Residência"
                     type="text"
                     value={data.residence}
                     onChange={(e) => onChange("residence", e.target.value)}
@@ -46,7 +46,7 @@ function CharacterInfoStep({ data, onChange }) {
 
             <div className="info-field">
                 <label htmlFor="idade">Idade</label>
-                <input
+                <input aria-label="Idade"
                     type="number"
                     value={data.age}
                     onChange={(e) => onChange("age", Number(e.target.value))}
