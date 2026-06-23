@@ -16,11 +16,11 @@ import "./characterSheetPage.css";
 function CharacterSheetPage() {
     const { characterId } = useParams();
 
-    const [character, setCharacter] = useReducer((_, value) => value, null);
-    const [stats, setStats] = useReducer((_, value) => value, null);
-    const [skills, setSkills] = useReducer((_, value) => value, null);
-    const [loading, setLoading] = useReducer((_, value) => value, true);
-    const [error, setError] = useReducer((_, value) => value, "");
+const [character, setCharacter] = useState(null);
+const [stats, setStats] = useState(null);
+const [skills, setSkills] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
 
     useEffect(() => {
         if (!characterId) return;
