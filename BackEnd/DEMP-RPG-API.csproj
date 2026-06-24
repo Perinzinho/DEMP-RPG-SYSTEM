@@ -24,4 +24,8 @@
         <Link>.dockerignore</Link>
       </Content>
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="src\Domain\Exceptions\Character\" />
+      <Folder Include="src\Domain\ValueObjects\Character\" />
+    </ItemGroup>
 </Project>

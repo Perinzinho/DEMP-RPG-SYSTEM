@@ -1,7 +1,4 @@
 using System.Text;
-using DEMP_RPG_API.Application.UseCases.Character;
-using DEMP_RPG_API.Application.UseCases.CharacterSkillsModern;
-using DEMP_RPG_API.Application.UseCases.CharacterStats;
 using DEMP_RPG_API.Application.UseCases.Room;
 using DEMP_RPG_API.Application.UseCases.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -57,31 +54,6 @@ builder.Services.AddScoped<RegisterUseCase>();
 builder.Services.AddScoped<GetAllUsersUseCase>();
 builder.Services.AddScoped<GetUserByIdUseCase>();
 
-//Character
-builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
-builder.Services.AddScoped<CreateCharacterUseCase>();
-builder.Services.AddScoped<DeleteCharacterUseCase>();
-builder.Services.AddScoped<UpdateCharacterUseCase>();
-builder.Services.AddScoped<GetAllCharactersUseCase>();
-builder.Services.AddScoped<GetCharacterByIdUseCase>();
-builder.Services.AddScoped<GetCharacterByUserIdUseCase>();
-builder.Services.AddScoped<GetCharacterByRoomIdUseCase>();
-
-//CharacterStats
-builder.Services.AddScoped<ICharacterStatsRepository, CharacterStatsRepository>();
-builder.Services.AddScoped<CreateCharacterStatsUseCase>();
-builder.Services.AddScoped<DeleteCharacterStatsUseCase>();
-builder.Services.AddScoped<UpdateCharacterStatsUseCase>();
-builder.Services.AddScoped<GetCharacterStatsByCharacterIdUseCase>();
-builder.Services.AddScoped<GetCharacterStatsById>();
-
-//CharacterSkills-Modern
-builder.Services.AddScoped<ICharacterSkillModernRepository, CharacterSkillModernRepository>();
-builder.Services.AddScoped<CreateCharacterSkillsModernUseCase>();
-builder.Services.AddScoped<DeleteCharacterSkillsUseCase>();
-builder.Services.AddScoped<UpdateCharacterSkillsUseCase>();
-builder.Services.AddScoped<GetCharacterSkillsByCharacterIdUseCase>();
-builder.Services.AddScoped<GetCharacterSkillsModernByIdUseCase>();
 
 //Room
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();

@@ -12,12 +12,11 @@ public class RoomEntity
     public string Name { get; private set; }
     public string? Description { get; private set; }//ToDo-Make Optional
     public List<Guid> UserIds { get; private set; }
-    public SheetEnum SheetEnum { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
     
     
-    public RoomEntity(Guid id, Guid masterId, string name, string? description,SheetEnum sheetEnum)
+    public RoomEntity(Guid id, Guid masterId, string name, string? description)
     {
         Id = id;
         RoomCode = GenerateRoomCode();
@@ -25,16 +24,14 @@ public class RoomEntity
         Name = name;
         Description = description;
         UserIds = new List<Guid>();
-        SheetEnum = sheetEnum;
         CreatedAt = DateTime.UtcNow;
         UpdatedAt = null;
     }
 
-    public void Update(string? name, string? description, SheetEnum? sheetEnum, List<Guid>? userIds)
+    public void Update(string? name, string? description,   List<Guid>? userIds)
     {
         if (!string.IsNullOrEmpty(name)) Name = name;
         if (!string.IsNullOrEmpty(description)) Description = description;
-        if (sheetEnum.HasValue) SheetEnum = sheetEnum.Value;
         if (userIds != null && userIds.Count > 0) UserIds = userIds;
         UpdatedAt = DateTime.UtcNow;
     }
