@@ -47,7 +47,7 @@ public class RoomRepository:IRoomRepository
         if (oldRoom == null)
             throw new RoomNotFoundException();
 
-        oldRoom.Update(room.Name, room.Description, room.SheetEnum, room.UserIds);
+        oldRoom.Update(room.Name, room.Description, room.UserIds);
 
         await _context.SaveChangesAsync();
         return oldRoom;

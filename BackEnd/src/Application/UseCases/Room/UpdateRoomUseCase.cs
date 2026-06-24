@@ -22,7 +22,7 @@ public class UpdateRoomUseCase
         if (room == null)
             throw new RoomNotFoundException();
         
-        room.Update(dto.Name,dto.Description,dto.SheetEnum,dto.UserIds);
+        room.Update(dto.Name,dto.Description,dto.UserIds);
         await _roomRepository.UpdateRoom(room);
 
         return RoomMapper.ToResponseDTO(room);

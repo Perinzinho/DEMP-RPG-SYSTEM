@@ -92,9 +92,7 @@ public class AppDbContext : DbContext
                 .HasMaxLength(255);
 
             entity.Property(e => e.UserIds);
-
-            entity.Property(e => e.SheetEnum)
-                .IsRequired();
+            
 
             entity.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")

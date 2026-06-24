@@ -9,7 +9,6 @@ public record GetRoomResponseDTO(
     string Name,
     string Description,
     List<Guid> UserIds,
-    string SheetEnum,
     DateTime CreatedAt,
     DateTime? UpdatedAt
     );
