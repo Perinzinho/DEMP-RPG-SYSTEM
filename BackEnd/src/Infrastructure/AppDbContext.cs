@@ -421,6 +421,12 @@ entity.Property(e => e.Meteorology)
 entity.Property(e => e.Pharmacy)
     .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 
+entity.Property(e => e.Physics)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
+entity.Property(e => e.Zoology)
+    .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
+
 entity.Property(e => e.SleightOfHand)
     .HasConversion(s => s.Value, value => new AttributeSkillVO(value));
 

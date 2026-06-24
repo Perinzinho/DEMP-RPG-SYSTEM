@@ -66,6 +66,8 @@ public record UpdateCharacterSkillsModernRequestDTO(
     int? Mathematics,
     int? Meteorology,
     int? Pharmacy,
+    int? Physics,
+    int? Zoology,
     int? SleightOfHand,
     int? SpotHidden,
     int? Stealth,
