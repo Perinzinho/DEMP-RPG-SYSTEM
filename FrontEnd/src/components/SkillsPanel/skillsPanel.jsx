@@ -73,6 +73,8 @@ const SKILL_FIELDS =
     { key: "mathematics", label: "Ciência (Matemática)" },
     { key: "meteorology", label: "Ciência (Meteorologia)" },
     { key: "pharmacy", label: "Ciência (Farmácia)" },
+    {key: "physics", label: "Ciência (Física)" },
+    {key: "zoology", label: "Ciência (Zoologia)" },
     
     { key: "sleightOfHand", label: "Prestidigitação" },
     { key: "spotHidden", label: "Encontrar" },
