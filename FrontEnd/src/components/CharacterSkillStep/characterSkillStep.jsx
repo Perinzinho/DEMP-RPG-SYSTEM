@@ -1,15 +1,12 @@
 import "./characterSkillStep.css";
-import {SkillFields} from "../../utils/skillFields";
-
-
-
+import {sortedSkillFields} from "../../utils/skillFields";
 function CharacterSkillsStep({ skills, onChange }) {
     return (
         <div className="skills-step">
             <p className="skills-step-hint">Distribua pontos de perícia entre as opções abaixo</p>
 
             <div className="skills-step-grid">
-                {SkillFields.map((field) => (
+                {sortedSkillFields.map((field) => (
                     <div key={field.key} className="skills-step-row">
                         <span>{field.label}</span>
                         <input aria-label={field.label}
