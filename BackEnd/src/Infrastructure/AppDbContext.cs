@@ -125,45 +125,45 @@ public class AppDbContext : DbContext
                 entity.Property(e => e.MaxAttributes)
                     .IsRequired();
 
-                entity.Property(e => e.Strength)
+                entity.Property(e => e.BaseAttributes)
                     .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value) );
+                    .HasConversion(s =>s.Strength,
+                        value => new AttributeSkillVO() );
                 
-                entity.Property(e => e.Dexterity)
+                entity.Property(e => e.BaseAttributes)
                     .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value) );
+                    .HasConversion(s =>s.Dexterity,
+                        value => new AttributeSkillVO() );
                 
-                entity.Property(e => e.Intelligence)
+                entity.Property(e => e.BaseAttributes)
                     .IsRequired()
-                    .HasConversion(s =>s.Value,
+                    .HasConversion(s =>s.Intelligence,
+                        value => new AttributeSkillVO());
+                
+                entity.Property(e => e.BaseAttributes)
+                    .IsRequired()
+                    .HasConversion(s =>s.Size,
+                        value => new AttributeSkillVO());
+                
+                entity.Property(e => e.BaseAttributes)
+                    .IsRequired()
+                    .HasConversion(s =>s.Power,
+                        value => new AttributeSkillVO(v));
+                
+                entity.Property(e => e.BaseAttributes)
+                    .IsRequired()
+                    .HasConversion(s =>s.Appearance,
                         value => new AttributeSkillVO(value));
                 
-                entity.Property(e => e.Intelligence)
+                entity.Property(e => e.BaseAttributes)
                     .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value));
-                
-                entity.Property(e => e.Size)
-                    .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value));
-                
-                entity.Property(e => e.Power)
-                    .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value));
-                
-                entity.Property(e => e.Appearance)
-                    .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value));
+                    .HasConversion(s =>s.Education,
+                        value => new AttributeSkillVO());
 
-                entity.Property(e => e.Education)
+                entity.Property(e => e.BaseAttributes)
                     .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value));
+                    .HasConversion(s =>s.Constitution,
+                        value => new AttributeSkillVO());
 
                 entity.Property(e => e.HitPoints)
                     .IsRequired();
@@ -189,20 +189,9 @@ public class AppDbContext : DbContext
                 entity.Property(e=>e.DamageBonus)
                     .IsRequired();
                 
-                entity.Property(e=>e.TemporaryInsanity)
+                entity.Property(e=>e.Condition)
                     .IsRequired();
                 
-                entity.Property(e => e.IndefiniteSanity)
-                    .IsRequired();
-                
-                entity.Property(e => e.MajorWound)
-                    .IsRequired();
-                
-                entity.Property(e => e.Unconscious)
-                    .IsRequired();
-                
-                entity.Property(e=>e.Dying)
-                    .IsRequired();
 
         });
         //CharacterSkillsModern

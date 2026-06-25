@@ -23,13 +23,9 @@ public class UpdateCharacterStatsUseCase
         if (oldCharacterStats == null)
             throw new CharacterStatsNoFoundException();
 
-        oldCharacterStats.Update(
-            dto.MaxAttributes, new AttributeSkillVO(dto.Strength), new AttributeSkillVO(dto.Dexterity), new AttributeSkillVO(dto.Intelligence), new AttributeSkillVO(dto.Size),
-            new AttributeSkillVO(dto.Power), new AttributeSkillVO(dto.Appearance), new AttributeSkillVO(dto.Education), dto.HitPoints, dto.CurrentHp,
-            dto.Luck, dto.Sanity, dto.CurrentSanity, dto.Move, dto.Build,
-            dto.DamageBonus, dto.TemporaryInsanity, dto.IndefiniteSanity,
-            dto.MajorWound, dto.Unconscious, dto.Dying
-        );
+        oldCharacterStats.Update(dto.MaxAttributes, new BaseAttributeVo(new AttributeSkillVO(dto.Strength), new AttributeSkillVO(dto.Dexterity), new AttributeSkillVO(dto.Intelligence), new AttributeSkillVO(dto.Size), 
+                new AttributeSkillVO(dto.Power), new AttributeSkillVO(dto.Appearance), new AttributeSkillVO(dto.Education), new AttributeSkillVO(dto.Constitution)),
+                dto.HitPoints, dto.CurrentHp, dto.Luck, dto.Sanity, dto.CurrentSanity, dto.Move, dto.Build, dto.DamageBonus, dto.Condition);
         var updated = await _characterStatsRepository.UpdateCharacterStats(oldCharacterStats);
         return CharacterStatsMapper.ToGetResponse(updated);
     }

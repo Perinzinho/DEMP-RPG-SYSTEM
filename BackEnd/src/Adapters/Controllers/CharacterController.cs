@@ -1,4 +1,6 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request.Character;
+using DEMP_RPG_API.Application.DTOs.Request.CharacterSkillsModern;
+using DEMP_RPG_API.Application.DTOs.Request.CharacterStats;
 using DEMP_RPG_API.Application.UseCases.Character;
 using DEMP_RPG_API.Domain.Ports;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +19,7 @@ public class CharacterController:ControllerBase
     private readonly GetCharacterByUserIdUseCase _getCharacterByUserIdUseCase;
     private readonly UpdateCharacterUseCase _updateCharacterUseCase;
     private readonly GetCharacterByRoomIdUseCase _getCharacterByRoomIdUseCase;
+    private readonly CreateCharacterFullUseCase _createCharacterFullUseCase;
 
     public CharacterController(CreateCharacterUseCase createCharacterUseCase,
         DeleteCharacterUseCase deleteCharacterUseCase,
@@ -24,7 +27,8 @@ public class CharacterController:ControllerBase
         GetCharacterByIdUseCase getCharacterByIdUseCase,
         GetCharacterByUserIdUseCase getCharacterByUserIdUseCase,
         UpdateCharacterUseCase updateCharacterUseCase,
-        GetCharacterByRoomIdUseCase getCharacterByRoomIdUseCase)
+        GetCharacterByRoomIdUseCase getCharacterByRoomIdUseCase,
+        CreateCharacterFullUseCase createCharacterFullUseCase)
     {
         _createCharacterUseCase = createCharacterUseCase;
         _deleteCharacterUseCase = deleteCharacterUseCase;
@@ -33,6 +37,7 @@ public class CharacterController:ControllerBase
         _getCharacterByUserIdUseCase = getCharacterByUserIdUseCase;
         _updateCharacterUseCase = updateCharacterUseCase;
         _getCharacterByRoomIdUseCase = getCharacterByRoomIdUseCase;
+        _createCharacterFullUseCase = createCharacterFullUseCase;
     }
 
     [HttpPost]
@@ -82,6 +87,13 @@ public class CharacterController:ControllerBase
     {
         var result = await _getCharacterByRoomIdUseCase.GetCharacterByRoomId(roomId);
         
+        return Ok(result);
+    }
+
+    [HttpPost("full")]
+    public async Task<IActionResult> CreateFullCharacter([FromBody] CreateFullCharacterRequestDTO dto)
+    {
+        var result=  await _createCharacterFullUseCase.CreateCharacter(dto);
         return Ok(result);
     }
     

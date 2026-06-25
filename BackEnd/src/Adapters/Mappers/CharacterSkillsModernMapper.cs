@@ -14,8 +14,7 @@ public static CharacterSkillsModernEntity ToEntity(
     int education)
 {
     return CharacterSkillsModernEntity.Create(
-        dto.CharacterId,
-        characterStatsId,
+        dto.characterStatsId,
         new AttributeSkillVO(dexterity),
         new AttributeSkillVO(education),
 dto.Accounting.HasValue ? new AttributeSkillVO(dto.Accounting.Value) : null,

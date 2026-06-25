@@ -6,6 +6,7 @@ public record GetCharacterStatsResponseDTO(
     Guid Id,
     Guid CharacterId,
     MaxAttributesEnum  MaxAttributes,
+    
     int Strength,
     int Dexterity,
     int Intelligence,
@@ -13,6 +14,8 @@ public record GetCharacterStatsResponseDTO(
     int Power,
     int Appearance,
     int Education,
+    int Constitution,
+    
     int HitPoints,
     int CurrentHp,
     int Luck,
@@ -21,9 +24,5 @@ public record GetCharacterStatsResponseDTO(
     int Move,
     int Build,
     DamageBonusEnum DamageBonus,
-    bool TemporaryInsanity,
-    bool IndefiniteSanity,
-    bool MajorWound,
-    bool Unconscious,
-    bool Dying
+    CharacterConditionEnum Condition
     );
