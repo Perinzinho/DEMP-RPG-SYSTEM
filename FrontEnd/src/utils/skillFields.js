@@ -1,4 +1,4 @@
-export const SkillFields = 
+const SkillFields = 
 [
     { key: "anthropology", label: "Antropologia" },
     { key: "fightingBow", label: "Armas de Fogo (Arco)" },
