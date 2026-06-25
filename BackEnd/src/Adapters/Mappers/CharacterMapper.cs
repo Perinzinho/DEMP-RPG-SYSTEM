@@ -27,6 +27,6 @@ public class CharacterMapper
             character.Age,
             character.Annotations,
             character.ItemIds
-            );
+        );
     }
 }
