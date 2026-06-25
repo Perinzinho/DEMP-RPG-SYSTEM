@@ -20,7 +20,6 @@ public record GetCharacterStatsResponseDTO(
     int CurrentSanity,
     int Move,
     int Build,
-    int Dodge,
     DamageBonusEnum DamageBonus,
     bool TemporaryInsanity,
     bool IndefiniteSanity,

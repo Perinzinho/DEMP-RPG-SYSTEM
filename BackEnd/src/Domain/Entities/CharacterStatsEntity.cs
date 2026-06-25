@@ -22,7 +22,6 @@ public class CharacterStatsEntity
     public int CurrentSanity { get; private set; }
     public int Move { get; private set; }
     public int Build { get; private set; }
-    public AttributeSkillVO Dodge { get; private set; }
     public DamageBonusEnum DamageBonus { get; private set; }
     public bool TemporaryInsanity { get; private set; }
     public bool IndefiniteSanity { get; private set; }
@@ -30,7 +29,7 @@ public class CharacterStatsEntity
     public bool Unconscious { get; private set; }
     public bool Dying { get; private set; }
 
-    public CharacterStatsEntity(Guid id, Guid characterId, MaxAttributesEnum maxAttributes, AttributeSkillVO strength, AttributeSkillVO dexterity, AttributeSkillVO intelligence, AttributeSkillVO size, AttributeSkillVO power, AttributeSkillVO appearance, AttributeSkillVO education, int hitPoints, int currentHp, int luck, int sanity, int currentSanity, int move, int build, AttributeSkillVO dodge, DamageBonusEnum damageBonus)
+    public CharacterStatsEntity(Guid id, Guid characterId, MaxAttributesEnum maxAttributes, AttributeSkillVO strength, AttributeSkillVO dexterity, AttributeSkillVO intelligence, AttributeSkillVO size, AttributeSkillVO power, AttributeSkillVO appearance, AttributeSkillVO education, int hitPoints, int currentHp, int luck, int sanity, int currentSanity, int move, int build, DamageBonusEnum damageBonus)
     {
         Id = id;
         CharacterId = characterId;
@@ -49,7 +48,6 @@ public class CharacterStatsEntity
         CurrentSanity = currentSanity;
         Move = move;
         Build = build;
-        Dodge = dodge;
         DamageBonus = damageBonus;
         TemporaryInsanity = false;
         IndefiniteSanity = false;
@@ -60,7 +58,7 @@ public class CharacterStatsEntity
 
     public void Update(MaxAttributesEnum? maxAttributes, AttributeSkillVO? strength, AttributeSkillVO? dexterity, AttributeSkillVO? intelligence, AttributeSkillVO? size,
         AttributeSkillVO? power, AttributeSkillVO? appearance, AttributeSkillVO? education, int? hitPoints, int? currentHp, int? luck, int? sanity, int? currentSanity,
-        int? move, int? build, AttributeSkillVO? dodge, DamageBonusEnum? damageBonus, bool? temporaryInsanity, bool? indefiniteSanity,
+        int? move, int? build, DamageBonusEnum? damageBonus, bool? temporaryInsanity, bool? indefiniteSanity,
         bool? majorWound, bool? unconscious, bool? dying)
     {
         if (maxAttributes.HasValue) MaxAttributes = maxAttributes.Value;
@@ -78,7 +76,6 @@ public class CharacterStatsEntity
         if (currentSanity.HasValue) CurrentSanity = currentSanity.Value;
         if (move.HasValue) Move = move.Value;
         if (build.HasValue) Build = build.Value;
-        if (dodge!=null) Dodge = dodge;
         if (damageBonus.HasValue) DamageBonus = damageBonus.Value;
         if (temporaryInsanity.HasValue) TemporaryInsanity = temporaryInsanity.Value;
         if (indefiniteSanity.HasValue) IndefiniteSanity = indefiniteSanity.Value;

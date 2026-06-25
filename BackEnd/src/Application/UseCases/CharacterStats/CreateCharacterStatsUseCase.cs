@@ -22,7 +22,7 @@ public class CreateCharacterStatsUseCase
         var characterStats = new CharacterStatsEntity(Guid.NewGuid(), dto.CharacterId, dto.MaxAttributes,
             new AttributeSkillVO(dto.Strength), new AttributeSkillVO(dto.Dexterity), new AttributeSkillVO(dto.Intelligence), new AttributeSkillVO(dto.Size), new AttributeSkillVO(dto.Power),
             new AttributeSkillVO(dto.Appearance), new AttributeSkillVO(dto.Education), dto.HitPoints, dto.CurrentHp, dto.Luck,
-            dto.Sanity,dto.CurrentSanity,dto.Move,dto.Build,new AttributeSkillVO(dto.Dodge),dto.DamageBonus);
+            dto.Sanity,dto.CurrentSanity,dto.Move,dto.Build,dto.DamageBonus);
         
         var created = await _characterStatsRepository.CreateCharacterStats(characterStats);
         

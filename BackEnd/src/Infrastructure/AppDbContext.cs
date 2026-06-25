@@ -186,11 +186,6 @@ public class AppDbContext : DbContext
                 entity.Property(e=>e.Build).
                     IsRequired();
                 
-                entity.Property(e=>e.Dodge)
-                    .IsRequired()
-                    .HasConversion(s =>s.Value,
-                        value => new AttributeSkillVO(value));
-                
                 entity.Property(e=>e.DamageBonus)
                     .IsRequired();
                 

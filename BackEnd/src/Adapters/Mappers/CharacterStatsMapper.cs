@@ -24,7 +24,6 @@ public class CharacterStatsMapper
             characterStats.CurrentSanity,
             characterStats.Move,
             characterStats.Build,
-            characterStats.Dodge.Value,
             characterStats.DamageBonus,
             characterStats.TemporaryInsanity,
             characterStats.IndefiniteSanity,

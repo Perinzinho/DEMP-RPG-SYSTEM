@@ -44,7 +44,7 @@ public class CharacterStatsRepository:ICharacterStatsRepository
             characterStats.Intelligence, characterStats.Size, characterStats.Power,
             characterStats.Appearance, characterStats.Education, characterStats.HitPoints, characterStats.CurrentHp,
             characterStats.Luck, characterStats.Sanity, characterStats.CurrentSanity,
-            characterStats.Move, characterStats.Build, characterStats.Dodge, characterStats.DamageBonus,
+            characterStats.Move, characterStats.Build, characterStats.DamageBonus,
             characterStats.TemporaryInsanity, characterStats.IndefiniteSanity, characterStats.MajorWound,
             characterStats.Unconscious, characterStats.Dying);
         await _context.SaveChangesAsync();
