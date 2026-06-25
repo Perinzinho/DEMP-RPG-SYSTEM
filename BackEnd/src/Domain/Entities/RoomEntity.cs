@@ -30,11 +30,12 @@ public class RoomEntity
         UpdatedAt = null;
     }
 
-    public void Update(string? name, string? description, SheetEnum? sheetEnum)
+    public void Update(string? name, string? description, SheetEnum? sheetEnum, List<Guid>? userIds)
     {
         if (!string.IsNullOrEmpty(name)) Name = name;
         if (!string.IsNullOrEmpty(description)) Description = description;
         if (sheetEnum.HasValue) SheetEnum = sheetEnum.Value;
+        if (userIds != null && userIds.Count > 0) UserIds = userIds;
         UpdatedAt = DateTime.UtcNow;
     }
 

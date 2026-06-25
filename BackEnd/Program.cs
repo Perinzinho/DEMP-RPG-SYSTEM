@@ -35,12 +35,16 @@ builder.Services.AddSwaggerGen(options =>
         [new OpenApiSecuritySchemeReference("Bearer", document)] = new List<string>()
     });
 });
+
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
-        Environment.GetEnvironmentVariable("DB_CONNECTION")
+        Environment.GetEnvironmentVariable("DB_CONNECTION"),
+        npgsqlOptions =>
+        {
+            npgsqlOptions.CommandTimeout(30);
+        }
     ));
-
 
 // Serviços
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
@@ -89,6 +93,7 @@ builder.Services.AddScoped<GetRoomByIdUseCase>();
 builder.Services.AddScoped<GetRoomByCodeUseCase>();
 builder.Services.AddScoped<JoinRoomUseCase>();
 builder.Services.AddScoped<GetRoomsByUserIdUseCase>();
+
 // JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -115,8 +120,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
                 "http://localhost:5173",
-                "https://demprpgsystem.vercel.app",
-                "https://https://demp-rpg-system-perinzinhos-projects.vercel.app"
+                "https://demprpgsystem.vercel.app"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -125,13 +129,26 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Swagger apenas em desenvolvimento
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseCors("AllowFrontend");
 
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync("{\"error\": \"Internal Server Error\"}");
+    });
+});
 
 app.UseHttpsRedirection();
-app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

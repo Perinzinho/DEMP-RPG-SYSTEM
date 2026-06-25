@@ -72,6 +72,8 @@ public class CharacterSkillsModernEntity
     public AttributeSkillVO Mathematics { get; private set; }
     public AttributeSkillVO Meteorology { get; private set; }
     public AttributeSkillVO Pharmacy { get; private set; }
+    public AttributeSkillVO Physics { get; private set; }
+    public AttributeSkillVO Zoology  { get; private set; }
     public AttributeSkillVO SleightOfHand { get; private set; }
     public AttributeSkillVO SpotHidden { get; private set; }
     public AttributeSkillVO Stealth { get; private set; }
@@ -99,7 +101,7 @@ public class CharacterSkillsModernEntity
         AttributeSkillVO psychoanalysis, AttributeSkillVO psychology, AttributeSkillVO ride, AttributeSkillVO astronomy,
         AttributeSkillVO biology, AttributeSkillVO botany, AttributeSkillVO chemistry, AttributeSkillVO cryptography,
         AttributeSkillVO engineering, AttributeSkillVO forensics, AttributeSkillVO geology, AttributeSkillVO mathematics,
-        AttributeSkillVO meteorology, AttributeSkillVO pharmacy, AttributeSkillVO sleightOfHand, AttributeSkillVO spotHidden,
+        AttributeSkillVO meteorology, AttributeSkillVO pharmacy, AttributeSkillVO physics, AttributeSkillVO zoology, AttributeSkillVO sleightOfHand, AttributeSkillVO spotHidden,
         AttributeSkillVO stealth, AttributeSkillVO survival, string survivalSpecialization, AttributeSkillVO swim,
         AttributeSkillVO @throw, AttributeSkillVO track)
     {
@@ -171,6 +173,8 @@ public class CharacterSkillsModernEntity
         Mathematics = mathematics;
         Meteorology = meteorology;
         Pharmacy = pharmacy;
+        Physics = physics;
+        Zoology = zoology;
         SleightOfHand = sleightOfHand;
         SpotHidden = spotHidden;
         Stealth = stealth;
@@ -200,7 +204,7 @@ public class CharacterSkillsModernEntity
         AttributeSkillVO? psychoanalysis = null, AttributeSkillVO? psychology = null, AttributeSkillVO? ride = null, AttributeSkillVO? astronomy = null,
         AttributeSkillVO? biology = null, AttributeSkillVO? botany = null, AttributeSkillVO? chemistry = null, AttributeSkillVO? cryptography = null,
         AttributeSkillVO? engineering = null, AttributeSkillVO? forensics = null, AttributeSkillVO? geology = null, AttributeSkillVO? mathematics = null,
-        AttributeSkillVO? meteorology = null, AttributeSkillVO? pharmacy = null, AttributeSkillVO? sleightOfHand = null, AttributeSkillVO? spotHidden = null,
+        AttributeSkillVO? meteorology = null, AttributeSkillVO? pharmacy = null, AttributeSkillVO? physics = null, AttributeSkillVO? zoology=null, AttributeSkillVO? sleightOfHand = null, AttributeSkillVO? spotHidden = null,
         AttributeSkillVO? stealth = null, AttributeSkillVO? survival = null, string survivalSpecialization = "", AttributeSkillVO? swim = null,
         AttributeSkillVO? throwSkill = null, AttributeSkillVO? track = null)
     {
@@ -222,7 +226,7 @@ public class CharacterSkillsModernEntity
             psychoanalysis ?? new AttributeSkillVO(1), psychology ?? new AttributeSkillVO(10), ride ?? new AttributeSkillVO(5), astronomy ?? new AttributeSkillVO(1),
             biology ?? new AttributeSkillVO(1), botany ?? new AttributeSkillVO(1), chemistry ?? new AttributeSkillVO(1), cryptography ?? new AttributeSkillVO(1),
             engineering ?? new AttributeSkillVO(1), forensics ?? new AttributeSkillVO(1), geology ?? new AttributeSkillVO(1), mathematics ?? new AttributeSkillVO(10),
-            meteorology ?? new AttributeSkillVO(1), pharmacy ?? new AttributeSkillVO(1), sleightOfHand ?? new AttributeSkillVO(10), spotHidden ?? new AttributeSkillVO(25),
+            meteorology ?? new AttributeSkillVO(1), pharmacy ?? new AttributeSkillVO(1), physics ?? new AttributeSkillVO(01), zoology ?? new AttributeSkillVO(01), sleightOfHand ?? new AttributeSkillVO(10), spotHidden ?? new AttributeSkillVO(25),
             stealth ?? new AttributeSkillVO(20), survival ?? new AttributeSkillVO(10), survivalSpecialization, swim ?? new AttributeSkillVO(20),
             throwSkill ?? new AttributeSkillVO(20), track ?? new AttributeSkillVO(10)
         );
@@ -247,7 +251,7 @@ public void Update(
     AttributeSkillVO? psychoanalysis = null, AttributeSkillVO? psychology = null, AttributeSkillVO? ride = null, AttributeSkillVO? astronomy = null,
     AttributeSkillVO? biology = null, AttributeSkillVO? botany = null, AttributeSkillVO? chemistry = null, AttributeSkillVO? cryptography = null,
     AttributeSkillVO? engineering = null, AttributeSkillVO? forensics = null, AttributeSkillVO? geology = null, AttributeSkillVO? mathematics = null,
-    AttributeSkillVO? meteorology = null, AttributeSkillVO? pharmacy = null, AttributeSkillVO? sleightOfHand = null, AttributeSkillVO? spotHidden = null,
+    AttributeSkillVO? meteorology = null, AttributeSkillVO? pharmacy = null, AttributeSkillVO? physics=null, AttributeSkillVO? zoology=null, AttributeSkillVO? sleightOfHand = null, AttributeSkillVO? spotHidden = null,
     AttributeSkillVO? stealth = null, AttributeSkillVO? survival = null, string? survivalSpecialization = null, AttributeSkillVO? swim = null,
     AttributeSkillVO? @throw = null, AttributeSkillVO? track = null)
     {
@@ -318,6 +322,8 @@ public void Update(
     if (mathematics !=null) Mathematics = mathematics;
     if (meteorology !=null) Meteorology = meteorology;
     if (pharmacy !=null) Pharmacy = pharmacy;
+    if (physics !=null) Physics = physics;
+    if (zoology !=null) Zoology = zoology;
     if (sleightOfHand !=null) SleightOfHand = sleightOfHand;
     if (spotHidden !=null) SpotHidden = spotHidden;
     if (stealth !=null) Stealth = stealth;

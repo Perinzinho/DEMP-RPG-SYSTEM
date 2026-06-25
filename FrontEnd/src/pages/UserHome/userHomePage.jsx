@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,useReducer, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -10,14 +10,20 @@ import { getCharactersByUserId } from "../../services/characterService";
 import { useAuth } from "../../contexts/AuthContext";
 import "./userHomePage.css";
 
+// O useReducer foi usado aqui como uma otimização de legibilidade no lugar do useState.
+// A função redutora `(prev, next) => next` ignora o estado anterior e apenas assume o novo valor.
+// Isso otimiza o código assíncrono do useEffect abaixo, permitindo passar o atualizador
+// diretamente nos callbacks das Promises (ex: `.then(setCharacters)`), limpando a sintaxe
+// e eliminando a necessidade de criar funções anônimas como `.then(data => setCharacters(data))`.
+
 function UserHomePage() {
-    const [activeTab, setActiveTab] = useState("characters");
-    const [roomSubTab, setRoomSubTab] = useState("mastering");
-    const [showJoinModal, setShowJoinModal] = useState(false);
-    const [characters, setCharacters] = useState([]);
-    const [loadingCharacters, setLoadingCharacters] = useState(true);
-    const [rooms, setRooms] = useState([]);
-    const [loadingRooms, setLoadingRooms] = useState(true);
+    const [activeTab, setActiveTab] = useReducer((_, value) => value, "characters");
+    const [roomSubTab, setRoomSubTab] = useReducer((_, value) => value, "mastering");
+    const [showJoinModal, setShowJoinModal] = useReducer((_, value) => value, false);
+    const [characters, setCharacters] = useReducer((prev, next) => next, []);//Faz com que 
+    const [loadingCharacters, setLoadingCharacters] = useReducer((prev, next) => next, true);
+    const [rooms, setRooms] = useReducer((prev, next) => next, []);
+    const [loadingRooms, setLoadingRooms] = useReducer((prev, next) => next, true);
     const navigate = useNavigate();
     const { userId } = useAuth();
 
@@ -55,13 +61,13 @@ function UserHomePage() {
                         <div className="home-tabs">
                             <button
                                 className={`home-tab ${activeTab === "characters" ? "active" : ""}`}
-                                onClick={() => setActiveTab("characters")}
+                                onClick={() => setActiveTab("characters")} type="button"
                             >
                                 Investigadores
                             </button>
                             <button
                                 className={`home-tab ${activeTab === "rooms" ? "active" : ""}`}
-                                onClick={() => setActiveTab("rooms")}
+                                onClick={() => setActiveTab("rooms")} type="button"
                             >
                                 Mesas
                             </button>
@@ -89,13 +95,13 @@ function UserHomePage() {
                                             age={character.age}
                                             occupation={character.occupation}
                                             roomName={character.roomName}
-                                            onClick={() => navigate(`/character/${character.id}`)}
+                                            onClick={() => navigate(`/character/${character.id}`)} type="button"
                                         />
                                     ))}
                                 </div>
                             )}
 
-                            <button className="home-create-button" onClick={() => console.log("Criar investigador")}>
+                            <button className="home-create-button" onClick={() => console.log("Criar investigador")} type="button">
                                 Criar investigador
                             </button>
                             <p className="home-create-hint">Disponível em breve — entre em uma mesa primeiro</p>
@@ -107,7 +113,7 @@ function UserHomePage() {
                             <div className="home-subtabs">
                                 <button
                                     className={`home-subtab ${roomSubTab === "mastering" ? "active" : ""}`}
-                                    onClick={() => setRoomSubTab("mastering")}
+                                    onClick={() => setRoomSubTab("mastering")} type="button"
                                 >
                                     Mestrando
                                 </button>
@@ -138,7 +144,7 @@ function UserHomePage() {
                                             onClick={() => {
                                                 const isMaster = room.masterId === userId;
                                                 navigate(isMaster ? `/master/room/${room.id}` : `/room/${room.id}`);
-                                            }}
+                                            }} type="button"
                                         />
                                     ))}
                                 </div>

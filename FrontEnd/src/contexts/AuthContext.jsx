@@ -1,8 +1,12 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState,useMemo, use, useEffect } from 'react';
 import { login as loginService, register as registerService } from '../services/authService';
 import { getUserById } from '../services/userSerice';
 
 const AuthContext = createContext(null);
+
+async function register(username, email, password) {
+  return await registerService(username, email, password);
+}
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -26,11 +30,6 @@ async function login(email, password) {
     setRole(data.role);
     return data;
 }
-
-  async function register(username, email, password) {
-    return await registerService(username, email, password);
-  }
-
   function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
@@ -49,5 +48,5 @@ async function login(email, password) {
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  return use(AuthContext);
 }

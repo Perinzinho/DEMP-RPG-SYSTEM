@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -157,11 +157,11 @@ function CreateCharacterPage() {
                             className="create-character-back-button"
                             onClick={handleBack}
                             style={{ visibility: currentStep === 1 ? "hidden" : "visible" }}
-                            disabled={saving}
+                            disabled={saving} type="button"
                         >
                             Voltar
                         </button>
-                        <button className="create-character-next-button" onClick={handleNext} disabled={saving}>
+                        <button className="create-character-next-button" onClick={handleNext} disabled={saving} type="button">
                             {saving ? "Criando..." : currentStep === 3 ? "Criar Personagem" : "Próximo"}
                         </button>
                     </div>

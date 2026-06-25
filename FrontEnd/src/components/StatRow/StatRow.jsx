@@ -20,7 +20,7 @@ function StatRow({ label, value, onChange, editable = true }) {
             <span className="stat-row-label">{label}</span>
             <span className="stat-row-value">
                 {editable ? (
-                    <input
+                    <input aria-label={label}
                         type="number"
                         value={value}
                         onChange={(e) => onChange?.(Number(e.target.value))}
@@ -34,7 +34,7 @@ function StatRow({ label, value, onChange, editable = true }) {
             <button
                 className="stat-row-dice"
                 onClick={handleRoll}
-                aria-label={`Rolar d100 para ${label}`}
+                aria-label={`Rolar d100 para ${label} type="button"`}
                 title={rollResult ? `${rollResult.value} - ${rollResult.label}` : "Rolar d100"}
             >
                 <GiPerspectiveDiceSixFacesRandom />

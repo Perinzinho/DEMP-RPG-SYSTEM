@@ -4,7 +4,7 @@ function AboutPanel({ annotations, onChange }) {
     return (
         <div className="sheet-panel">
             <p className="sheet-panel-title">Sobre</p>
-            <textarea
+            <textarea aria-label="Anotações"
                 className="sheet-textarea"
                 placeholder="Anotações"
                 value={annotations ?? ""}

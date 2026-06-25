@@ -1,15 +1,15 @@
 import "./registerForm.css";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useReducer } from "react";
+import { Link, useNavigate} from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 
 function RegisterForm() {
-    const[username, setusername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const[username, setusername] = useReducer((_, value) => value, '');
+    const [email, setEmail] = useReducer((_, value) => value, '');
+    const [password, setPassword] = useReducer((_, value) => value, '');
+    const [loading, setLoading] = useReducer((_, value) => value, false);
+    const [error, setError] = useReducer((_, value) => value, '');
     const { register } = useAuth();
     const navigate = useNavigate();
 

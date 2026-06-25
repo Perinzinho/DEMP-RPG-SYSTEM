@@ -8,7 +8,7 @@ function CharacterSheetHeader({ name, onNameChange, occupation, age }) {
         <div className="sheet-header">
             <div className="sheet-header-avatar">?</div>
             <div className="sheet-header-info">
-                <input
+                <input aria-label="Nome do personagem"
                     type="text"
                     value={name}
                     onChange={(e) => onNameChange(e.target.value)}

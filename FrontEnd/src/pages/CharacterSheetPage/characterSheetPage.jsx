@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,useReducer, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
@@ -10,16 +10,17 @@ import SkillsPanel from "../../components/SkillsPanel/skillsPanel";
 import { getCharacterById, updateCharacter } from "../../services/characterService";
 import { getCharacterStatsByCharacterId, updateCharacterStats } from "../../services/characterStatsService";
 import { getCharacterSkillsByCharacterId, updateCharacterSkills } from "../../services/characterSkillsModernService";
+import { OCCUPATIONS } from "../../utils/occupations";
 import "./characterSheetPage.css";
 
 function CharacterSheetPage() {
     const { characterId } = useParams();
 
-    const [character, setCharacter] = useState(null);
-    const [stats, setStats] = useState(null);
-    const [skills, setSkills] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+const [character, setCharacter] = useState(null);
+const [stats, setStats] = useState(null);
+const [skills, setSkills] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
 
     useEffect(() => {
         if (!characterId) return;
@@ -56,25 +57,32 @@ function CharacterSheetPage() {
         setSkills((prev) => ({ ...prev, [field]: value }));
     }
 
-    async function handleSave() {
-        try {
-            await Promise.all([
-                updateCharacter(character.id, {
-                    name: character.name,
-                    gender: character.gender,
-                    occupation: character.occupation,
-                    residence: character.residence,
-                    age: character.age,
-                    annotations: character.annotations,
-                }),
-                updateCharacterStats(stats.id, stats),
-                updateCharacterSkills(skills.id, skills),
-            ]);
-            setError("");
-        } catch (err) {
-            setError("Erro ao salvar a ficha.");
-        }
+async function handleSave() {
+    try {
+        const occupationValue = typeof character.occupation === "number"
+            ? character.occupation
+            : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
+
+
+
+        await Promise.all([
+            updateCharacter(character.id, {
+                name: character.name,
+                gender: character.gender,
+                residence: character.residence,
+                age: character.age,
+                annotations: character.annotations,
+            }),
+            updateCharacterStats(stats.id, stats),
+            updateCharacterSkills(skills.id, skills),
+        ]);
+        setError("");
+    } catch (err) {
+        setError("Erro ao salvar a ficha.");
     }
+}
+
+    const occupationLabel = OCCUPATIONS.find(o => o.value === character?.occupation)?.label ?? "";
 
     if (loading) {
         return (
@@ -109,7 +117,7 @@ function CharacterSheetPage() {
                     <CharacterSheetHeader
                         name={character.name}
                         onNameChange={(v) => handleCharacterField("name", v)}
-                        occupation={character.occupation}
+                        occupation={occupationLabel}
                         age={character.age}
                     />
 
@@ -127,7 +135,7 @@ function CharacterSheetPage() {
                     {error && <p className="sheet-error">{error}</p>}
 
                     <div className="sheet-save-row">
-                        <button className="sheet-save-button" onClick={handleSave}>
+                        <button className="sheet-save-button" onClick={handleSave} type="submit">
                             Salvar Ficha
                         </button>
                     </div>

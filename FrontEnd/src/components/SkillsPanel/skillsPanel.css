@@ -4,7 +4,8 @@
 
 .sheet-skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(18, auto);
+    grid-auto-flow: column;
     gap: 0 32px;
 }
 

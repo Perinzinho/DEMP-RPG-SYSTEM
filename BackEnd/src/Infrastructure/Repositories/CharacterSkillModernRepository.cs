@@ -56,7 +56,7 @@ public class CharacterSkillModernRepository:ICharacterSkillModernRepository
             skills.Psychoanalysis, skills.Psychology, skills.Ride, skills.Astronomy,
             skills.Biology, skills.Botany, skills.Chemistry, skills.Cryptography,
             skills.Engineering, skills.Forensics, skills.Geology, skills.Mathematics,
-            skills.Meteorology, skills.Pharmacy, skills.SleightOfHand, skills.SpotHidden,
+            skills.Meteorology, skills.Pharmacy, skills.Physics, skills.Zoology, skills.SleightOfHand, skills.SpotHidden,
             skills.Stealth, skills.Survival, skills.SurvivalSpecialization, skills.Swim,
             skills.Throw, skills.Track
         );
