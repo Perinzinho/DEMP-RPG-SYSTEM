@@ -4,6 +4,7 @@ namespace DEMP_RPG_API.Domain.ValueObjects.Character;
 
 public class AttributeSkillVO
 {
+    private AttributeSkillVO() { }
     public int Value { get; set; }
 
     public AttributeSkillVO(int value)

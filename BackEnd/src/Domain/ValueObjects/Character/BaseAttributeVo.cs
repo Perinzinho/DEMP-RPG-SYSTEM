@@ -2,6 +2,7 @@
 
 public class BaseAttributeVo : ValueObject
 {
+    private BaseAttributeVo() { }
     public AttributeSkillVO Strength { get; private set; }
     public AttributeSkillVO Dexterity { get; private set; }
     public AttributeSkillVO Intelligence { get; private set; }

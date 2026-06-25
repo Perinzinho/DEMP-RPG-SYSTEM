@@ -40,10 +40,8 @@ public class CharacterStatsRepository:ICharacterStatsRepository
         if (oldchar == null)
             throw new CharacterStatsNoFoundException();
 
-        oldchar.Update(characterStats.MaxAttributes, characterStats.BaseAttributes, characterStats.HitPoints,
-            characterStats.CurrentHp,
-            characterStats.Luck, characterStats.Sanity, characterStats.CurrentSanity,
-            characterStats.Move, characterStats.Build, characterStats.DamageBonus, characterStats.Condition);
+        oldchar.Update(characterStats.MaxAttributes,characterStats.BaseAttributes,characterStats.HitPoints, characterStats.Luck
+        ,characterStats.Sanity,characterStats.Move,characterStats.Build, characterStats.DamageBonus,characterStats.Condition);
   
         await _context.SaveChangesAsync();
         return oldchar;

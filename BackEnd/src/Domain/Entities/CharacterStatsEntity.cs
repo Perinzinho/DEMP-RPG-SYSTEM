@@ -5,6 +5,7 @@ namespace DEMP_RPG_API.Domain.Entities;
 
 public class CharacterStatsEntity
 {
+    private CharacterStatsEntity() { }
     public Guid Id { get; private set; }
     public Guid CharacterId { get; private set; }
     public MaxAttributesEnum  MaxAttributes { get; private set; }
@@ -36,10 +37,11 @@ public class CharacterStatsEntity
         int? move, int? build, DamageBonusEnum? damageBonus, CharacterConditionEnum? condition)
     {
         if (maxAttributes.HasValue) MaxAttributes = maxAttributes.Value;
-        if(!baseAttributes.Equals(BaseAttributes)) BaseAttributes = baseAttributes;
-        if(hitPoints)
+        if (baseAttributes!=null) BaseAttributes = baseAttributes;
+        if (hitPoints!=null) HitPoints = hitPoints;
         if (luck.HasValue) Luck = luck.Value;
-
+        if (sanity!=null) Sanity = sanity;
+        if (condition!=null) Condition = condition.Value;
         if (move.HasValue) Move = move.Value;
         if (build.HasValue) Build = build.Value;
         if (damageBonus.HasValue) DamageBonus = damageBonus.Value;

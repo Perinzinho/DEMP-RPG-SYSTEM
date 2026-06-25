@@ -2,6 +2,7 @@
 
 public class PoolStatVo:ValueObject
 {
+    private PoolStatVo() { }
     public int Max { get; private set; }
     public int Current { get; private set; }
     

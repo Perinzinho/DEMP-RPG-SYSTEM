@@ -18,15 +18,11 @@ public class CreateCharacterStatsUseCase
         _characterStatsRepository = characterStatsRepository;
     }
 
-    public async Task<GetCharacterStatsResponseDTO> CreateCharacterStats(CreateCharacterStatsRequestDTO dto)
+    public async Task<GetCharacterStatsResponseDTO> CreateCharacterStats(Guid characterId,CreateCharacterStatsRequestDTO dto)
     {
-        var characterStats = new CharacterStatsEntity(Guid.NewGuid(), dto.CharacterId, dto.MaxAttributes,
-            new BaseAttributeVo(new AttributeSkillVO(dto.Strength), new AttributeSkillVO(dto.Dexterity),
-                new AttributeSkillVO(dto.Intelligence), new AttributeSkillVO(dto.Size), new AttributeSkillVO(dto.Power),
-                new AttributeSkillVO(dto.Appearance), new AttributeSkillVO(dto.Education), new AttributeSkillVO(dto.Constitution)),
-        dto.HitPoints, dto.CurrentHp, dto.Luck, dto.Sanity, dto.CurrentSanity, dto.Move, dto.Build, dto.DamageBonus,CharacterConditionEnum.None);//Facilmente poderia virar um Mapper
+        var characterStats = CharacterStatsMapper.ToEntity(characterId, dto);
         
-        var created = await _characterStatsRepository.CreateCharacterStats(characterStats);
+        await _characterStatsRepository.CreateCharacterStats(characterStats);
         
         return CharacterStatsMapper.ToGetResponse(characterStats);
     }

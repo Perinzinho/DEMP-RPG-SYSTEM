@@ -4,8 +4,6 @@ using DEMP_RPG_API.Domain.ValueObjects.Character;
 namespace DEMP_RPG_API.Application.DTOs.Request.CharacterStats;
 
 public record CreateCharacterStatsRequestDTO(
-    Guid CharacterId,
-    
     MaxAttributesEnum MaxAttributes,
     
     int Strength,//VO
@@ -24,5 +22,6 @@ public record CreateCharacterStatsRequestDTO(
     int CurrentSanity,
     int Move,
     int Build,
+    
     DamageBonusEnum DamageBonus
     );
