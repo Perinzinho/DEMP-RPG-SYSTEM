@@ -122,7 +122,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
                 "http://localhost:5173",
-                "https://demprpgsystem.vercel.app"
+                "https://demprpgsystem.vercel.app",
+                "https://customise-tied-enterprises-exhibit.trycloudflare.com"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -131,12 +132,9 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Swagger apenas em desenvolvimento
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
 app.UseCors("AllowFrontend");
 
@@ -150,7 +148,6 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
-app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
