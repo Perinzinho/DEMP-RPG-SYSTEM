@@ -7,7 +7,7 @@ public record GetCharacterSkillsModernResponseDTO(
     Guid Id,
     Guid CharacterId,
     Guid CharacterStatsId,
-    Dictionary<SkillEnum, AttributeSkillVO> Skills
+    Dictionary<SkillEnum, int> Skills
         );
     
     

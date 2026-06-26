@@ -1,6 +1,7 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request.CharacterSkillsModern;
 using DEMP_RPG_API.Application.DTOs.Response.CharacterSkillsModern;
 using DEMP_RPG_API.Domain.Entities;
+using DEMP_RPG_API.Domain.ValueObjects.Character;
 
 namespace DEMP_RPG_API.Adapters.Mappers;
 
@@ -12,8 +13,8 @@ public class CharacterSkillsModernMapper
             Guid.NewGuid(),
             characterStatsId,
             characterId,
-            dto.Skills
-        );
+            dto.Skills.ToDictionary(k => k.Key, v => new AttributeSkillVO(v.Value))
+            );
     }
 
     public static GetCharacterSkillsModernResponseDTO ToResponse(CharacterSkillsModernEntity characterSkillsModern)
@@ -22,7 +23,7 @@ public class CharacterSkillsModernMapper
             characterSkillsModern.Id,
             characterSkillsModern.CharacterId,
             characterSkillsModern.CharacterStatsId,
-            characterSkillsModern.Skill
+            characterSkillsModern.Skill.ToDictionary(k => k.Key, v => v.Value.Value)
             );
     }
 }

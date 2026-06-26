@@ -12,6 +12,7 @@ import { getCharacterStatsByCharacterId, updateCharacterStats } from "../../serv
 import { getCharacterSkillsByCharacterId, updateCharacterSkills } from "../../services/characterSkillsModernService";
 import { OCCUPATIONS } from "../../utils/occupations";
 import "./characterSheetPage.css";
+import { Skills, toSkillsEnum } from "../../utils/skills";
 
 function CharacterSheetPage() {
     const { characterId } = useParams();
@@ -49,13 +50,13 @@ const [error, setError] = useState("");
         setCharacter((prev) => ({ ...prev, [field]: value }));
     }
 
-    function handleStatField(field, value) {
-        setStats((prev) => ({ ...prev, [field]: value }));
-    }
+function handleStatField(field, value) {
+    setStats((prev) => ({ ...prev, [field]: value }));
+}
 
-    function handleSkillField(field, value) {
-        setSkills((prev) => ({ ...prev, [field]: value }));
-    }
+function handleSkillField(field, value) {
+    setSkills((prev) => ({ ...prev, [field]: value }));
+}
 
 async function handleSave() {
     try {
@@ -63,6 +64,10 @@ async function handleSave() {
             ? character.occupation
             : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
 
+        const { id, characterId, characterStatsId, skills: inner, ...rawSkills } = skills;
+        const skillsConverted = Object.fromEntries(
+            Object.entries(rawSkills).map(([key, value]) => [Skills[key], value])
+        );
 
 
         await Promise.all([
@@ -74,7 +79,7 @@ async function handleSave() {
                 annotations: character.annotations,
             }),
             updateCharacterStats(stats.id, stats),
-            updateCharacterSkills(skills.id, skills),
+            updateCharacterSkills(id, { skills: skillsConverted }),
         ]);
         setError("");
     } catch (err) {
@@ -117,7 +122,7 @@ async function handleSave() {
                     <CharacterSheetHeader
                         name={character.name}
                         onNameChange={(v) => handleCharacterField("name", v)}
-                        occupation={occupationLabel}
+                        occupation={occupationLabel.toString()}
                         age={character.age}
                     />
 

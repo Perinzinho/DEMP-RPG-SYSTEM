@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using DEMP_RPG_API.Application.UseCases.Character;
 using DEMP_RPG_API.Application.UseCases.CharacterSkillsModern;
 using DEMP_RPG_API.Application.UseCases.CharacterStats;
@@ -110,6 +111,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET")!))
         };
     });
+
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();

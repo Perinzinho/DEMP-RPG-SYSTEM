@@ -28,8 +28,8 @@ public class CharacterStatsController:ControllerBase
         _updateCharacterStatsUseCase = updateCharacterStatsUseCase;
         }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateCharacterStats(Guid characterId,[FromBody] CreateCharacterStatsRequestDTO dto)
+    [HttpPost("{characterId}")]
+    public async Task<IActionResult> CreateCharacterStats([FromRoute]Guid characterId,[FromBody] CreateCharacterStatsRequestDTO dto)
     {
         var result =await _createCharacterStatsUseCase.CreateCharacterStats(characterId, dto);
         return Ok(result);

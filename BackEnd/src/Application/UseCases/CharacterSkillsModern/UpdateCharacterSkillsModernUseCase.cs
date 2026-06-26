@@ -23,7 +23,9 @@ public class UpdateCharacterSkillsUseCase
         if (skills == null)
             throw new CharacterSkillsNotFoundException();
 
-        skills.Update(dto.Skill, new AttributeSkillVO(dto.Value));
+        skills.Update(
+            dto.Skills.ToDictionary(k => k.Key, v => new AttributeSkillVO(v.Value))
+        );
 
         var updated = await _skillsRepository.UpdateCharacterSkillModern(skills);
         return CharacterSkillsModernMapper.ToResponse(updated);

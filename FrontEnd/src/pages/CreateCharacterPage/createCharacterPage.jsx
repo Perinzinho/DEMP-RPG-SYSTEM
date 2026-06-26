@@ -11,6 +11,12 @@ import { createCharacterStats } from "../../services/characterStatsService";
 import { createCharacterSkillsModern } from "../../services/characterSkillsModernService";
 import { useAuth } from "../../contexts/AuthContext";
 import "./createCharacterPage.css";
+import { Skills, toSkillsEnum } from "../../utils/skills";
+
+
+const INITIAL_SKILLS = Object.fromEntries(
+    Object.keys(Skills).map((key) => [key, 0])
+);
 
 const INITIAL_INFO = {
     name: "",
@@ -42,7 +48,7 @@ function CreateCharacterPage() {
     const [currentStep, setCurrentStep] = useState(1);
     const [info, setInfo] = useState(INITIAL_INFO);
     const [stats, setStats] = useState(INITIAL_STATS);
-    const [skills, setSkills] = useState({});
+    const [skills, setSkills] = useState(INITIAL_SKILLS);
     const [error, setError] = useState("");
     const [saving, setSaving] = useState(false);
 
@@ -77,8 +83,7 @@ function CreateCharacterPage() {
             });
 
 
-            const characterStats = await createCharacterStats({
-                characterId: character.id,
+            const characterStats = await createCharacterStats(character.id, {
                 strength: stats.strength,
                 constitution: stats.constitution,
                 size: stats.size,
@@ -94,16 +99,14 @@ function CreateCharacterPage() {
                 luck: 50,
                 move: 8,
                 build: 0,
-                dodge: Math.floor(stats.dexterity / 2),
             });
+;
+                const converted = toSkillsEnum(skills);
 
-
-            const characterSkills = await createCharacterSkillsModern({
-                characterId: character.id,
-                characterStatsId: characterStats.id,
-                ...skills,
-            });
-
+            const characterSkills = await createCharacterSkillsModern(
+                character.id, 
+                { skills: toSkillsEnum(skills) }  
+            );
 
             navigate(`/character/${character.id}`);
         } catch (err) {

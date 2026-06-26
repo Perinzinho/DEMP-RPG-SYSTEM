@@ -11,8 +11,8 @@ export function updateCharacterStats(id, dto) {
   });
 }
 
-export function createCharacterStats(dto) {
-  return apiFetch('/CharacterStats', {
+export function createCharacterStats(characterId, dto) {
+  return apiFetch(`/CharacterStats/${characterId}`, {
     method: 'POST',
     body: JSON.stringify(dto),
   });

@@ -1,4 +1,6 @@
 import "./resourcesPanel.css";
+import { ConditionFlags, hasCondition, toggleCondition } from "../../utils/conditions";
+
 
 function ResourcesPanel({ stats, onChange }) {
     return (
@@ -68,40 +70,40 @@ function ResourcesPanel({ stats, onChange }) {
             <label className="sheet-status-checkbox">
                 <input
                     type="checkbox"
-                    checked={stats.temporaryInsanity}
-                    onChange={(e) => onChange("temporaryInsanity", e.target.checked)}
+                    checked={hasCondition(stats.condition, ConditionFlags.TemporaryInsanity)}
+                    onChange={(e) => onChange("condition", toggleCondition(stats.condition, ConditionFlags.TemporaryInsanity, e.target.checked))}
                 />
                 Sanidade Temporária
             </label>
             <label className="sheet-status-checkbox">
                 <input
                     type="checkbox"
-                    checked={stats.indefiniteSanity}
-                    onChange={(e) => onChange("indefiniteSanity", e.target.checked)}
+                    checked={hasCondition(stats.condition, ConditionFlags.IndefiniteSanity)}
+                    onChange={(e) => onChange("condition", toggleCondition(stats.condition, ConditionFlags.IndefiniteSanity, e.target.checked))}
                 />
                 Sanidade Indefinida
             </label>
             <label className="sheet-status-checkbox">
                 <input
                     type="checkbox"
-                    checked={stats.majorWound}
-                    onChange={(e) => onChange("majorWound", e.target.checked)}
+                    checked={hasCondition(stats.condition, ConditionFlags.MajorWound)}
+                    onChange={(e) => onChange("condition", toggleCondition(stats.condition, ConditionFlags.MajorWound, e.target.checked))}
                 />
                 Ferimento Grave
             </label>
             <label className="sheet-status-checkbox">
                 <input
                     type="checkbox"
-                    checked={stats.unconscious}
-                    onChange={(e) => onChange("unconscious", e.target.checked)}
+                    checked={hasCondition(stats.condition, ConditionFlags.Unconscious)}
+                    onChange={(e) => onChange("condition", toggleCondition(stats.condition, ConditionFlags.Unconscious, e.target.checked))}
                 />
                 Inconsciente
             </label>
             <label className="sheet-status-checkbox">
                 <input
                     type="checkbox"
-                    checked={stats.dying}
-                    onChange={(e) => onChange("dying", e.target.checked)}
+                    checked={hasCondition(stats.condition, ConditionFlags.Dying)}
+                    onChange={(e) => onChange("condition", toggleCondition(stats.condition, ConditionFlags.Dying, e.target.checked))}
                 />
                 Morrendo
             </label>
