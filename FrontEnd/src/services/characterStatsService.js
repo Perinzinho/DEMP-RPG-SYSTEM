@@ -12,6 +12,8 @@ export function updateCharacterStats(id, dto) {
 }
 
 export function createCharacterStats(characterId, dto) {
+  console.log("characterId para stats:", characterId);
+  console.log("character completo:", dto);
   return apiFetch(`/CharacterStats/${characterId}`, {
     method: 'POST',
     body: JSON.stringify(dto),
