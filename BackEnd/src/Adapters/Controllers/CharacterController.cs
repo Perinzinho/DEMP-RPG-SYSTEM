@@ -1,4 +1,6 @@
 ﻿using DEMP_RPG_API.Application.DTOs.Request.Character;
+using DEMP_RPG_API.Application.DTOs.Request.CharacterSkillsModern;
+using DEMP_RPG_API.Application.DTOs.Request.CharacterStats;
 using DEMP_RPG_API.Application.UseCases.Character;
 using DEMP_RPG_API.Domain.Ports;
 using Microsoft.AspNetCore.Authorization;
@@ -18,13 +20,14 @@ public class CharacterController:ControllerBase
     private readonly UpdateCharacterUseCase _updateCharacterUseCase;
     private readonly GetCharacterByRoomIdUseCase _getCharacterByRoomIdUseCase;
 
+
     public CharacterController(CreateCharacterUseCase createCharacterUseCase,
         DeleteCharacterUseCase deleteCharacterUseCase,
         GetAllCharactersUseCase getAllCharactersUseCase,
         GetCharacterByIdUseCase getCharacterByIdUseCase,
         GetCharacterByUserIdUseCase getCharacterByUserIdUseCase,
         UpdateCharacterUseCase updateCharacterUseCase,
-        GetCharacterByRoomIdUseCase getCharacterByRoomIdUseCase)
+        GetCharacterByRoomIdUseCase getCharacterByRoomIdUseCase )
     {
         _createCharacterUseCase = createCharacterUseCase;
         _deleteCharacterUseCase = deleteCharacterUseCase;
@@ -33,6 +36,7 @@ public class CharacterController:ControllerBase
         _getCharacterByUserIdUseCase = getCharacterByUserIdUseCase;
         _updateCharacterUseCase = updateCharacterUseCase;
         _getCharacterByRoomIdUseCase = getCharacterByRoomIdUseCase;
+
     }
 
     [HttpPost]
@@ -84,6 +88,7 @@ public class CharacterController:ControllerBase
         
         return Ok(result);
     }
+    
     
     
 }

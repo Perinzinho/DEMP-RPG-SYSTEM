@@ -29,4 +29,5 @@ public class CharacterMapper
             character.ItemIds
         );
     }
+    
 }

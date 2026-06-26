@@ -20,6 +20,6 @@ public class GetCharacterSkillsModernByIdUseCase
         if (skills == null)
             throw new CharacterSkillsNotFoundException();
 
-        return CharacterSkillsModernMapper.ToResponseDTO(skills);
+        return CharacterSkillsModernMapper.ToResponse(skills);
     }
 }

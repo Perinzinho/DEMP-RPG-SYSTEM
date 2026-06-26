@@ -40,13 +40,9 @@ public class CharacterStatsRepository:ICharacterStatsRepository
         if (oldchar == null)
             throw new CharacterStatsNoFoundException();
 
-        oldchar.Update(characterStats.MaxAttributes, characterStats.Strength, characterStats.Dexterity,
-            characterStats.Intelligence, characterStats.Size, characterStats.Power,
-            characterStats.Appearance, characterStats.Education, characterStats.HitPoints, characterStats.CurrentHp,
-            characterStats.Luck, characterStats.Sanity, characterStats.CurrentSanity,
-            characterStats.Move, characterStats.Build, characterStats.Dodge, characterStats.DamageBonus,
-            characterStats.TemporaryInsanity, characterStats.IndefiniteSanity, characterStats.MajorWound,
-            characterStats.Unconscious, characterStats.Dying);
+        oldchar.Update(characterStats.MaxAttributes,characterStats.BaseAttributes,characterStats.HitPoints, characterStats.Luck
+        ,characterStats.Sanity,characterStats.Move,characterStats.Build, characterStats.DamageBonus,characterStats.Condition);
+  
         await _context.SaveChangesAsync();
         return oldchar;
     }

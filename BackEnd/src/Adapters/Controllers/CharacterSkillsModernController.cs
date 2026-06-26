@@ -27,11 +27,11 @@ public class CharacterSkillsModernController:ControllerBase
         _getCharacterSkillsModernByIdUseCase = getCharacterSkillsModernByIdUseCase;
         _getCharacterSkillsByCharacterIdUseCase = getCharacterSkillsByCharacterIdUseCase;
     }
-
-    [HttpPost]
-    public async Task<IActionResult> CreateCharacterSkillsModern(CreateCharacterSkillsModernRequestDTO dto)
+    
+    [HttpPost("{characterId}")]
+    public async Task<IActionResult> CreateCharacterSkillsModern([FromRoute] Guid characterId, [FromBody] CreateCharacterSkillsModernRequestDTO dto)
     {
-        await _createCharacterSkillsModernUseCase.CreateCharacterSkillsModern(dto);
+        await _createCharacterSkillsModernUseCase.CreateCharacterSkillsModern(characterId, dto);
         return Ok();
     }
 

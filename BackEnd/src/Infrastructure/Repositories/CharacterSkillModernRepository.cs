@@ -35,34 +35,9 @@ public class CharacterSkillModernRepository:ICharacterSkillModernRepository
 
     public async Task<CharacterSkillsModernEntity> UpdateCharacterSkillModern(CharacterSkillsModernEntity skills)
     {
-        var oldSkills = await _context.CharacterSkillsModern.FindAsync(skills.Id);
-        if (oldSkills == null)
-            throw new CharacterSkillsNotFoundException();
-
-        oldSkills.Update(
-            skills.Accounting, skills.Anthropology, skills.Appraise, skills.Archaelogy,
-            skills.ArtAndCraftSpecialization, skills.ArtCraft, skills.Charm, skills.Climb,
-            skills.ComputerUse, skills.CreditRating, skills.CthulhuMythos, skills.Disguise,
-            skills.Dodge, skills.DriveAuto, skills.EletricRepair, skills.Eletronics,
-            skills.FastTalk, skills.FightingAxe, skills.FightingBrawl, skills.FightingChainsaw,
-            skills.FightingFlail, skills.FightingGarrote, skills.FightingSpear, skills.FightingSword,
-            skills.FightingWhip, skills.FightingBow, skills.HandGun, skills.HeavyWeapons,
-            skills.Flamethrower, skills.MachineGun, skills.RifleShotgun, skills.SubmachineGun,
-            skills.FirstAid, skills.History, skills.Intimidate, skills.Jump,
-            skills.LanguageOtherValue, skills.LanguageOtherSpecialization, skills.LanguageOwn,
-            skills.Law, skills.LibraryUse, skills.Listen, skills.LockSmith,
-            skills.MechanicalRepair, skills.Medicine, skills.NaturalWorld, skills.Navigate,
-            skills.Occult, skills.OperateHeavyMachinery, skills.Persuade, skills.PilotAirCraft,
-            skills.Psychoanalysis, skills.Psychology, skills.Ride, skills.Astronomy,
-            skills.Biology, skills.Botany, skills.Chemistry, skills.Cryptography,
-            skills.Engineering, skills.Forensics, skills.Geology, skills.Mathematics,
-            skills.Meteorology, skills.Pharmacy, skills.Physics, skills.Zoology, skills.SleightOfHand, skills.SpotHidden,
-            skills.Stealth, skills.Survival, skills.SurvivalSpecialization, skills.Swim,
-            skills.Throw, skills.Track
-        );
-        
+        _context.CharacterSkillsModern.Update(skills);
         await _context.SaveChangesAsync();
-        return oldSkills;
+        return skills;
         
     }
 

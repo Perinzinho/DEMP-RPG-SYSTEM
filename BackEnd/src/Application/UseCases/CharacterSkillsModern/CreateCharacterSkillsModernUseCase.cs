@@ -20,15 +20,16 @@ public class CreateCharacterSkillsModernUseCase
     }
 
     public async Task<GetCharacterSkillsModernResponseDTO> CreateCharacterSkillsModern(
-        CreateCharacterSkillsModernRequestDTO dto)
+        Guid characterId, CreateCharacterSkillsModernRequestDTO dto)
     {
-        var stats = await _statsRepository.GetCharacterStatsByCharacterId(dto.CharacterId);
-        if (stats == null)
-            throw new CharacterStatsNoFoundException();
+        Console.WriteLine($"Buscando stats para characterId: {characterId}");
 
-        var skills = CharacterSkillsModernMapper.ToEntity(dto, stats.Id, stats.Dexterity.Value, stats.Education.Value);
+        var stats = await _statsRepository.GetCharacterStatsByCharacterId(characterId);
+        if (stats == null) throw new CharacterStatsNoFoundException();
+        Console.WriteLine($"Stats encontrado: {stats?.Id.ToString() ?? "NULL"}");
 
+        var skills = CharacterSkillsModernMapper.ToEntity(stats.Id, characterId, dto);
         var created = await _skillRepository.CreateCharacterSkillModern(skills);
-        return CharacterSkillsModernMapper.ToResponseDTO(created);
+        return CharacterSkillsModernMapper.ToResponse(created);
     }
 }

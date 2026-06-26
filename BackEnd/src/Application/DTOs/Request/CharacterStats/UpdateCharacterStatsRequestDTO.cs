@@ -11,6 +11,7 @@ public record UpdateCharacterStatsRequestDTO(
     int Power,
     int Appearance,
     int Education,
+    int Constitution,
     int HitPoints,
     int CurrentHp,
     int Luck,
@@ -18,11 +19,6 @@ public record UpdateCharacterStatsRequestDTO(
     int CurrentSanity,
     int Move,
     int Build,
-    int Dodge,
     DamageBonusEnum DamageBonus,
-    bool TemporaryInsanity,
-    bool IndefiniteSanity,
-    bool MajorWound,
-    bool Unconscious,
-    bool Dying
+    CharacterConditionEnum Condition
 );

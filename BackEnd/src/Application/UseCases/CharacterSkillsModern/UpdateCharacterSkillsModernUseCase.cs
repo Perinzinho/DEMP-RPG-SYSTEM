@@ -3,6 +3,7 @@ using DEMP_RPG_API.Application.DTOs.Request.CharacterSkillsModern;
 using DEMP_RPG_API.Application.DTOs.Response.CharacterSkillsModern;
 using DEMP_RPG_API.Domain.Exceptions.Character;
 using DEMP_RPG_API.Domain.Ports;
+using DEMP_RPG_API.Domain.ValueObjects.Character;
 
 namespace DEMP_RPG_API.Application.UseCases.CharacterSkillsModern;
 
@@ -15,16 +16,18 @@ public class UpdateCharacterSkillsUseCase
         _skillsRepository = skillsRepository;
     }
 
-    public async Task<GetCharacterSkillsModernResponseDTO> UpdateCharacterSkills(Guid id, UpdateCharacterSkillsModernRequestDTO dto)
+    public async Task<GetCharacterSkillsModernResponseDTO> UpdateCharacterSkills(
+        Guid id, UpdateCharacterSkillsModernRequestDTO dto)
     {
         var skills = await _skillsRepository.GetCharacterSkillModernById(id);
         if (skills == null)
             throw new CharacterSkillsNotFoundException();
 
-        CharacterSkillsModernMapper.Update(skills, dto);
+        skills.Update(
+            dto.Skills.ToDictionary(k => k.Key, v => new AttributeSkillVO(v.Value))
+        );
 
         var updated = await _skillsRepository.UpdateCharacterSkillModern(skills);
-
-        return CharacterSkillsModernMapper.ToResponseDTO(updated);
+        return CharacterSkillsModernMapper.ToResponse(updated);
     }
 }

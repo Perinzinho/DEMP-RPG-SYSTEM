@@ -11,8 +11,8 @@ export function updateCharacterSkills(id, dto) {
   });
 }
 
-export function createCharacterSkillsModern(dto) {
-  return apiFetch('/characterSkillsModern', {
+export function createCharacterSkillsModern(characterId, dto) {
+  return apiFetch(`/characterSkillsModern/${characterId}`, {
     method: 'POST',
     body: JSON.stringify(dto),
   });
