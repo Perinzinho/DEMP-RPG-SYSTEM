@@ -4,16 +4,26 @@ import {Label} from "../../components/ui/label"
 import {Button} from "../../components/ui/button"
 import backgroundImage from '../../assets/backgroundImages/backgroundImage01.png'
 import {Link, useNavigate} from "react-router-dom"
+import { useAuth } from "../../contexts/userAuth"
 
 
 const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    // Handle login logic here
-  }
+    const response = await login(email, password)
+    if(response.roleEnum === 1) {
+      navigate('/admin/home')
+    }else if(response.roleEnum === 2) {
+      navigate('/user/home')
+    }else if(response.roleEnum === 3) {
+      navigate('/spectator/home')
+    }
+}
 
   return (
     <div className="flex items-center justify-center min-h-screen" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover'}}>
@@ -30,7 +40,8 @@ const LoginPage = () => {
                         </Label>
                         <input 
                           type="email" 
-                          id="email" 
+                          id="email"
+                          placeholder="Digite seu email" 
                           className="px-4 py-3 border-[#0e9aa7] rounded-md focus:outline-none focus-visible:ring-[#0e9aa7] focus-visible:ring-2 bg-[#084251] text-white" 
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
@@ -43,6 +54,7 @@ const LoginPage = () => {
                         <input 
                           type="password" 
                           id="password" 
+                          placeholder="Digite sua senha"
                           className="px-4 py-3 border-[#0e9aa7] rounded-md focus:outline-none focus-visible:ring-[#0e9aa7] focus-visible:ring-2 bg-[#084251] text-white" 
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
