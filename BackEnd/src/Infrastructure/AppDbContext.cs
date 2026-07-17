@@ -177,8 +177,11 @@ modelBuilder.Entity<CharacterSkillsModernEntity>(entity =>
     
     entity.Property(e => e.Skill)
         .HasConversion(
-            v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
-            v => JsonSerializer.Deserialize<Dictionary<SkillEnum, AttributeSkillVO>>(v, (JsonSerializerOptions?)null)!
+            v => JsonSerializer.Serialize(
+                v.ToDictionary(k => k.Key, val => val.Value.Value), // AttributeSkillVO → int
+                (JsonSerializerOptions?)null),
+            v => JsonSerializer.Deserialize<Dictionary<SkillEnum, int>>(v, (JsonSerializerOptions?)null)!
+                .ToDictionary(k => k.Key, val => new AttributeSkillVO(val.Value)) // int → AttributeSkillVO
         );
     
 });

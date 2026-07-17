@@ -14,6 +14,10 @@ import { OCCUPATIONS } from "../../utils/occupations";
 import "./characterSheetPage.css";
 import { Skills, toSkillsEnum } from "../../utils/skills";
 
+function getSkillValues(skillsState) {
+    return skillsState?.skills ?? skillsState ?? {};
+}
+
 function CharacterSheetPage() {
     const { characterId } = useParams();
 
@@ -55,7 +59,13 @@ function handleStatField(field, value) {
 }
 
 function handleSkillField(field, value) {
-    setSkills((prev) => ({ ...prev, [field]: value }));
+    setSkills((prev) => ({
+        ...prev,
+        skills: {
+            ...getSkillValues(prev),
+            [field]: value,
+        },
+    }));
 }
 
 async function handleSave() {
@@ -64,11 +74,11 @@ async function handleSave() {
             ? character.occupation
             : OCCUPATIONS.find(o => o.label === character.occupation)?.value ?? Number(character.occupation);
 
-        const { id, characterId, characterStatsId, skills: inner, ...rawSkills } = skills;
-        const skillsConverted = Object.fromEntries(
-            Object.entries(rawSkills).map(([key, value]) => [Skills[key], value])
-        );
+        const skillValues = getSkillValues(skills);
 
+        const skillsConverted = Object.fromEntries(
+            Object.entries(skillValues).map(([key, value]) => [Skills[key], value])
+        );
 
         await Promise.all([
             updateCharacter(character.id, {
@@ -79,8 +89,18 @@ async function handleSave() {
                 annotations: character.annotations,
             }),
             updateCharacterStats(stats.id, stats),
-            updateCharacterSkills(id, { skills: skillsConverted }),
+            updateCharacterSkills(skills.id, { skills: skillsConverted }),
         ]);
+
+        const [characterData, statsData, skillsData] = await Promise.all([
+            getCharacterById(characterId),
+            getCharacterStatsByCharacterId(characterId),
+            getCharacterSkillsByCharacterId(characterId),
+        ]);
+        setCharacter(characterData);
+        setStats(statsData);
+        setSkills(skillsData);
+
         setError("");
     } catch (err) {
         setError("Erro ao salvar a ficha.");
