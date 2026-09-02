@@ -158,6 +158,15 @@ public class AppDbContext : DbContext
                 entity.Property(e=>e.Condition)
                     .IsRequired();
                 
+                entity.Property(e => e.Skill)
+                    .HasConversion(
+                        v => JsonSerializer.Serialize(
+                            v.ToDictionary(k => k.Key, val => val.Value.Value), // AttributeSkillVO → int
+                            (JsonSerializerOptions?)null),
+                        v => JsonSerializer.Deserialize<Dictionary<SkillEnum, int>>(v, (JsonSerializerOptions?)null)!
+                            .ToDictionary(k => k.Key, val => new AttributeSkillVO(val.Value)) // int → AttributeSkillVO
+                    );
+                
 
         });
         //CharacterSkillsModern

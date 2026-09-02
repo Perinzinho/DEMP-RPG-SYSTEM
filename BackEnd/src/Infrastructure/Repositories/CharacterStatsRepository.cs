@@ -41,7 +41,7 @@ public class CharacterStatsRepository:ICharacterStatsRepository
             throw new CharacterStatsNoFoundException();
 
         oldchar.Update(characterStats.MaxAttributes,characterStats.BaseAttributes,characterStats.HitPoints, characterStats.Luck
-        ,characterStats.Sanity,characterStats.Move,characterStats.Build, characterStats.DamageBonus,characterStats.Condition);
+        ,characterStats.Sanity,characterStats.Move,characterStats.Build, characterStats.DamageBonus,characterStats.Condition, characterStats.Skill);
   
         await _context.SaveChangesAsync();
         return oldchar;

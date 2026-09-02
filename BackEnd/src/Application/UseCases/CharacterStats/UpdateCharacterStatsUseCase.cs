@@ -25,7 +25,7 @@ public class UpdateCharacterStatsUseCase
 
         oldCharacterStats.Update(dto.MaxAttributes, new BaseAttributeVo(new AttributeSkillVO(dto.Strength), new AttributeSkillVO(dto.Dexterity), new AttributeSkillVO(dto.Intelligence), new AttributeSkillVO(dto.Size), 
                 new AttributeSkillVO(dto.Power), new AttributeSkillVO(dto.Appearance), new AttributeSkillVO(dto.Education), new AttributeSkillVO(dto.Constitution)),
-                new PoolStatVo(dto.HitPoints, dto.CurrentHp), dto.Luck,new PoolStatVo(dto.Sanity,dto.CurrentSanity) , dto.Move, dto.Build, dto.DamageBonus, dto.Condition);
+                new PoolStatVo(dto.HitPoints, dto.CurrentHp), dto.Luck,new PoolStatVo(dto.Sanity,dto.CurrentSanity) , dto.Move, dto.Build, dto.DamageBonus, dto.Condition, dto.Skills.ToDictionary(k => k.Key, v => new AttributeSkillVO(v.Value)));
         var updated = await _characterStatsRepository.UpdateCharacterStats(oldCharacterStats);
         return CharacterStatsMapper.ToGetResponse(updated);
     }

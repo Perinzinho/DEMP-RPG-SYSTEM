@@ -23,14 +23,14 @@ public class CharacterSkillsModernEntity
 
 
     public void Update(Dictionary<SkillEnum, AttributeSkillVO>? skills)
-    {
-        if (skills == null) return;
-
-        foreach (var skill in skills)
-        {
-            if (Skill.ContainsKey(skill.Key))
-                Skill[skill.Key] = skill.Value;
-
-        }
+    {       if (skills == null) return;
+     
+             foreach (var skill in skills)
+             {
+                 if (Skill.ContainsKey(skill.Key))
+                     Skill[skill.Key] = skill.Value;
+     
+             }
+        
     }
 }
