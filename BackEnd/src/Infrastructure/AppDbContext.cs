@@ -16,8 +16,6 @@ public class AppDbContext : DbContext
     public DbSet<CharacterEntity> Characters => Set<CharacterEntity>();
     public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
     public DbSet<CharacterStatsEntity> CharacterStats => Set<CharacterStatsEntity>();
-    public DbSet<CharacterSkillsModernEntity> CharacterSkillsModern => Set<CharacterSkillsModernEntity>();
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -169,32 +167,6 @@ public class AppDbContext : DbContext
                 
 
         });
-        //CharacterSkillsModern
-modelBuilder.Entity<CharacterSkillsModernEntity>(entity =>
-{
-    entity.ToTable("CharacterSkillsModern");
-    entity.HasKey(e => e.Id);
-
-    entity.Property(e => e.Id)
-        .ValueGeneratedNever()
-        .IsRequired();
-    entity.Property(e => e.CharacterId)
-        .IsRequired();
-
-    entity.Property(e => e.CharacterStatsId)
-        .IsRequired();
-    
-    entity.Property(e => e.Skill)
-        .HasConversion(
-            v => JsonSerializer.Serialize(
-                v.ToDictionary(k => k.Key, val => val.Value.Value), // AttributeSkillVO → int
-                (JsonSerializerOptions?)null),
-            v => JsonSerializer.Deserialize<Dictionary<SkillEnum, int>>(v, (JsonSerializerOptions?)null)!
-                .ToDictionary(k => k.Key, val => new AttributeSkillVO(val.Value)) // int → AttributeSkillVO
-        );
-    
-});
-        
         
         //Room
         modelBuilder.Entity<RoomEntity>(entity =>

@@ -54,6 +54,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Tests (não commitados por decisão do projeto)
+BackEnd.Tests/
+
 node_modules
 dist
 dist-ssr

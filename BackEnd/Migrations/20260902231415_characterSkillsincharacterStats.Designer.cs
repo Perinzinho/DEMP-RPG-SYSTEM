@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DEMP_RPG_API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DEMP_RPG_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260902231415_characterSkillsincharacterStats")]
+    partial class characterSkillsincharacterStats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,6 +73,26 @@ namespace DEMP_RPG_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Characters", (string)null);
+                });
+
+            modelBuilder.Entity("DEMP_RPG_API.Domain.Entities.CharacterSkillsModernEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CharacterId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CharacterStatsId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CharacterSkillsModern", (string)null);
                 });
 
             modelBuilder.Entity("DEMP_RPG_API.Domain.Entities.CharacterStatsEntity", b =>

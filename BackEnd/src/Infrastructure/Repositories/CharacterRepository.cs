@@ -67,10 +67,6 @@ public class CharacterRepository:ICharacterRepository
             _context.CharacterStats.Remove(characterStats);
         
         
-        var characterSkills= await _context.CharacterSkillsModern.FirstOrDefaultAsync(e=>e.CharacterId == id);
-        if (characterSkills != null)
-            _context.CharacterSkillsModern.Remove(characterSkills);
-        
         _context.Characters.Remove(character);
         await _context.SaveChangesAsync();
     }
