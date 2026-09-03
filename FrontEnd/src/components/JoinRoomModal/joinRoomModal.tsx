@@ -35,7 +35,7 @@ function JoinRoomModal({ onClose, onJoin }: JoinRoomModalProps) {
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-[360px] rounded-xl border-[#2F5663] bg-background">
+      <DialogContent className="max-w-[360px] rounded-xl border-[#2F5663] bg-background shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         <DialogHeader>
           <DialogTitle className="font-title text-center text-2xl text-foreground">
             Entrar em mesa
@@ -55,18 +55,29 @@ function JoinRoomModal({ onClose, onJoin }: JoinRoomModalProps) {
               onChange={(e) => setRoomCode(e.target.value)}
               disabled={loading}
               maxLength={6}
-              className="h-12 rounded-lg border-none bg-muted px-4 text-lg tracking-[2px] text-foreground"
+              className="h-12 rounded-lg border-none bg-muted px-4 text-lg tracking-[2px] text-foreground transition-all duration-300 focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
             />
           </div>
 
-          {error && <p className="m-0 text-sm text-destructive">{error}</p>}
+          {error && (
+            <p className="m-0 text-sm text-destructive animate-in fade-in duration-300">
+              {error}
+            </p>
+          )}
 
           <Button
             type="submit"
             disabled={loading || !roomCode}
-            className="h-11 w-full rounded-lg border border-[#2F5663] bg-muted font-title text-base text-foreground hover:opacity-85"
+            className="h-11 w-full rounded-lg border border-[#2F5663] bg-muted font-title text-base text-foreground transition-all duration-300 hover:bg-[rgba(8,66,81,0.8)] hover:opacity-90"
           >
-            {loading ? 'Entrando...' : 'Entrar'}
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
+                Entrando...
+              </span>
+            ) : (
+              'Entrar'
+            )}
           </Button>
         </form>
       </DialogContent>

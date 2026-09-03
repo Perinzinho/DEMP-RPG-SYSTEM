@@ -34,7 +34,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
           type="text"
           value={data.name}
           onChange={(e) => onChange('name', e.target.value)}
-          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground"
+          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]"
         />
       </div>
 
@@ -47,7 +47,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
           type="text"
           value={data.gender}
           onChange={(e) => onChange('gender', e.target.value)}
-          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground"
+          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]"
         />
       </div>
 
@@ -57,7 +57,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
           value={String(data.occupation)}
           onValueChange={(value) => onChange('occupation', Number(value))}
         >
-          <SelectTrigger className="w-full rounded-md border-[#2F5663] bg-muted font-title italic text-sm text-foreground">
+          <SelectTrigger className="w-full rounded-md border-[#2F5663] bg-muted font-title italic text-sm text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]">
             <SelectValue placeholder="Selecione a ocupação" />
           </SelectTrigger>
           <SelectContent className="max-h-80 bg-popover text-popover-foreground">
@@ -79,7 +79,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
           type="text"
           value={data.residence}
           onChange={(e) => onChange('residence', e.target.value)}
-          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground"
+          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]"
         />
       </div>
 
@@ -92,7 +92,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
           type="number"
           value={data.age}
           onChange={(e) => onChange('age', Number(e.target.value))}
-          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground"
+          className="rounded-md border border-[#2F5663] bg-transparent px-3 py-2 font-title italic text-sm text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]"
         />
       </div>
     </div>

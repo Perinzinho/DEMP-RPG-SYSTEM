@@ -7,6 +7,7 @@ import { getCharactersByRoomId } from '../../services/characterService'
 import { getCharacterStatsByCharacterId } from '../../services/characterStatsService'
 import { getRoomById } from '../../services/roomService'
 import type { Character, Room } from '../../types'
+import { FaCheck } from 'react-icons/fa'
 
 interface CharacterWithDerived extends Character {
   currentHp: number
@@ -15,15 +16,6 @@ interface CharacterWithDerived extends Character {
   maxSanity: number
 }
 
-// ---------------------------------------------------------------------------
-// Seções do painel do mestre.
-//
-// PARA ADICIONAR UMA NOVA SEÇÃO NO FUTURO:
-//   1. Adicione um novo item em MASTER_SECTIONS (id único + rótulo exibido).
-//   2. Adicione o caso correspondente ('novoId' => ...) no bloco de
-//      renderização das seções (após o caso 'infos').
-//   3. Se a seção depender de dados novos, carregue-os no useEffect abaixo.
-// ---------------------------------------------------------------------------
 const MASTER_SECTIONS = [
   { id: 'infos', label: 'Infos' },
   { id: 'mapa', label: 'Mapa' },
@@ -93,18 +85,19 @@ function MasterRoomPage() {
   }
 
   const tabClass = (active: boolean) =>
-    `font-title bg-transparent border-none text-[clamp(16px,1.45vw,28px)] text-[#6E97A4] pb-1 cursor-pointer border-b-2 ${
-      active ? 'border-[#1a6fb5] text-foreground' : 'border-transparent'
+    `font-title bg-transparent border-none text-[clamp(16px,1.45vw,28px)] pb-1 cursor-pointer border-b-2 transition-all duration-300 ${
+      active
+        ? 'border-[#1a6fb5] text-foreground'
+        : 'border-transparent text-[#6E97A4] hover:text-[#9dc4d1]'
     }`
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <div className="mx-auto box-border w-full max-w-[70vw] px-0 py-8">
-          {/* Navegação entre seções do painel */}
+        <div className="mx-auto box-border w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-end justify-between">
-            <div className="flex gap-10">
+            <div className="flex gap-6 overflow-x-auto sm:gap-10">
               {MASTER_SECTIONS.map((section) => (
                 <button
                   key={section.id}
@@ -118,10 +111,8 @@ function MasterRoomPage() {
             </div>
           </div>
 
-          {/* Renderização das seções */}
           {activeTab === 'infos' && (
-            <section>
-              {/* Cabeçalho da mesa */}
+            <section className="animate-in fade-in duration-300">
               <div className="mb-8 border-b border-[#1a6fb5] pb-6">
                 <h1 className="font-title m-0 text-[clamp(24px,2.4vw,36px)] text-foreground">
                   {loadingRoom ? 'Carregando mesa...' : room?.name || 'Mesa'}
@@ -132,8 +123,7 @@ function MasterRoomPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
-                {/* Jogadores */}
-                <div className="rounded-lg border border-[#2F5663] p-6 md:p-8">
+                <div className="rounded-lg border border-[#2F5663] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.1)] md:p-8">
                   <div className="mb-6 flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] pb-4">
                     <h2 className="font-title m-0 text-[clamp(20px,1.8vw,28px)] text-foreground">
                       Jogadores
@@ -147,9 +137,12 @@ function MasterRoomPage() {
                   </div>
 
                   {loadingCharacters ? (
-                    <p className="font-title py-8 text-center text-sm italic text-[#6E97A4]">
-                      Carregando personagens...
-                    </p>
+                    <div className="flex flex-col items-center gap-2 py-8">
+                      <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#1a6fb5] border-t-transparent" />
+                      <p className="font-title text-center text-sm italic text-[#6E97A4]">
+                        Carregando personagens...
+                      </p>
+                    </div>
                   ) : characters.length === 0 ? (
                     <p className="font-title py-8 text-center text-sm italic text-[#6E97A4]">
                       Nenhum personagem nesta mesa ainda.
@@ -172,27 +165,40 @@ function MasterRoomPage() {
                   )}
                 </div>
 
-                {/* Código da sala (somente na aba Infos) */}
-                <div className="h-fit rounded-lg border border-[#1a6fb5] p-6">
+                <div className="h-fit rounded-lg border border-[#1a6fb5] p-6 shadow-[0_2px_8px_rgba(26,111,181,0.1)]">
                   <h2 className="font-title m-0 mb-4 text-[clamp(18px,1.4vw,24px)] text-foreground">
                     Código da sala
                   </h2>
 
                   {loadingRoom ? (
-                    <p className="font-title text-sm italic text-[#6E97A4]">Carregando...</p>
+                    <div className="flex flex-col items-center gap-2 py-4">
+                      <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#1a6fb5] border-t-transparent" />
+                      <p className="font-title text-sm italic text-[#6E97A4]">Carregando...</p>
+                    </div>
                   ) : room?.roomCode ? (
                     <div className="flex flex-col">
                       <button
                         type="button"
                         onClick={handleCopyRoomCode}
-                        className="flex cursor-pointer flex-col items-center rounded-lg border border-[#1a6fb5] bg-primary/10 px-6 py-6 transition-colors hover:bg-primary/20"
+                        className={`flex cursor-pointer flex-col items-center rounded-lg border px-6 py-6 transition-all duration-300 ${
+                          copied
+                            ? 'border-[#6fa37a] bg-[rgba(111,163,122,0.1)]'
+                            : 'border-[#1a6fb5] bg-primary/10 hover:bg-primary/20'
+                        }`}
                         title="Clique para copiar o código"
                       >
                         <span className="font-title tracking-[0.35em] text-[clamp(24px,2.2vw,34px)] text-foreground">
                           {room.roomCode}
                         </span>
-                        <span className="mt-3 text-[clamp(10px,0.7vw,12px)] text-[#6ea8d8] italic">
-                          {copied ? 'Código copiado!' : 'Clique para copiar'}
+                        <span className="mt-3 flex items-center gap-1.5 text-[clamp(10px,0.7vw,12px)] italic text-[#6ea8d8]">
+                          {copied ? (
+                            <>
+                              <FaCheck className="text-[#6fa37a]" />
+                              Código copiado!
+                            </>
+                          ) : (
+                            'Clique para copiar'
+                          )}
                         </span>
                       </button>
                       <p className="font-title mt-4 text-center text-[clamp(11px,0.8vw,14px)] italic text-[#6E97A4]">
@@ -210,7 +216,7 @@ function MasterRoomPage() {
           )}
 
           {activeTab === 'mapa' && (
-            <section>
+            <section className="animate-in fade-in duration-300">
               <p className="font-title py-24 text-center text-[clamp(16px,1.3vw,24px)] italic text-[#6E97A4]">
                 Em desenvolvimento
               </p>
@@ -218,7 +224,7 @@ function MasterRoomPage() {
           )}
 
           {activeTab === 'initiative' && (
-            <section>
+            <section className="animate-in fade-in duration-300">
               <p className="font-title py-24 text-center text-[clamp(16px,1.3vw,24px)] italic text-[#6E97A4]">
                 Em desenvolvimento
               </p>

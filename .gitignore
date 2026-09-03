@@ -73,3 +73,6 @@ dist-ssr
 *.sln
 *.sw?
 
+# Skills
+skill_desenvolvedor_web_design.md
+

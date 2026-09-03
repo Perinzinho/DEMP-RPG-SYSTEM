@@ -17,8 +17,12 @@ function StepIndicator({ currentStep }: StepIndicatorProps) {
         <span
           key={step.number}
           className={cn(
-            'text-sm text-[#6E97A4]',
-            currentStep === step.number && 'border-b-2 border-[#1a6fb5] pb-1.5 text-foreground'
+            'text-sm transition-all duration-300',
+            currentStep === step.number
+              ? 'border-b-2 border-[#1a6fb5] pb-1.5 text-foreground'
+              : currentStep > step.number
+                ? 'text-[#6ea8d8]'
+                : 'text-[#6E97A4]'
           )}
         >
           {step.number}. {step.label}

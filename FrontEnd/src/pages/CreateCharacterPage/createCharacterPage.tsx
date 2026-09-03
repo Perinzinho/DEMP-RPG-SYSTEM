@@ -126,37 +126,50 @@ function CreateCharacterPage() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <div className="mx-auto box-border w-full max-w-[760px] px-6 py-12">
+        <div className="mx-auto box-border w-full max-w-[760px] px-4 py-12 sm:px-6">
           <h1 className="font-title mb-2 text-center text-[clamp(24px,2.5vw,32px)] italic">
             Criar Investigador
           </h1>
 
           <StepIndicator currentStep={currentStep} />
 
-          {currentStep === 1 && <CharacterInfoStep data={info} onChange={handleInfoChange} />}
+          <div className="rounded-2xl border border-[#2F5663]/60 bg-[rgba(6,51,67,0.12)] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.2)] sm:p-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            {currentStep === 1 && <CharacterInfoStep data={info} onChange={handleInfoChange} />}
+            {currentStep === 2 && <CharacterAttributesStep stats={stats} onChange={handleStatsChange} />}
+            {currentStep === 3 && <CharacterSkillsStep skills={skills} onChange={handleSkillsChange} />}
+          </div>
 
-          {currentStep === 2 && <CharacterAttributesStep stats={stats} onChange={handleStatsChange} />}
+          {error && (
+            <p className="mt-4 text-center text-[13px] text-destructive animate-in fade-in duration-300">
+              {error}
+            </p>
+          )}
 
-          {currentStep === 3 && <CharacterSkillsStep skills={skills} onChange={handleSkillsChange} />}
-
-          {error && <p className="mt-4 text-center text-[13px] text-destructive">{error}</p>}
-
-          <div className="mx-auto mt-10 flex max-w-[480px] items-center justify-between">
+          <div className="mx-auto mt-8 flex max-w-[480px] items-center justify-between gap-4">
             <Button
               variant="outline"
               onClick={handleBack}
               style={{ visibility: currentStep === 1 ? 'hidden' : 'visible' }}
               disabled={saving}
-              className="font-title rounded border-[#5A6056] bg-transparent px-6 py-2 text-sm italic text-[#6E97A4]"
+              className="font-title rounded border-[#5A6056] bg-transparent px-6 py-2 text-sm italic text-[#6E97A4] transition-all duration-300 hover:border-[#1a6fb5] hover:text-[#9dc4d1]"
             >
               Voltar
             </Button>
             <Button
               onClick={handleNext}
               disabled={saving}
-              className="font-title rounded border-[#1a6fb5] bg-transparent px-6 py-2 text-sm italic text-foreground hover:bg-primary/10"
+              className="font-title rounded border-[#1a6fb5] bg-transparent px-6 py-2 text-sm italic text-foreground transition-all duration-300 hover:bg-primary/10 hover:shadow-[0_4px_12px_rgba(26,111,181,0.15)]"
             >
-              {saving ? 'Criando...' : currentStep === 3 ? 'Criar Personagem' : 'Próximo'}
+              {saving ? (
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
+                  Criando...
+                </span>
+              ) : currentStep === 3 ? (
+                'Criar Personagem'
+              ) : (
+                'Próximo'
+              )}
             </Button>
           </div>
         </div>

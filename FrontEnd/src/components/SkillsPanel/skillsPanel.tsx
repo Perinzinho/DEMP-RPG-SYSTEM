@@ -19,12 +19,9 @@ function SkillsPanel({ skills, onChange }: SkillsPanelProps) {
   const skillValues = toSkillValues(skills)
 
   return (
-    <div className="mb-8 mt-4">
+    <div className="mb-8 mt-4 w-full rounded-lg border border-[#2F5663] p-4 shadow-[0_2px_4px_rgba(0,0,0,0.1)]">
       <p className="font-title mb-3 text-[15px] text-[#9DC4D1]">Perícias</p>
-      <div
-        className="gap-x-8"
-        style={{ display: 'grid', gridTemplateRows: 'repeat(18, auto)', gridAutoFlow: 'column' }}
-      >
+      <div className="grid w-full grid-cols-1 gap-x-8 md:grid-cols-2 xl:grid-cols-3">
         {sortedSkillFields.map((field) => (
           <StatRow
             key={field.key}

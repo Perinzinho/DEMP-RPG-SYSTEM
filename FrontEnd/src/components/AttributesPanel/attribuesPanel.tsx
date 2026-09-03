@@ -18,7 +18,7 @@ interface AttributesPanelProps {
 
 function AttributesPanel({ stats, onChange }: AttributesPanelProps) {
   return (
-    <div>
+    <div className="rounded-lg border border-[#2F5663] p-4 shadow-[0_2px_4px_rgba(0,0,0,0.1)]">
       <p className="font-title mb-3 text-[15px] text-[#9DC4D1]">Atributos</p>
       {ATTRIBUTE_FIELDS.map((field) => (
         <StatRow

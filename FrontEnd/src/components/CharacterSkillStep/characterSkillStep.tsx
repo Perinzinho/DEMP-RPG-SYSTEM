@@ -13,25 +13,24 @@ function CharacterSkillsStep({ skills, onChange }: CharacterSkillsStepProps) {
         Distribua pontos de perícia entre as opções abaixo
       </p>
 
-      <div
-        className="max-h-[420px] gap-x-8 overflow-y-auto pr-2"
-        style={{ display: 'grid', gridTemplateRows: 'repeat(18, auto)', gridAutoFlow: 'column' }}
-      >
-        {sortedSkillFields.map((field) => (
-          <div
-            key={field.key}
-            className="flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] py-1.5 text-[13px]"
-          >
-            <span className="text-[#c4c8c0]">{field.label}</span>
-            <Input
-              aria-label={field.label}
-              type="number"
-              value={skills[field.key] ?? 0}
-              onChange={(e) => onChange(field.key, Number(e.target.value))}
-              className="w-10 border-none bg-transparent text-right text-[13px] text-foreground"
-            />
-          </div>
-        ))}
+      <div className="max-h-[460px] w-full gap-x-8 overflow-y-auto rounded-lg border border-[rgba(47,86,99,0.3)] p-3 pr-4">
+        <div className="grid grid-cols-1 gap-x-8 md:grid-cols-2 xl:grid-cols-3">
+          {sortedSkillFields.map((field) => (
+            <div
+              key={field.key}
+              className="flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] py-1.5 text-[13px] transition-colors duration-200 hover:bg-[rgba(26,111,181,0.03)]"
+            >
+              <span className="text-[#c4c8c0]">{field.label}</span>
+              <Input
+                aria-label={field.label}
+                type="number"
+                value={skills[field.key] ?? 0}
+                onChange={(e) => onChange(field.key, Number(e.target.value))}
+                className="w-10 border-none bg-transparent text-right text-[13px] text-foreground transition-colors duration-200 hover:bg-[rgba(26,111,181,0.05)]"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

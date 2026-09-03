@@ -42,7 +42,7 @@ function CharacterAttributesStep({ stats, onChange }: CharacterAttributesStepPro
         {ATTRIBUTE_FIELDS.map((field) => (
           <div
             key={field.key}
-            className="flex items-center justify-between border-b border-[rgba(47,86,99,0.4)] py-2"
+            className="flex items-center justify-between border-b border-[rgba(47,86,99,0.4)] py-2 transition-colors duration-200 hover:bg-[rgba(26,111,181,0.03)]"
           >
             <span className="text-sm text-[#c4c8c0]">{field.label}</span>
             <Input
@@ -50,7 +50,7 @@ function CharacterAttributesStep({ stats, onChange }: CharacterAttributesStepPro
               type="number"
               value={stats[field.key]}
               onChange={(e) => onChange(field.key, Number(e.target.value))}
-              className="w-[50px] rounded border-none bg-muted p-1 text-center text-sm text-foreground"
+              className="w-[50px] rounded border-none bg-muted p-1 text-center text-sm text-foreground transition-colors duration-200 hover:bg-[rgba(8,66,81,0.8)]"
             />
           </div>
         ))}
@@ -74,7 +74,7 @@ function CharacterAttributesStep({ stats, onChange }: CharacterAttributesStepPro
               type="number"
               value={stats[field.key]}
               onChange={(e) => onChange(field.key, Number(e.target.value))}
-              className="mx-auto w-[60px] rounded bg-muted p-1.5 text-center text-base text-foreground"
+              className="mx-auto w-[60px] rounded bg-muted p-1.5 text-center text-base text-foreground transition-colors duration-200 hover:bg-[rgba(8,66,81,0.8)]"
             />
           </div>
         ))}
