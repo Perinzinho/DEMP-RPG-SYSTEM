@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/header'
 import Footer from '../../components/Footer/footer'
@@ -10,6 +10,7 @@ import { createCharacter } from '../../services/characterService'
 import { createCharacterStats } from '../../services/characterStatsService'
 import { useAuth } from '../../contexts/AuthContext'
 import { Skills, toSkillsEnum } from '../../utils/skills'
+import { parseDholesPdf, occupationToEnum } from '../../utils/dholesPdfParser'
 import { Button } from '@/components/ui/button'
 
 const INITIAL_SKILLS: Record<string, number> = Object.fromEntries(
@@ -49,7 +50,9 @@ function CreateCharacterPage() {
   const [skills, setSkills] = useState<Record<string, number>>(INITIAL_SKILLS)
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
-
+  const [importError, setImportError] = useState('')
+  const [importing, setImporting] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
   function handleInfoChange(field: string, value: string | number) {
     setInfo((prev) => ({ ...prev, [field]: value }))
   }
@@ -60,6 +63,46 @@ function CreateCharacterPage() {
 
   function handleSkillsChange(field: string, value: number) {
     setSkills((prev) => ({ ...prev, [field]: value }))
+  }
+
+  async function handleImportPdf(file: File) {
+    setImportError('')
+    setImporting(true)
+    try {
+      const data = await parseDholesPdf(file)
+
+      const occ = occupationToEnum(data.info.occupation)
+      if (
+        data.info.name ||
+        data.info.age !== undefined ||
+        data.info.gender ||
+        data.info.residence ||
+        occ !== undefined
+      ) {
+        setInfo((prev) => ({
+          ...prev,
+          name: data.info.name || prev.name,
+          age: data.info.age ?? prev.age,
+          gender: data.info.gender || prev.gender,
+          residence: data.info.residence || prev.residence,
+          occupation: occ ?? prev.occupation,
+        }))
+      }
+
+      if (Object.keys(data.stats).length > 0) {
+        setStats((prev) => ({ ...prev, ...data.stats }))
+      }
+
+      if (Object.keys(data.skills).length > 0) {
+        setSkills((prev) => ({ ...prev, ...data.skills }))
+      }
+
+      setCurrentStep(1)
+    } catch {
+      setImportError('Não foi possível ler o PDF. Verifique se é uma ficha do Dhole\'s House.')
+    } finally {
+      setImporting(false)
+    }
   }
 
   async function handleCreate() {
@@ -90,13 +133,13 @@ function CreateCharacterPage() {
         power: stats.power,
         education: stats.education,
         hitPoints: stats.hitPoints,
-        currentHp: stats.hitPoints,
+        currentHp: stats.currentHp ?? stats.hitPoints,
         sanity: stats.sanity,
-        currentSanity: stats.sanity,
-        luck: 50,
-        move: 8,
-        build: 0,
-        damageBonus: 3,
+        currentSanity: stats.currentSanity ?? stats.sanity,
+        luck: stats.luck ?? 50,
+        move: stats.move ?? 8,
+        build: stats.build ?? 0,
+        damageBonus: stats.damageBonus ?? 3,
         skills: toSkillsEnum(skills),
       })
 
@@ -132,6 +175,43 @@ function CreateCharacterPage() {
           </h1>
 
           <StepIndicator currentStep={currentStep} />
+
+          <div className="mx-auto mb-6 flex max-w-[480px] flex-col items-center gap-2 rounded-xl border border-dashed border-[#2F5663] bg-[rgba(6,51,67,0.08)] px-4 py-5">
+            <input
+              ref={inputRef}
+              type="file"
+              accept="application/pdf"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0]
+                if (file) handleImportPdf(file)
+                e.target.value = ''
+              }}
+            />
+            <Button
+              variant="outline"
+              disabled={importing}
+              onClick={() => inputRef.current?.click()}
+              className="font-title rounded-md border-[#1a6fb5] bg-transparent text-sm italic text-[#6ea8d8] transition-all duration-300 hover:bg-primary/10 hover:text-[#9dc4d1]"
+            >
+              {importing ? (
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#1a6fb5] border-t-transparent" />
+                  Importando...
+                </span>
+              ) : (
+                'Importar PDF (Dhole\'s House)'
+              )}
+            </Button>
+            <p className="text-[12px] italic text-[#6E97A4]">
+              Preenche automaticamente dados, atributos e perícias a partir da ficha.
+            </p>
+            {importError && (
+              <p className="text-[12px] text-destructive animate-in fade-in duration-300">
+                {importError}
+              </p>
+            )}
+          </div>
 
           <div className="rounded-2xl border border-[#2F5663]/60 bg-[rgba(6,51,67,0.12)] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.2)] sm:p-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
             {currentStep === 1 && <CharacterInfoStep data={info} onChange={handleInfoChange} />}
