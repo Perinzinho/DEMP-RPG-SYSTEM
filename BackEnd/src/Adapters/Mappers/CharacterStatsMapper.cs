@@ -29,7 +29,8 @@ public class CharacterStatsMapper
             characterStats.Move,
             characterStats.Build,
             characterStats.DamageBonus,
-            characterStats.Condition
+            characterStats.Condition,
+            characterStats.Skill.ToDictionary(k => k.Key, v => v.Value.Value)
             );
     }
 
@@ -53,7 +54,9 @@ public class CharacterStatsMapper
             dto.Move,
             dto.Build,
             dto.DamageBonus,
-            CharacterConditionEnum.None
+            CharacterConditionEnum.None,
+            dto.Skills.ToDictionary(k => k.Key, v => new AttributeSkillVO(v.Value))
             );
+        
     }
 }

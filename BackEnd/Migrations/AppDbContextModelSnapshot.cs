@@ -72,26 +72,6 @@ namespace DEMP_RPG_API.Migrations
                     b.ToTable("Characters", (string)null);
                 });
 
-            modelBuilder.Entity("DEMP_RPG_API.Domain.Entities.CharacterSkillsModernEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CharacterStatsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Skill")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CharacterSkillsModern", (string)null);
-                });
-
             modelBuilder.Entity("DEMP_RPG_API.Domain.Entities.CharacterStatsEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -117,6 +97,10 @@ namespace DEMP_RPG_API.Migrations
 
                     b.Property<int>("Move")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

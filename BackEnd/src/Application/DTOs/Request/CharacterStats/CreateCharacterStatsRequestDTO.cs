@@ -23,5 +23,7 @@ public record CreateCharacterStatsRequestDTO(
     int Move,
     int Build,
     
-    DamageBonusEnum DamageBonus
+    DamageBonusEnum DamageBonus,
+    
+    Dictionary<SkillEnum, int> Skills
     );

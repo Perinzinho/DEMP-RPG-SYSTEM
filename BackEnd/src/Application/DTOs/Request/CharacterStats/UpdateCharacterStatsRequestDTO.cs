@@ -20,5 +20,6 @@ public record UpdateCharacterStatsRequestDTO(
     int Move,
     int Build,
     DamageBonusEnum DamageBonus,
-    CharacterConditionEnum Condition
+    CharacterConditionEnum Condition,
+    Dictionary<SkillEnum, int> Skills
 );

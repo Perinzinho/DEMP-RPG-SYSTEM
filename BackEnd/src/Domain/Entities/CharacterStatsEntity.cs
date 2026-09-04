@@ -17,8 +17,21 @@ public class CharacterStatsEntity
     public int Build { get; private set; }
     public DamageBonusEnum DamageBonus { get; private set; }
     public CharacterConditionEnum Condition { get; private set; }
+    public Dictionary<SkillEnum, AttributeSkillVO> Skill { get; private set; } //Muitos parametros iguais então mais fácil serem guardados num dicionário
+        
 
-    public CharacterStatsEntity(Guid id, Guid characterId, MaxAttributesEnum maxAttributes,BaseAttributeVo baseAttributes ,PoolStatVo hitPoints, int luck, PoolStatVo sanity, int move, int build, DamageBonusEnum damageBonus, CharacterConditionEnum condition)
+    public CharacterStatsEntity(Guid id, 
+        Guid characterId, 
+        MaxAttributesEnum maxAttributes,
+        BaseAttributeVo baseAttributes ,
+        PoolStatVo hitPoints,
+        int luck, 
+        PoolStatVo sanity, 
+        int move, 
+        int build, 
+        DamageBonusEnum damageBonus, 
+        CharacterConditionEnum condition,
+        Dictionary<SkillEnum, AttributeSkillVO> skill)
     {
         Id = id;
         CharacterId = characterId;
@@ -31,10 +44,12 @@ public class CharacterStatsEntity
         Build = build;
         DamageBonus = damageBonus;
         Condition=condition; //Default=None
+        Skill = skill;
     }
 
     public void Update(MaxAttributesEnum? maxAttributes, BaseAttributeVo? baseAttributes, PoolStatVo? hitPoints, int? luck, PoolStatVo? sanity,
-        int? move, int? build, DamageBonusEnum? damageBonus, CharacterConditionEnum? condition)
+        int? move, int? build, DamageBonusEnum? damageBonus, CharacterConditionEnum? condition,
+        Dictionary<SkillEnum, AttributeSkillVO>? skills)
     {
         if (maxAttributes.HasValue) MaxAttributes = maxAttributes.Value;
         if (baseAttributes!=null) BaseAttributes = baseAttributes;
@@ -46,6 +61,15 @@ public class CharacterStatsEntity
         if (build.HasValue) Build = build.Value;
         if (damageBonus.HasValue) DamageBonus = damageBonus.Value;
         if (condition.HasValue) Condition = condition.Value;
+        
+        if (skills == null) return;
+     
+        foreach (var skill in skills)
+        {
+            if (Skill.ContainsKey(skill.Key))
+                Skill[skill.Key] = skill.Value;
+     
+        }
     }
     
 }

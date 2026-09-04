@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEMP-RPG-API", "BackEnd/DEMP-RPG-API.csproj", "{F5EBC97D-27D3-40D1-9DA2-A1D7E5AF49FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd.Tests", "BackEnd.Tests\BackEnd.Tests.csproj", "{5130D854-1AFD-47F0-BB38-AA6B26EEDA0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,12 @@ Global
 		{F5EBC97D-27D3-40D1-9DA2-A1D7E5AF49FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5EBC97D-27D3-40D1-9DA2-A1D7E5AF49FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5EBC97D-27D3-40D1-9DA2-A1D7E5AF49FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5130D854-1AFD-47F0-BB38-AA6B26EEDA0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5130D854-1AFD-47F0-BB38-AA6B26EEDA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5130D854-1AFD-47F0-BB38-AA6B26EEDA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5130D854-1AFD-47F0-BB38-AA6B26EEDA0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
