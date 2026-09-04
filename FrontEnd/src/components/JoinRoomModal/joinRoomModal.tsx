@@ -26,8 +26,8 @@ function JoinRoomModal({ onClose, onJoin }: JoinRoomModalProps) {
 
     try {
       await onJoin(roomCode)
-    } catch {
-      setError('Código inválido ou mesa não encontrada')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Código inválido ou mesa não encontrada')
     } finally {
       setLoading(false)
     }

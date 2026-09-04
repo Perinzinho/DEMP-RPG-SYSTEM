@@ -7,6 +7,7 @@ using DEMP_RPG_API.Application.UseCases.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using DEMP_RPG_API.Domain.Ports;
+using DEMP_RPG_API.Adapters.Middlewares;
 using DEMP_RPG_API.Infrastructure;
 using DEMP_RPG_API.Infrastructure.Repositories;
 using DEMP_RPG_API.Infrastructure.Services;
@@ -106,6 +107,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 builder.Services.AddCors(options =>
 {
@@ -131,15 +133,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
-app.UseExceptionHandler(errorApp =>
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = 500;
-        context.Response.ContentType = "application/json";
-        await context.Response.WriteAsync("{\"error\": \"Internal Server Error\"}");
-    });
-});
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

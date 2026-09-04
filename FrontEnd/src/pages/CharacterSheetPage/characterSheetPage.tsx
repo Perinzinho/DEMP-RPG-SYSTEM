@@ -36,8 +36,8 @@ function CharacterSheetPage() {
         ] as const)
         setCharacter(characterData)
         setStats(statsData)
-      } catch {
-        setError('Não foi possível carregar a ficha.')
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Não foi possível carregar a ficha.')
       } finally {
         setLoading(false)
       }
@@ -115,8 +115,8 @@ function CharacterSheetPage() {
       setError('')
       setSaved(true)
       setTimeout(() => setSaved(false), 2000)
-    } catch {
-      setError('Erro ao salvar a ficha.')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erro ao salvar a ficha.')
     }
   }
 
