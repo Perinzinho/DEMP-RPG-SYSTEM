@@ -4,7 +4,7 @@ function Footer() {
       <div className="h-[2px] w-full bg-secondary" />
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-1 px-4 py-3 text-center sm:px-6">
         <p className="font-title m-0 text-[11px] text-foreground sm:text-[14px]">
-          DEMP RPG SYSTEM V2.2.1-beta
+          DEMP RPG SYSTEM V2.3.0-beta
         </p>
         <p className="font-title m-0 text-[11px] text-foreground sm:text-[14px]">
           Desenvolvido por{' '}

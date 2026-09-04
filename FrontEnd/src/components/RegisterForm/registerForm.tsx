@@ -23,8 +23,8 @@ function RegisterForm() {
     try {
       await register(username, email, password)
       navigate('/login')
-    } catch {
-      setError('Erro ao registrar usuário')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erro ao registrar usuário')
     } finally {
       setLoading(false)
     }

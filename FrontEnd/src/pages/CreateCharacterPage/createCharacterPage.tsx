@@ -144,8 +144,8 @@ function CreateCharacterPage() {
       })
 
       navigate(`/character/${character.id}`)
-    } catch {
-      setError('Erro ao criar personagem.')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erro ao criar personagem.')
     } finally {
       setSaving(false)
     }

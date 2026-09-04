@@ -25,8 +25,8 @@ function CreateRoomPage() {
     try {
       const room = await createRoom(userId as string, name, description)
       navigate(`/master/room/${room.id}`)
-    } catch {
-      setError('Erro ao criar mesa')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erro ao criar mesa')
     } finally {
       setLoading(false)
     }

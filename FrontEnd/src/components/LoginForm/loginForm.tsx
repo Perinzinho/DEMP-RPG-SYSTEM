@@ -22,8 +22,8 @@ function LoginForm() {
     try {
       await login(email, password)
       navigate('/user/home')
-    } catch {
-      setError('Email ou senha inválidos')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Email ou senha inválidos')
     } finally {
       setLoading(false)
     }

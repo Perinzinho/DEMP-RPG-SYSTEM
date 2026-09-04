@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5128' //import.meta.env.VITE_API_URL as string |
+const API_URL = import.meta.env.VITE_API_URL as string
 
 export async function apiFetch<T = unknown>(
   endpoint: string,
