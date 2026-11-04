@@ -11,7 +11,7 @@ import { getCharactersByUserId } from '../../services/characterService'
 import { useAuth } from '../../contexts/AuthContext'
 import type { Character, Room } from '../../types'
 import { Button } from '@/components/ui/button'
-import logo from '@/assets/images/DempLogo.png'
+import investigationArt from '@/assets/images/LoginBackground01.jpg'
 
 export default function UserHomePage() {
   const [activeTab, setActiveTab] = useState<'characters' | 'rooms'>('characters')
@@ -69,24 +69,29 @@ export default function UserHomePage() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="app-shell flex min-h-dvh flex-col">
       <Header />
       <main className="dashboard flex-1" id="main-content">
         <section className="dashboard-hero" aria-labelledby="dashboard-title">
-          <div>
+          <div className="dashboard-hero-copy">
             <span className="eyebrow">
               <span className="status-dot" /> Departamento de investigações
             </span>
-            <h1 id="dashboard-title">Seu próximo mistério começa aqui.</h1>
+            <h1 id="dashboard-title">
+              Seu próximo mistério <em>começa aqui.</em>
+            </h1>
             <p>
               {userName ? `Bem-vindo, ${userName}.` : 'Bem-vindo ao departamento.'} Seus
               investigadores e suas histórias, em um só lugar.
             </p>
           </div>
-          <img className="hero-emblem" src={logo} alt="" />
+          <div className="dashboard-hero-art" aria-hidden="true">
+            <img src={investigationArt} alt="" />
+            <span>Além do que os olhos podem ver.</span>
+          </div>
         </section>
         <div className="overview-grid" aria-label="Resumo dos seus arquivos">
-          <div className="overview-item">
+          <div className="overview-item" data-tone="blue">
             <div className="overview-icon">
               <FolderSearch size={20} aria-hidden="true" />
             </div>
@@ -99,7 +104,7 @@ export default function UserHomePage() {
               <span>Investigadores</span>
             </div>
           </div>
-          <div className="overview-item">
+          <div className="overview-item" data-tone="sage">
             <div className="overview-icon">
               <Dices size={20} aria-hidden="true" />
             </div>
@@ -110,7 +115,7 @@ export default function UserHomePage() {
               <span>Mesas participando</span>
             </div>
           </div>
-          <div className="overview-item">
+          <div className="overview-item" data-tone="gold">
             <div className="overview-icon">
               <BookOpen size={20} aria-hidden="true" />
             </div>
@@ -206,7 +211,7 @@ export default function UserHomePage() {
                 ))}
               </div>
             ) : (
-              <div className="empty-state">
+              <div className="empty-state empty-dossier">
                 <div className="empty-icon">
                   <FolderSearch size={27} aria-hidden="true" />
                 </div>
@@ -228,6 +233,7 @@ export default function UserHomePage() {
                   name={room.name}
                   masterName={room.masterName}
                   playerCount={room.userIds?.length ?? room.playerCount ?? 0}
+                  isMaster={room.masterId === userId}
                   onClick={() =>
                     navigate(
                       room.masterId === userId ? `/master/room/${room.id}` : `/room/${room.id}`
@@ -237,7 +243,10 @@ export default function UserHomePage() {
               ))}
             </div>
           ) : (
-            <div className="empty-state">
+            <div
+              className="empty-state empty-campaign"
+              data-tone={roomSubTab === 'mastering' ? 'gold' : 'sage'}
+            >
               <div className="empty-icon">
                 <UsersRound size={27} aria-hidden="true" />
               </div>

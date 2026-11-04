@@ -169,7 +169,7 @@ function CreateCharacterPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
       <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-[760px] px-4 py-12 sm:px-6">
@@ -221,7 +221,7 @@ function CreateCharacterPage() {
             )}
           </div>
 
-          <div className="surface-panel p-5 sm:p-8 animate-in fade-in duration-300">
+          <div className="surface-panel creation-panel p-5 sm:p-8 animate-in fade-in duration-300">
             {currentStep === 1 && <CharacterInfoStep data={info} onChange={handleInfoChange} />}
             {currentStep === 2 && (
               <CharacterAttributesStep stats={stats} onChange={handleStatsChange} />

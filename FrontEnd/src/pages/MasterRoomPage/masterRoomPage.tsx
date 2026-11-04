@@ -8,6 +8,7 @@ import { getCharacterStatsByCharacterId } from '../../services/characterStatsSer
 import { getRoomById } from '../../services/roomService'
 import type { Character, Room } from '../../types'
 import { FaCheck } from 'react-icons/fa'
+import { BookOpen, KeyRound } from 'lucide-react'
 
 interface CharacterWithDerived extends Character {
   currentHp: number
@@ -92,7 +93,7 @@ function MasterRoomPage() {
     }`
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
       <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -113,7 +114,10 @@ function MasterRoomPage() {
 
           {activeTab === 'infos' && (
             <section className="animate-in fade-in duration-300">
-              <div className="mb-8 border-b border-[#1a6fb5] pb-6">
+              <div className="room-heading mb-8">
+                <p className="eyebrow">
+                  <BookOpen size={14} aria-hidden="true" /> Arquivo da campanha
+                </p>
                 <h1 className="font-title m-0 text-[clamp(24px,2.4vw,36px)] text-foreground">
                   {loadingRoom ? 'Carregando mesa...' : room?.name || 'Mesa'}
                 </h1>
@@ -164,7 +168,8 @@ function MasterRoomPage() {
                   )}
                 </div>
 
-                <div className="surface-panel h-fit p-6">
+                <div className="surface-panel paper-panel room-code-panel h-fit p-6">
+                  <KeyRound size={24} className="room-code-icon mb-4" aria-hidden="true" />
                   <h2 className="font-title m-0 mb-4 text-[clamp(18px,1.4vw,24px)] text-foreground">
                     Código da sala
                   </h2>
@@ -186,10 +191,10 @@ function MasterRoomPage() {
                         }`}
                         title="Clique para copiar o código"
                       >
-                        <span className="font-title tracking-[0.35em] text-[clamp(24px,2.2vw,34px)] text-foreground">
+                        <span className="room-code font-title tracking-[0.35em] text-[clamp(24px,2.2vw,34px)]">
                           {room.roomCode}
                         </span>
-                        <span className="mt-3 flex items-center gap-1.5 text-[clamp(10px,0.7vw,12px)] italic text-[#6ea8d8]">
+                        <span className="room-code-action mt-3 flex items-center gap-1.5 text-[clamp(10px,0.7vw,12px)]">
                           {copied ? (
                             <>
                               <FaCheck className="text-[#6fa37a]" />

@@ -1,5 +1,6 @@
 import StatRow from '../StatRow/StatRow'
 import { sortedSkillFields } from '../../utils/skillFields'
+import { Crosshair } from 'lucide-react'
 
 interface SkillsPanelProps {
   skills?: Record<string, number> | { skills?: Record<string, number> } | null
@@ -17,8 +18,10 @@ function SkillsPanel({ skills, onChange }: SkillsPanelProps) {
   const skillValues = toSkillValues(skills)
 
   return (
-    <div className="surface-panel mb-8 mt-4 w-full p-5 sm:p-6">
-      <h2 className="panel-heading">Perícias</h2>
+    <div className="surface-panel skills-panel mb-8 mt-4 w-full p-5 sm:p-6">
+      <h2 className="panel-heading">
+        <Crosshair size={21} aria-hidden="true" /> Perícias
+      </h2>
       <div className="grid w-full grid-cols-1 gap-x-8 md:grid-cols-2 xl:grid-cols-3">
         {sortedSkillFields.map((field) => (
           <StatRow

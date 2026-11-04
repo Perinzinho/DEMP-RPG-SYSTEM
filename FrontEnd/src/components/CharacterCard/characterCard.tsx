@@ -23,7 +23,7 @@ export default function CharacterCard({
   return (
     <button
       type="button"
-      className="record-card"
+      className="record-card investigator-record"
       onClick={onClick}
       aria-label={`Abrir ficha de ${name}`}
     >

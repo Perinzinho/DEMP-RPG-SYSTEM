@@ -34,11 +34,11 @@ function CreateRoomPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
       <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-8 max-w-[520px]">
+          <div className="page-intro mx-auto mb-8 max-w-[520px]">
             <Link
               to="/user/home"
               className="mb-8 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
@@ -57,7 +57,7 @@ function CreateRoomPage() {
           </div>
 
           <form
-            className="surface-panel mx-auto flex w-full max-w-[520px] flex-col gap-7 p-6 sm:p-8"
+            className="surface-panel paper-panel room-form mx-auto flex w-full max-w-[520px] flex-col gap-7 p-6 sm:p-8"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-2">
@@ -92,7 +92,7 @@ function CreateRoomPage() {
             </div>
 
             {error && (
-              <p className="m-0 text-center text-sm text-destructive animate-in fade-in duration-300">
+              <p role="alert" className="form-error">
                 {error}
               </p>
             )}

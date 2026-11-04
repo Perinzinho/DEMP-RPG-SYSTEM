@@ -127,7 +127,7 @@ function CharacterSheetPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <div className="app-shell flex min-h-screen flex-col">
         <Header />
         <main className="flex-1" id="main-content">
           <div className="flex flex-col items-center gap-3 py-10">
@@ -142,7 +142,7 @@ function CharacterSheetPage() {
 
   if (!character || !stats) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <div className="app-shell flex min-h-screen flex-col">
         <Header />
         <main className="flex-1" id="main-content">
           <p className="py-10 text-center italic text-[#6E97A4]">Ficha não encontrada.</p>
@@ -153,7 +153,7 @@ function CharacterSheetPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
       <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

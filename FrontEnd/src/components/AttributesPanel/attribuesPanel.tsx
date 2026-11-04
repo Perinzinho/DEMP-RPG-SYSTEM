@@ -1,4 +1,5 @@
 import StatRow from '../StatRow/StatRow'
+import { Fingerprint } from 'lucide-react'
 
 const ATTRIBUTE_FIELDS = [
   { key: 'strength', label: 'For' },
@@ -18,8 +19,10 @@ interface AttributesPanelProps {
 
 function AttributesPanel({ stats, onChange }: AttributesPanelProps) {
   return (
-    <div className="surface-panel p-5 sm:p-6">
-      <h2 className="panel-heading">Atributos</h2>
+    <div className="surface-panel attributes-panel p-5 sm:p-6">
+      <h2 className="panel-heading">
+        <Fingerprint size={21} aria-hidden="true" /> Atributos
+      </h2>
       {ATTRIBUTE_FIELDS.map((field) => (
         <StatRow
           key={field.key}

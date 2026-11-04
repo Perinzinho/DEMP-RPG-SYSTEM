@@ -7,6 +7,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { HeartPulse } from 'lucide-react'
 
 interface ResourcesPanelProps {
   stats: Record<string, number>
@@ -22,11 +23,17 @@ const CONDITION_CHECKS: { flag: ConditionFlag; label: string }[] = [
 ]
 
 function ResourcesPanel({ stats, onChange }: ResourcesPanelProps) {
+  const hpPercent =
+    stats.hitPoints > 0 ? Math.max(0, Math.min(100, (stats.currentHp / stats.hitPoints) * 100)) : 0
+  const sanityPercent =
+    stats.sanity > 0 ? Math.max(0, Math.min(100, (stats.currentSanity / stats.sanity) * 100)) : 0
   return (
-    <div className="surface-panel p-5 sm:p-6">
-      <h2 className="panel-heading">Recursos</h2>
+    <div className="surface-panel resources-panel p-5 sm:p-6">
+      <h2 className="panel-heading">
+        <HeartPulse size={21} aria-hidden="true" /> Recursos
+      </h2>
 
-      <div className="flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] py-1.5 text-[13px] text-[#c4c8c0] transition-colors duration-200 hover:bg-[rgba(26,111,181,0.03)]">
+      <div className="resource-block resource-health flex items-center justify-between py-1.5 text-[13px]">
         <span>Vida</span>
         <span className="flex items-center gap-0.5">
           <Input
@@ -47,7 +54,11 @@ function ResourcesPanel({ stats, onChange }: ResourcesPanelProps) {
         </span>
       </div>
 
-      <div className="flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] py-1.5 text-[13px] text-[#c4c8c0] transition-colors duration-200 hover:bg-[rgba(26,111,181,0.03)]">
+      <div className="resource-track health-track" aria-hidden="true">
+        <span style={{ width: `${hpPercent}%` }} />
+      </div>
+
+      <div className="resource-block resource-sanity flex items-center justify-between py-1.5 text-[13px]">
         <span>Sanidade</span>
         <span className="flex items-center gap-0.5">
           <Input
@@ -66,6 +77,10 @@ function ResourcesPanel({ stats, onChange }: ResourcesPanelProps) {
             className="w-8 border-none bg-transparent p-0 text-right text-[13px] text-foreground transition-colors duration-200 hover:bg-[rgba(26,111,181,0.05)]"
           />
         </span>
+      </div>
+
+      <div className="resource-track sanity-track" aria-hidden="true">
+        <span style={{ width: `${sanityPercent}%` }} />
       </div>
 
       <div className="flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] py-1.5 text-[13px] text-[#c4c8c0] transition-colors duration-200 hover:bg-[rgba(26,111,181,0.03)]">

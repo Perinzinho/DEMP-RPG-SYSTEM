@@ -4,14 +4,22 @@ interface RoomCardProps {
   name: string
   masterName?: string
   playerCount: number
+  isMaster?: boolean
   onClick?: () => void
 }
 
-export default function RoomCard({ name, masterName, playerCount, onClick }: RoomCardProps) {
+export default function RoomCard({
+  name,
+  masterName,
+  playerCount,
+  isMaster = false,
+  onClick,
+}: RoomCardProps) {
   return (
     <button
       type="button"
-      className="record-card"
+      className="record-card room-record"
+      data-tone={isMaster ? 'gold' : 'sage'}
       onClick={onClick}
       aria-label={`Abrir mesa ${name}`}
     >
@@ -19,7 +27,9 @@ export default function RoomCard({ name, masterName, playerCount, onClick }: Roo
         <span className="record-avatar">
           <Dices size={25} aria-hidden="true" />
         </span>
-        <span className="record-badge">Mesa de investigação</span>
+        <span className="record-badge">
+          {isMaster ? 'Você é o mestre' : 'Mesa de investigação'}
+        </span>
       </div>
       <h3>{name}</h3>
       <p>{masterName ? `Mestre: ${masterName}` : 'Um novo mistério espera'}</p>

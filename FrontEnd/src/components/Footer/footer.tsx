@@ -9,7 +9,12 @@ export default function Footer() {
         </p>
         <p>
           Desenvolvido por{' '}
-          <a href="https://github.com/Perinzinho" target="_blank" rel="noopener noreferrer">
+          <a
+            className="footer-author"
+            href="https://github.com/Perinzinho"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Leonardo Perin
           </a>{' '}
           · 2026

@@ -13,7 +13,7 @@ function CharacterSheetHeader({ name, onNameChange, occupation, age }: Character
     OCCUPATIONS.find((o) => o.value === Number(occupation))?.label ?? occupation
 
   return (
-    <div className="mb-8 flex items-center gap-5 border-b border-border pb-6">
+    <div className="sheet-identity mb-8 flex items-center gap-5">
       <div className="record-avatar h-16 w-16 shrink-0 sm:h-20 sm:w-20">
         {name.charAt(0).toLocaleUpperCase('pt-BR')}
       </div>

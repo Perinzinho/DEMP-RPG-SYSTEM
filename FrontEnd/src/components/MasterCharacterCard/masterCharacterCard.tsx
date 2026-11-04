@@ -37,7 +37,7 @@ function MasterCharacterCard({
     <button
       type="button"
       aria-label={`Abrir ficha de ${characterName}`}
-      className="surface-panel flex min-h-[104px] w-full items-center gap-4 p-4 text-left transition-colors duration-200 hover:border-primary/70 hover:bg-muted/30"
+      className="surface-panel master-character-card flex min-h-[104px] w-full items-center gap-4 p-4 text-left transition-colors duration-200 hover:border-primary/70"
       onClick={onClick}
     >
       <div className="record-avatar h-14 w-14 shrink-0">
