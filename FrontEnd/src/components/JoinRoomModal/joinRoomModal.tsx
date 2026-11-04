@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
@@ -35,16 +36,20 @@ function JoinRoomModal({ onClose, onJoin }: JoinRoomModalProps) {
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-[360px] rounded-xl border-[#2F5663] bg-background shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <DialogContent className="w-[calc(100%-2rem)] sm:max-w-[400px] rounded-xl border-border bg-card p-7 shadow-2xl">
         <DialogHeader>
-          <DialogTitle className="font-title text-center text-2xl text-foreground">
+          <DialogTitle className="font-title text-left text-3xl font-normal text-foreground">
             Entrar em mesa
           </DialogTitle>
+          <DialogDescription className="text-left text-xs leading-relaxed">
+            Uma nova história espera por você. Digite o código de seis caracteres compartilhado pelo
+            mestre.
+          </DialogDescription>
         </DialogHeader>
 
         <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
           <div className="flex w-full flex-col gap-2">
-            <Label htmlFor="roomCode" className="font-title text-sm text-foreground">
+            <Label htmlFor="roomCode" className="text-xs text-foreground">
               Código da mesa
             </Label>
             <Input
@@ -52,23 +57,26 @@ function JoinRoomModal({ onClose, onJoin }: JoinRoomModalProps) {
               id="roomCode"
               placeholder="000000"
               value={roomCode}
-              onChange={(e) => setRoomCode(e.target.value)}
+              onChange={(e) => setRoomCode(e.target.value.trim())}
               disabled={loading}
               maxLength={6}
-              className="h-12 rounded-lg border-none bg-muted px-4 text-lg tracking-[2px] text-foreground transition-all duration-300 focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
+              minLength={6}
+              required
+              autoComplete="off"
+              className="h-12 rounded-lg border-border bg-background px-4 text-center font-mono text-xl tracking-[.35em] text-foreground"
             />
           </div>
 
           {error && (
-            <p className="m-0 text-sm text-destructive animate-in fade-in duration-300">
+            <p role="alert" className="form-error">
               {error}
             </p>
           )}
 
           <Button
             type="submit"
-            disabled={loading || !roomCode}
-            className="h-11 w-full rounded-lg border border-[#2F5663] bg-muted font-title text-base text-foreground transition-all duration-300 hover:bg-[rgba(8,66,81,0.8)] hover:opacity-90"
+            disabled={loading || roomCode.length !== 6}
+            className="h-11 w-full rounded-lg bg-primary text-sm text-primary-foreground"
           >
             {loading ? (
               <span className="flex items-center gap-2">

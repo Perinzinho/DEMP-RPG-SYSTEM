@@ -1,17 +1,18 @@
-import { useReducer, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail, UserRound, UserRoundPlus } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent } from '@/components/ui/card'
 
-function RegisterForm() {
-  const [username, setUsername] = useReducer((_: string, value: string) => value, '')
-  const [email, setEmail] = useReducer((_: string, value: string) => value, '')
-  const [password, setPassword] = useReducer((_: string, value: string) => value, '')
-  const [loading, setLoading] = useReducer((_: boolean, value: boolean) => value, false)
-  const [error, setError] = useReducer((_: string, value: string) => value, '')
+export default function RegisterForm() {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const { register } = useAuth()
   const navigate = useNavigate()
 
@@ -19,7 +20,6 @@ function RegisterForm() {
     e.preventDefault()
     setError('')
     setLoading(true)
-
     try {
       await register(username, email, password)
       navigate('/login')
@@ -31,99 +31,106 @@ function RegisterForm() {
   }
 
   return (
-    <Card className="mx-auto w-full max-w-[440px] items-center rounded-3xl border border-[#2F5663]/60 bg-secondary/95 px-5 py-8 shadow-[0_16px_48px_rgba(0,0,0,0.45)] backdrop-blur-md transition-all duration-300 sm:px-8 sm:py-10">
-      <CardContent className="flex w-full flex-col items-center gap-6 px-0">
-        <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="font-title text-3xl text-foreground sm:text-4xl">
-            Criar conta
-          </h1>
-          <p className="font-title text-sm italic text-[#94b8c6]">
-            Junte-se ao Departamento
-          </p>
-        </div>
-
-        <form className="flex w-full flex-col items-center gap-5" onSubmit={handleSubmit}>
-          <div className="flex w-full flex-col gap-2">
-            <Label htmlFor="username" className="font-title text-lg text-foreground sm:text-xl">
-              Nome de usuário
-            </Label>
+    <section className="auth-form" aria-labelledby="register-title">
+      <div className="auth-form-icon">
+        <UserRoundPlus size={22} aria-hidden="true" />
+      </div>
+      <p className="eyebrow">Novos arquivos. Novas histórias.</p>
+      <h2 id="register-title">Junte-se ao DEMP.</h2>
+      <p className="auth-description">O próximo capítulo começa com você.</p>
+      <form onSubmit={handleSubmit} className="auth-fields" aria-busy={loading}>
+        <div className="form-field">
+          <Label htmlFor="username">Nome de usuário</Label>
+          <div className="input-with-icon">
+            <UserRound size={17} aria-hidden="true" />
             <Input
               type="text"
               id="username"
-              placeholder="username"
+              name="username"
+              autoComplete="username"
+              placeholder="Como devemos chamar você?"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               disabled={loading}
-              className="h-12 w-full rounded-lg border border-[#2F5663]/60 bg-muted px-4 text-base text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
+              required
+              className="auth-input h-[49px] rounded-[7px] bg-card pl-[43px] pr-4 text-[13px]"
             />
           </div>
-
-          <div className="flex w-full flex-col gap-2">
-            <Label htmlFor="email" className="font-title text-lg text-foreground sm:text-xl">
-              Email
-            </Label>
+        </div>
+        <div className="form-field">
+          <Label htmlFor="email">Email</Label>
+          <div className="input-with-icon">
+            <Mail size={17} aria-hidden="true" />
             <Input
               type="email"
               id="email"
+              name="email"
+              autoComplete="email"
               placeholder="seu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
-              className="h-12 w-full rounded-lg border border-[#2F5663]/60 bg-muted px-4 text-base text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
+              required
+              className="auth-input h-[49px] rounded-[7px] bg-card pl-[43px] pr-4 text-[13px]"
             />
           </div>
-
-          <div className="flex w-full flex-col gap-2">
-            <Label htmlFor="password" className="font-title text-lg text-foreground sm:text-xl">
-              Senha
-            </Label>
+        </div>
+        <div className="form-field">
+          <Label htmlFor="password">Senha</Label>
+          <div className="input-with-icon">
+            <LockKeyhole size={17} aria-hidden="true" />
             <Input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
-              placeholder="••••••••"
+              name="password"
+              autoComplete="new-password"
+              placeholder="Crie sua senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={loading}
-              className="h-12 w-full rounded-lg border border-[#2F5663]/60 bg-muted px-4 text-base text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
+              required
+              className="auth-input h-[49px] rounded-[7px] bg-card pl-[43px] pr-[45px] text-[13px]"
             />
+            <button
+              className="password-toggle"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+              aria-pressed={showPassword}
+            >
+              {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+            </button>
           </div>
-
-          {error && (
-            <p className="text-sm text-destructive animate-in fade-in duration-300">
-              {error}
-            </p>
+        </div>
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
+          </p>
+        )}
+        <Button
+          type="submit"
+          disabled={loading}
+          className="auth-submit h-[49px] justify-between rounded-[7px] px-[18px] text-[13px] has-[>svg]:px-[18px]"
+        >
+          {loading ? (
+            <>
+              <span className="loading-spinner" /> Criando conta...
+            </>
+          ) : (
+            <>
+              Criar minha conta <ArrowRight size={17} aria-hidden="true" />
+            </>
           )}
-
-          <Button
-            type="submit"
-            disabled={loading}
-            className="h-12 w-full max-w-full rounded-lg bg-primary font-title text-lg text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-[0_4px_16px_rgba(26,111,181,0.35)]"
-          >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
-                Criando conta...
-              </span>
-            ) : (
-              'Criar conta'
-            )}
-          </Button>
-
-          <div className="mt-2 text-center">
-            <p className="text-sm text-foreground">
-              Já tem uma conta?{' '}
-              <Link
-                to="/login"
-                className="font-medium text-[#6ea8d8] underline transition-colors duration-300 hover:text-[#9dc4d1]"
-              >
-                Entrar
-              </Link>
-            </p>
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+        </Button>
+      </form>
+      <div className="auth-divider">
+        <span>Já faz parte do departamento?</span>
+      </div>
+      <p className="auth-switch">
+        <Link to="/login">
+          Entrar na minha conta <ArrowRight size={14} aria-hidden="true" />
+        </Link>
+      </p>
+    </section>
   )
 }
-
-export default RegisterForm

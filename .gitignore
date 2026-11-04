@@ -31,6 +31,7 @@ dist/
 build/
 .vite/
 coverage/
+.qa/
 *.tsbuildinfo
 
 # Frontend env files

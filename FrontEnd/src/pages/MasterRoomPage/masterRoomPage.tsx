@@ -8,6 +8,7 @@ import { getCharacterStatsByCharacterId } from '../../services/characterStatsSer
 import { getRoomById } from '../../services/roomService'
 import type { Character, Room } from '../../types'
 import { FaCheck } from 'react-icons/fa'
+import { BookOpen, KeyRound } from 'lucide-react'
 
 interface CharacterWithDerived extends Character {
   currentHp: number
@@ -85,18 +86,18 @@ function MasterRoomPage() {
   }
 
   const tabClass = (active: boolean) =>
-    `font-title bg-transparent border-none text-[clamp(16px,1.45vw,28px)] pb-1 cursor-pointer border-b-2 transition-all duration-300 ${
+    `bg-transparent text-sm pb-4 cursor-pointer border-b-2 transition-colors duration-200 ${
       active
         ? 'border-[#1a6fb5] text-foreground'
         : 'border-transparent text-[#6E97A4] hover:text-[#9dc4d1]'
     }`
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-end justify-between">
+          <div className="mb-8 flex items-end justify-between border-b border-border">
             <div className="flex gap-6 overflow-x-auto sm:gap-10">
               {MASTER_SECTIONS.map((section) => (
                 <button
@@ -113,7 +114,10 @@ function MasterRoomPage() {
 
           {activeTab === 'infos' && (
             <section className="animate-in fade-in duration-300">
-              <div className="mb-8 border-b border-[#1a6fb5] pb-6">
+              <div className="room-heading mb-8">
+                <p className="eyebrow">
+                  <BookOpen size={14} aria-hidden="true" /> Arquivo da campanha
+                </p>
                 <h1 className="font-title m-0 text-[clamp(24px,2.4vw,36px)] text-foreground">
                   {loadingRoom ? 'Carregando mesa...' : room?.name || 'Mesa'}
                 </h1>
@@ -123,15 +127,14 @@ function MasterRoomPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
-                <div className="rounded-lg border border-[#2F5663] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.1)] md:p-8">
+                <div className="surface-panel p-6 md:p-8">
                   <div className="mb-6 flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] pb-4">
                     <h2 className="font-title m-0 text-[clamp(20px,1.8vw,28px)] text-foreground">
                       Jogadores
                     </h2>
                     {!loadingCharacters && (
                       <span className="font-title text-sm italic text-[#6E97A4]">
-                        {characters.length}{' '}
-                        {characters.length === 1 ? 'personagem' : 'personagens'}
+                        {characters.length} {characters.length === 1 ? 'personagem' : 'personagens'}
                       </span>
                     )}
                   </div>
@@ -165,7 +168,8 @@ function MasterRoomPage() {
                   )}
                 </div>
 
-                <div className="h-fit rounded-lg border border-[#1a6fb5] p-6 shadow-[0_2px_8px_rgba(26,111,181,0.1)]">
+                <div className="surface-panel archive-panel room-code-panel h-fit p-6">
+                  <KeyRound size={24} className="room-code-icon mb-4" aria-hidden="true" />
                   <h2 className="font-title m-0 mb-4 text-[clamp(18px,1.4vw,24px)] text-foreground">
                     Código da sala
                   </h2>
@@ -187,10 +191,10 @@ function MasterRoomPage() {
                         }`}
                         title="Clique para copiar o código"
                       >
-                        <span className="font-title tracking-[0.35em] text-[clamp(24px,2.2vw,34px)] text-foreground">
+                        <span className="room-code font-title tracking-[0.35em] text-[clamp(24px,2.2vw,34px)]">
                           {room.roomCode}
                         </span>
-                        <span className="mt-3 flex items-center gap-1.5 text-[clamp(10px,0.7vw,12px)] italic text-[#6ea8d8]">
+                        <span className="room-code-action mt-3 flex items-center gap-1.5 text-[clamp(10px,0.7vw,12px)]">
                           {copied ? (
                             <>
                               <FaCheck className="text-[#6fa37a]" />
@@ -206,9 +210,7 @@ function MasterRoomPage() {
                       </p>
                     </div>
                   ) : (
-                    <p className="font-title text-sm italic text-[#6E97A4]">
-                      Código indisponível.
-                    </p>
+                    <p className="font-title text-sm italic text-[#6E97A4]">Código indisponível.</p>
                   )}
                 </div>
               </div>

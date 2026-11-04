@@ -8,7 +8,10 @@ import ResourcesPanel from '../../components/ResourcesPanel/resourcesPanel'
 import AboutPanel from '../../components/AboutPanel/aboutPanel'
 import SkillsPanel from '../../components/SkillsPanel/skillsPanel'
 import { getCharacterById, updateCharacter } from '../../services/characterService'
-import { getCharacterStatsByCharacterId, updateCharacterStats } from '../../services/characterStatsService'
+import {
+  getCharacterStatsByCharacterId,
+  updateCharacterStats,
+} from '../../services/characterStatsService'
 import { OCCUPATIONS } from '../../utils/occupations'
 import { Skills } from '../../utils/skills'
 import type { Character, CharacterStats } from '../../types'
@@ -120,14 +123,13 @@ function CharacterSheetPage() {
     }
   }
 
-  const occupationLabel =
-    OCCUPATIONS.find((o) => o.value === character?.occupation)?.label ?? ''
+  const occupationLabel = OCCUPATIONS.find((o) => o.value === character?.occupation)?.label ?? ''
 
   if (loading) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <div className="app-shell flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1">
+        <main className="flex-1" id="main-content">
           <div className="flex flex-col items-center gap-3 py-10">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1a6fb5] border-t-transparent" />
             <p className="font-title italic text-[#6E97A4]">Carregando ficha...</p>
@@ -140,9 +142,9 @@ function CharacterSheetPage() {
 
   if (!character || !stats) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <div className="app-shell flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1">
+        <main className="flex-1" id="main-content">
           <p className="py-10 text-center italic text-[#6E97A4]">Ficha não encontrada.</p>
         </main>
         <Footer />
@@ -151,9 +153,9 @@ function CharacterSheetPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <CharacterSheetHeader
             name={character.name}
@@ -163,8 +165,14 @@ function CharacterSheetPage() {
           />
 
           <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <AttributesPanel stats={stats as unknown as Record<string, number>} onChange={handleStatField} />
-            <ResourcesPanel stats={stats as unknown as Record<string, number>} onChange={handleStatField} />
+            <AttributesPanel
+              stats={stats as unknown as Record<string, number>}
+              onChange={handleStatField}
+            />
+            <ResourcesPanel
+              stats={stats as unknown as Record<string, number>}
+              onChange={handleStatField}
+            />
             <AboutPanel
               annotations={character.annotations}
               onChange={(v) => handleCharacterField('annotations', v)}

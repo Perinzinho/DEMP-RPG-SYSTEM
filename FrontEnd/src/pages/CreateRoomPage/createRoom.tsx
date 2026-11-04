@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { ArrowLeft, ArrowRight, Dices } from 'lucide-react'
 import Header from '../../components/Header/header'
 import Footer from '../../components/Footer/footer'
 import { createRoom } from '../../services/roomService'
@@ -33,11 +34,20 @@ function CreateRoomPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-10 max-w-[520px] text-center">
+          <div className="page-intro mx-auto mb-8 max-w-[520px]">
+            <Link
+              to="/user/home"
+              className="mb-8 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <ArrowLeft size={14} aria-hidden="true" /> Voltar ao departamento
+            </Link>
+            <p className="eyebrow mb-3">
+              <Dices size={14} aria-hidden="true" /> Novo arquivo de investigação
+            </p>
             <h1 className="font-title text-[clamp(28px,3vw,48px)] text-foreground">
               Crie sua mesa
             </h1>
@@ -46,38 +56,43 @@ function CreateRoomPage() {
             </p>
           </div>
 
-          <form className="mx-auto flex w-full max-w-[520px] flex-col gap-8 rounded-2xl border border-[#2F5663]/60 bg-[rgba(6,51,67,0.15)] p-6 shadow-[0_8px_32px_rgba(0,0,0,0.25)] sm:p-10" onSubmit={handleSubmit}>
+          <form
+            className="surface-panel archive-panel room-form mx-auto flex w-full max-w-[520px] flex-col gap-7 p-6 sm:p-8"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-col gap-2">
-              <Label htmlFor="name" className="font-title text-left text-[clamp(14px,1.2vw,22px)] text-foreground">
+              <Label htmlFor="name" className="text-left text-xs text-foreground">
                 Nome da mesa
               </Label>
               <Input
                 type="text"
                 id="name"
+                placeholder="Como essa história será lembrada?"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={loading}
                 required
-                className="h-[clamp(42px,5.5vh,60px)] w-full rounded-lg border border-[#2F5663]/60 bg-muted px-4 font-title italic text-[clamp(14px,1.1vw,18px)] text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
+                className="h-12 rounded-lg border-border bg-background/60 px-4 text-sm"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <Label htmlFor="description" className="font-title text-left text-[clamp(14px,1.2vw,22px)] text-foreground">
+              <Label htmlFor="description" className="text-left text-xs text-foreground">
                 Descrição
               </Label>
               <Textarea
                 id="description"
+                placeholder="Apresente o cenário e o mistério que aguarda os investigadores..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 disabled={loading}
                 required
-                className="min-h-[140px] w-full resize-y rounded-lg border border-[#2F5663]/60 bg-muted px-4 py-3 font-title italic leading-relaxed text-[clamp(14px,1.1vw,18px)] text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:bg-[rgba(8,66,81,0.8)] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.3)]"
+                className="min-h-[160px] resize-y rounded-lg border-border bg-background/60 px-4 py-3 text-sm leading-relaxed"
               />
             </div>
 
             {error && (
-              <p className="m-0 text-center text-sm text-destructive animate-in fade-in duration-300">
+              <p role="alert" className="form-error">
                 {error}
               </p>
             )}
@@ -85,7 +100,7 @@ function CreateRoomPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="font-title mx-auto mt-4 w-full max-w-[260px] rounded-md border border-[#1a6fb5] bg-primary/10 px-10 py-3 text-[clamp(14px,1.1vw,20px)] italic text-foreground transition-all duration-300 hover:bg-primary/20 hover:shadow-[0_4px_16px_rgba(26,111,181,0.25)]"
+              className="h-12 w-full justify-between rounded-lg px-5 text-sm"
             >
               {loading ? (
                 <span className="flex items-center gap-2">
@@ -93,7 +108,9 @@ function CreateRoomPage() {
                   Criando...
                 </span>
               ) : (
-                'Criar mesa'
+                <>
+                  Criar mesa <ArrowRight size={16} aria-hidden="true" />
+                </>
               )}
             </Button>
           </form>

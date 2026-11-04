@@ -1,4 +1,5 @@
 import { Textarea } from '@/components/ui/textarea'
+import { NotebookPen } from 'lucide-react'
 
 interface AboutPanelProps {
   annotations?: string
@@ -7,14 +8,16 @@ interface AboutPanelProps {
 
 function AboutPanel({ annotations, onChange }: AboutPanelProps) {
   return (
-    <div className="rounded-lg border border-[#2F5663] p-4 shadow-[0_2px_4px_rgba(0,0,0,0.1)]">
-      <p className="font-title mb-3 text-[15px] text-[#9DC4D1]">Sobre</p>
+    <div className="surface-panel archive-panel notes-panel p-5 sm:p-6">
+      <h2 className="panel-heading">
+        <NotebookPen size={21} aria-hidden="true" /> Anotações
+      </h2>
       <Textarea
         aria-label="Anotações"
-        placeholder="Anotações"
+        placeholder="Pistas, memórias e tudo o que não pode ser esquecido..."
         value={annotations ?? ''}
         onChange={(e) => onChange(e.target.value)}
-        className="h-[200px] resize-y rounded border border-[#2F5663] bg-transparent px-3 py-2 font-title text-xs italic text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]"
+        className="min-h-[240px] resize-y rounded-md border-border bg-background/50 p-3 text-sm leading-relaxed text-foreground"
       />
     </div>
   )

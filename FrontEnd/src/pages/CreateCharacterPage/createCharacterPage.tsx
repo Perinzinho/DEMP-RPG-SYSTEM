@@ -1,9 +1,12 @@
 import { useState, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 import Header from '../../components/Header/header'
 import Footer from '../../components/Footer/footer'
 import StepIndicator from '../../components/StepIndicator/stepIndicator'
-import CharacterInfoStep, { type CharacterInfoData } from '../../components/CharacterInfoStep/characterInfoStep'
+import CharacterInfoStep, {
+  type CharacterInfoData,
+} from '../../components/CharacterInfoStep/characterInfoStep'
 import CharacterAttributesStep from '../../components/CharacterAttributeStep/characterAttributeStep'
 import CharacterSkillsStep from '../../components/CharacterSkillStep/characterSkillStep'
 import { createCharacter } from '../../services/characterService'
@@ -99,7 +102,7 @@ function CreateCharacterPage() {
 
       setCurrentStep(1)
     } catch {
-      setImportError('Não foi possível ler o PDF. Verifique se é uma ficha do Dhole\'s House.')
+      setImportError("Não foi possível ler o PDF. Verifique se é uma ficha do Dhole's House.")
     } finally {
       setImporting(false)
     }
@@ -166,13 +169,18 @@ function CreateCharacterPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="app-shell flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
         <div className="mx-auto box-border w-full max-w-[760px] px-4 py-12 sm:px-6">
-          <h1 className="font-title mb-2 text-center text-[clamp(24px,2.5vw,32px)] italic">
-            Criar Investigador
-          </h1>
+          <Link
+            to={`/room/${roomId}`}
+            className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft size={14} aria-hidden="true" /> Voltar à mesa
+          </Link>
+          <p className="eyebrow mb-3 justify-center">Um novo dossiê começa aqui</p>
+          <h1 className="font-title mb-6 text-center text-4xl">Criar Investigador</h1>
 
           <StepIndicator currentStep={currentStep} />
 
@@ -200,7 +208,7 @@ function CreateCharacterPage() {
                   Importando...
                 </span>
               ) : (
-                'Importar PDF (Dhole\'s House)'
+                "Importar PDF (Dhole's House)"
               )}
             </Button>
             <p className="text-[12px] italic text-[#6E97A4]">
@@ -213,10 +221,14 @@ function CreateCharacterPage() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-[#2F5663]/60 bg-[rgba(6,51,67,0.12)] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.2)] sm:p-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <div className="surface-panel creation-panel p-5 sm:p-8 animate-in fade-in duration-300">
             {currentStep === 1 && <CharacterInfoStep data={info} onChange={handleInfoChange} />}
-            {currentStep === 2 && <CharacterAttributesStep stats={stats} onChange={handleStatsChange} />}
-            {currentStep === 3 && <CharacterSkillsStep skills={skills} onChange={handleSkillsChange} />}
+            {currentStep === 2 && (
+              <CharacterAttributesStep stats={stats} onChange={handleStatsChange} />
+            )}
+            {currentStep === 3 && (
+              <CharacterSkillsStep skills={skills} onChange={handleSkillsChange} />
+            )}
           </div>
 
           {error && (
