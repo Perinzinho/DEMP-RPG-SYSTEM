@@ -46,7 +46,7 @@ function PlayerRoomPage() {
               <p className="font-title text-center italic text-[#6E97A4]">Carregando...</p>
             </div>
           ) : (
-            <div className="surface-panel paper-panel flex w-full max-w-[520px] flex-col items-center gap-6 px-6 py-14 text-center sm:px-12">
+            <div className="surface-panel archive-panel flex w-full max-w-[520px] flex-col items-center gap-6 px-6 py-14 text-center sm:px-12">
               <div className="empty-icon">
                 <UserRoundPlus size={27} aria-hidden="true" />
               </div>

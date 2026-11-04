@@ -57,7 +57,7 @@ function CreateRoomPage() {
           </div>
 
           <form
-            className="surface-panel paper-panel room-form mx-auto flex w-full max-w-[520px] flex-col gap-7 p-6 sm:p-8"
+            className="surface-panel archive-panel room-form mx-auto flex w-full max-w-[520px] flex-col gap-7 p-6 sm:p-8"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-2">

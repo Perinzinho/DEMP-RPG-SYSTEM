@@ -168,7 +168,7 @@ function MasterRoomPage() {
                   )}
                 </div>
 
-                <div className="surface-panel paper-panel room-code-panel h-fit p-6">
+                <div className="surface-panel archive-panel room-code-panel h-fit p-6">
                   <KeyRound size={24} className="room-code-icon mb-4" aria-hidden="true" />
                   <h2 className="font-title m-0 mb-4 text-[clamp(18px,1.4vw,24px)] text-foreground">
                     Código da sala

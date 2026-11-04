@@ -8,7 +8,7 @@ interface AboutPanelProps {
 
 function AboutPanel({ annotations, onChange }: AboutPanelProps) {
   return (
-    <div className="surface-panel paper-panel notes-panel p-5 sm:p-6">
+    <div className="surface-panel archive-panel notes-panel p-5 sm:p-6">
       <h2 className="panel-heading">
         <NotebookPen size={21} aria-hidden="true" /> Anotações
       </h2>
