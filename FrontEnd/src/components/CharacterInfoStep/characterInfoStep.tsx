@@ -24,13 +24,14 @@ interface CharacterInfoStepProps {
 
 function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
   return (
-    <div className="mx-auto flex w-full max-w-[420px] flex-col gap-15">
+    <div className="mx-auto flex w-full max-w-[420px] flex-col gap-6">
       <div className="flex flex-col gap-2">
         <Label htmlFor="nome" className="text-sm text-[#6E97A4]">
           Nome
         </Label>
         <Input
           aria-label="Nome"
+          id="nome"
           type="text"
           value={data.name}
           onChange={(e) => onChange('name', e.target.value)}
@@ -44,6 +45,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
         </Label>
         <Input
           aria-label="Gênero"
+          id="genero"
           type="text"
           value={data.gender}
           onChange={(e) => onChange('gender', e.target.value)}
@@ -52,12 +54,17 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label className="text-sm text-[#6E97A4]">Ocupação</Label>
+        <Label htmlFor="ocupacao" className="text-sm text-[#6E97A4]">
+          Ocupação
+        </Label>
         <Select
           value={String(data.occupation)}
           onValueChange={(value) => onChange('occupation', Number(value))}
         >
-          <SelectTrigger className="w-full rounded-md border-[#2F5663] bg-muted font-title italic text-sm text-foreground transition-all duration-300 focus:border-[#1a6fb5] focus:shadow-[0_0_0_2px_rgba(26,111,181,0.2)]">
+          <SelectTrigger
+            id="ocupacao"
+            className="w-full rounded-md border-border bg-muted text-sm text-foreground"
+          >
             <SelectValue placeholder="Selecione a ocupação" />
           </SelectTrigger>
           <SelectContent className="max-h-80 bg-popover text-popover-foreground">
@@ -76,6 +83,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
         </Label>
         <Input
           aria-label="Residência"
+          id="residencia"
           type="text"
           value={data.residence}
           onChange={(e) => onChange('residence', e.target.value)}
@@ -89,6 +97,7 @@ function CharacterInfoStep({ data, onChange }: CharacterInfoStepProps) {
         </Label>
         <Input
           aria-label="Idade"
+          id="idade"
           type="number"
           value={data.age}
           onChange={(e) => onChange('age', Number(e.target.value))}

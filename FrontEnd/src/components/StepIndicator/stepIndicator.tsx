@@ -12,12 +12,16 @@ interface StepIndicatorProps {
 
 function StepIndicator({ currentStep }: StepIndicatorProps) {
   return (
-    <div className="mb-10 flex justify-center gap-8 border-b border-[#1a6fb5] pb-4">
+    <ol
+      className="mb-8 flex justify-between gap-2 border-b border-border pb-5"
+      aria-label="Etapas de criação do investigador"
+    >
       {STEPS.map((step) => (
-        <span
+        <li
           key={step.number}
+          aria-current={currentStep === step.number ? 'step' : undefined}
           className={cn(
-            'text-sm transition-all duration-300',
+            'flex items-center gap-2 text-xs transition-colors duration-200 sm:text-sm',
             currentStep === step.number
               ? 'border-b-2 border-[#1a6fb5] pb-1.5 text-foreground'
               : currentStep > step.number
@@ -25,10 +29,13 @@ function StepIndicator({ currentStep }: StepIndicatorProps) {
                 : 'text-[#6E97A4]'
           )}
         >
-          {step.number}. {step.label}
-        </span>
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-current text-[10px]">
+            {step.number}
+          </span>{' '}
+          {step.label}
+        </li>
       ))}
-    </div>
+    </ol>
   )
 }
 

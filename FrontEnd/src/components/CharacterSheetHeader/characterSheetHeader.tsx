@@ -13,17 +13,18 @@ function CharacterSheetHeader({ name, onNameChange, occupation, age }: Character
     OCCUPATIONS.find((o) => o.value === Number(occupation))?.label ?? occupation
 
   return (
-    <div className="mb-8 flex items-center gap-5 border-b border-[#1a6fb5] pb-5">
-      <div className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded border border-[#5A6056] bg-[rgba(90,96,86,0.1)] text-2xl text-foreground">
-        ?
+    <div className="mb-8 flex items-center gap-5 border-b border-border pb-6">
+      <div className="record-avatar h-16 w-16 shrink-0 sm:h-20 sm:w-20">
+        {name.charAt(0).toLocaleUpperCase('pt-BR')}
       </div>
-      <div className="w-full">
+      <div className="min-w-0 w-full">
+        <p className="eyebrow mb-2">Dossiê do investigador</p>
         <Input
           aria-label="Nome do personagem"
           type="text"
           value={name}
           onChange={(e) => onNameChange(e.target.value)}
-          className="font-title w-full border-none bg-transparent p-0 text-[clamp(22px,2.2vw,32px)] italic text-foreground transition-all duration-300 hover:bg-[rgba(26,111,181,0.03)] focus:bg-[rgba(26,111,181,0.05)] focus:shadow-none"
+          className="font-title h-auto w-full border-none bg-transparent p-0 text-[clamp(22px,2.2vw,32px)] md:text-[clamp(22px,2.2vw,32px)] text-foreground transition-colors duration-200 hover:bg-primary/5 focus:bg-primary/5 focus:shadow-none"
         />
         <p className="mt-1 text-[13px] text-[#6E97A4]">
           {occupationLabel} &middot; {age} anos

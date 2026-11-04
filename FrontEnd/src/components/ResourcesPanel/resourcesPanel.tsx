@@ -1,4 +1,9 @@
-import { ConditionFlags, hasCondition, toggleCondition, type ConditionFlag } from '../../utils/conditions'
+import {
+  ConditionFlags,
+  hasCondition,
+  toggleCondition,
+  type ConditionFlag,
+} from '../../utils/conditions'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
@@ -18,8 +23,8 @@ const CONDITION_CHECKS: { flag: ConditionFlag; label: string }[] = [
 
 function ResourcesPanel({ stats, onChange }: ResourcesPanelProps) {
   return (
-    <div className="rounded-lg border border-[#2F5663] p-4 shadow-[0_2px_4px_rgba(0,0,0,0.1)]">
-      <p className="font-title mb-3 text-[15px] text-[#9DC4D1]">Recursos</p>
+    <div className="surface-panel p-5 sm:p-6">
+      <h2 className="panel-heading">Recursos</h2>
 
       <div className="flex items-center justify-between border-b border-[rgba(47,86,99,0.3)] py-1.5 text-[13px] text-[#c4c8c0] transition-colors duration-200 hover:bg-[rgba(26,111,181,0.03)]">
         <span>Vida</span>
@@ -88,14 +93,14 @@ function ResourcesPanel({ stats, onChange }: ResourcesPanelProps) {
       <p className="font-title mb-3 mt-4 text-[15px] text-[#9DC4D1]">Status</p>
 
       {CONDITION_CHECKS.map(({ flag, label }) => (
-        <Label key={flag} className="mb-1.5 flex cursor-pointer items-center gap-1.5 text-xs text-[#c4c8c0] transition-colors duration-200 hover:text-foreground">
+        <Label
+          key={flag}
+          className="mb-1.5 flex cursor-pointer items-center gap-1.5 text-xs text-[#c4c8c0] transition-colors duration-200 hover:text-foreground"
+        >
           <Checkbox
             checked={hasCondition(stats.condition, flag)}
             onCheckedChange={(checked) =>
-              onChange(
-                'condition',
-                toggleCondition(stats.condition, flag, checked === true)
-              )
+              onChange('condition', toggleCondition(stats.condition, flag, checked === true))
             }
           />
           {label}
